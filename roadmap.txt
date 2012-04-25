@@ -1,0 +1,32 @@
+Ch 1
+introduction {5-10}
+	adas
+	perception
+		elements: slam, datmo, classification
+		link with next sections
+	risk assessment
+	sensors
+	demonstrator
+		sensors
+		perception framework
+	problem introduction
+
+Ch 2
+problem {6-10} & state of the art
+	BOF
+	Problem
+	state of the art {7}
+	
+Ch 3
+
+motion detection
+
+Ch 4
+
+implementation {4-10} & results
+
+//evaluation {5-9}
+
+conclusion {2-3}
+
+bibliograph {1}
