@@ -1,0 +1,254 @@
+%01
+@inproceedings{MEKHNACHA-2008-336356,
+    hal_id = {inria-00336356},
+    url = {http://hal.inria.fr/inria-00336356},
+    title = {{Bayesian occupancy filter based "Fast Clustering-Tracking" algorithm}},
+    author = {Mekhnacha, Kamel and Mao, Yong and Raulo, David and Laugier, Christian},
+    abstract = {{It has been shown that the dynamic environment around the mobile robot can be efficiently and robustly represented by the Bayesian occupancy filter (BOF) . In the BOF framework, the environment is decomposed into a grid based representation in which both the occupancy and the velocity distributions are estimated for each grid cell. In such a representation, concepts such as objects or tracks do not exist and the estimation is achieved at the cell level. However, the object-level representation is mandatory for applications needing high-level representations of obstacles and their motion. To achieve this, a natural approach is to perform clustering on the BOF output grid in order to extract objects. We present in this paper a novel clustering-tracking algorithm. The main idea is to use the prediction result of the tracking module as a form of feedback to the clustering module, which reduces drastically the complexity of the data association. Compared with the traditional joint probabilistic data association filter (JPDAF) approach, the proposed algorithm demands less computational costs, so as to be suitable for environments with large amount of dynamic objects. The experiment result on the real data shows the effectiveness of the algorithm.}},
+    language = {English},
+    affiliation = {E-MOTION - INRIA Grenoble Rh{\^o}ne-Alpes / LIG Laboratoire d'Informatique de Grenoble},
+    booktitle = {{IROS 2008}},
+    address = {Nice, France},
+    audience = {international },
+    year = {2008},
+    pdf = {http://hal.inria.fr/inria-00336356/PDF/IROSFinal.pdf},
+}
+
+%02
+@article{Elfes:1989:UOG:68491.68495,
+ author = {Elfes, A.},
+ title = {Using Occupancy Grids for Mobile Robot Perception and Navigation},
+ journal = {Computer},
+ issue_date = {June 1989},
+ volume = {22},
+ number = {6},
+ month = jun,
+ year = {1989},
+ issn = {0018-9162},
+ pages = {46--57},
+ numpages = {12},
+ url = {http://dx.doi.org/10.1109/2.30720},
+ doi = {10.1109/2.30720},
+ acmid = {68495},
+ publisher = {IEEE Computer Society Press},
+ address = {Los Alamitos, CA, USA},
+} 
+
+%02
+@article{Labayrade_Aubert_Tarel_2002, title={Real time obstacle detection in stereovision on non flat road geometry through “v-disparity” representation}, volume={2}, url={http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1188024}, journal={Intelligent Vehicle Symposium 2002 IEEE}, publisher={Ieee}, author={Labayrade, R and Aubert, D and Tarel, J P}, year={2002}, pages={646--651}}
+
+%03
+@techreport{PERROLLAZ-2011-652591,
+    hal_id = {hal-00652591},
+    url = {http://hal.inria.fr/hal-00652591},
+    title = {{A visibility-based approach for occupancy grid computation in disparity space}},
+    author = {Perrollaz, Mathias and Yoder, John-David and Negre, Amaury and Spalanzani, Anne and Laugier, Christian},
+    abstract = {{Occupancy grids are a very convenient tool for environment representation in robotics. This paper will detail a novel approach to compute occupancy grids from stereo-vision, and shows its application for the field of intelligent vehicles. In the proposed approach, occupancy is initially computed directly in the stereoscopic sensor's disparity space. The calculation formally accounts for the detection of obstacles and road pixels in disparity space, as well as partial occlusions in the scene. In a second stage, this disparity-space occupancy grid is transformed into a Cartesian space occupancy grid to be used by subsequent applications. This transformation includes spatial and temporal filtering. The proposed method is designed to be easily processed in parallel. Consequently, we chose to implement it on GPU, which allows real-time processing for the demanding application. In this paper, we present this method and we propose an application to the problem of perception in a road environment. Results are presented with real road data, comparing qualitatively this approach with others.}},
+    language = {Anglais},
+    affiliation = {E-MOTION - INRIA Grenoble Rh{\^o}ne-Alpes / LIG Laboratoire d'Informatique de Grenoble , Ohio Northern University},
+    type = {Rapport de recherche},
+    institution = {INRIA},
+    number = {RR-7841},
+    year = {2011},
+    month = Dec,
+    pdf = {http://hal.inria.fr/hal-00652591/PDF/RR-7841.pdf},
+}
+
+%04a
+@inproceedings{conf/icra/BrechtelGD10,
+  added-at = {2010-08-26T00:00:00.000+0200},
+  author = {Brechtel, Sebastian and Gindele, Tobias and Dillmann, Rüdiger},
+  biburl = {http://www.bibsonomy.org/bibtex/22a5d6fa79979d59139438ccfb3d475c2/dblp},
+  booktitle = {ICRA},
+  crossref = {conf/icra/2010},
+  ee = {http://dx.doi.org/10.1109/ROBOT.2010.5509931},
+  interhash = {bde77348965f60eddda748690f001fff},
+  intrahash = {2a5d6fa79979d59139438ccfb3d475c2},
+  keywords = {dblp},
+  pages = {3932-3938},
+  publisher = {IEEE},
+  timestamp = {2010-08-26T00:00:00.000+0200},
+  title = {Recursive importance sampling for efficient grid-based occupancy filtering in dynamic environments.},
+  url = {http://dblp.uni-trier.de/db/conf/icra/icra2010.html#BrechtelGD10},
+  year = 2010
+}
+
+%05a
+@inproceedings{DBLP:conf/icarcv/BurletAB10,
+  author    = {Julien Burlet and
+               Olivier Aycard and
+               Qadeer Baig},
+  title     = {Interacting multiple models based classification of moving
+               objects},
+  booktitle = {ICARCV},
+  year      = {2010},
+  pages     = {2472-2478},
+  ee        = {http://dx.doi.org/10.1109/ICARCV.2010.5707920},
+  crossref  = {DBLP:conf/icarcv/2010},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+%07
+
+@phdthesis{VU-2009-454238,
+    hal_id = {tel-00454238},
+    url = {http://tel.archives-ouvertes.fr/tel-00454238},
+    title = {{Localisation, Mapping avec D{\'e}tection, Classification et Suivi des Objets Mobiles}},
+    author = {Vu, Trung-Dung},
+    abstract = {{La perception de l'environnement dynamique d'un v{\'e}hicule est une {\'e}tape tr{\`e}s importante dans la construction d'un syst{\`e}me d'assistance {\`a} la conduite automobile. Le travail de th{\`e}se aborde les probl{\`e}mes associ{\'e}s de localisation, de cartographie (appel{\'e} « mapping »), de d{\'e}tection, de classification, et de suivi des objets mobiles per{\c c}us {\`a} l'aide des capteurs embarqu{\'e}s. Les mod{\`e}les et algorithmes d{\'e}velopp{\'e}s se concentrent sur l'utilisation de capteurs t{\'e}l{\'e}m{\'e}triques {\`a} balayage laser. Dans un premier temps, nous proposons une m{\'e}thode bas{\'e}e sur une grille d'occupation pour r{\'e}soudre le probl{\`e}me de « mapping » avec d{\'e}tection des objets mobiles. Afin de corriger les donn{\'e}es odom{\'e}triques du v{\'e}hicule qui sont toujours entach{\'e}es d'erreurs, une nouvelle m{\'e}thode rapide de « scan matching » est introduite, apte {\`a} fonctionner de mani{\`e}re fiable dans des environnements dynamiques. Cela permet de localiser correctement le v{\'e}hicule, et ainsi de mettre {\`a} jour de mani{\`e}re incr{\'e}mentale la carte courante et de d{\'e}tecter les objets mobiles. La deuxi{\`e}me contribution est une m{\'e}thode simultan{\'e}e de d{\'e}tection, classification et suivi des objets mobiles. Une approche fond{\'e}e sur les mod{\`e}les d'objets est introduite permettant d'interpr{\'e}ter la s{\'e}quence de donn{\'e}es laser par des hypoth{\`e}ses de trajectoires d'objets mobiles. La technique de « Data-Driven Markov chain Monte Carlo » (DDMCMC) est utilis{\'e}e pour r{\'e}soudre de mani{\`e}re efficace le probl{\`e}me d'association des donn{\'e}es dans un espace « spatio-temporel » et fournir la solution la plus probable. La m{\'e}thode a {\'e}t{\'e} valid{\'e}e sur des donn{\'e}es r{\'e}elles avec des r{\'e}sultats tr{\`e}s prometteur. Les travaux sont valoris{\'e}s {\`a} travers une collaboration industrielle avec Daimler AG dans le cadre du projet europ{\'e}en PREVENT. Le module de perception a {\'e}t{\'e} int{\'e}gr{\'e} sur un v{\'e}hicule r{\'e}el dans une application automobile particuli{\`e}re, appel{\'e}e le « Pre-Crash ». Celle-ci a donn{\'e}e lieu {\`a} des d{\'e}monstrations lors des journ{\'e}es de pr{\'e}sentation des r{\'e}sultats du projet.}},
+    keywords = {SLAM, multiple object tracking, range sensor processing, intelligent vehicle},
+    language = {English},
+    affiliation = {E-MOTION - INRIA Grenoble Rh{\^o}ne-Alpes / LIG Laboratoire d'Informatique de Grenoble},
+    school = {Institut National Polytechnique de Grenoble - INPG},
+    type = {THESE},
+    collaboration = {European project PREVENT-ProFusion (in collaboration with Daimler AG) },
+    year = {2009},
+    month = Sep,
+    pdf = {http://tel.archives-ouvertes.fr/tel-00454238/PDF/thesis.pdf},
+}
+
+%10
+
+@incollection{TAY-2008-295084,
+    hal_id = {inria-00295084},
+    url = {http://hal.inria.fr/inria-00295084},
+    title = {{The Bayesian Occupation Filter}},
+    author = {Tay, Christopher and Mekhnacha, Kamel and Yguel, Manuel and Coue, Christophe and Pradalier, C{\'e}dric and Laugier, Christian and Fraichard, Thierry and Bessiere, Pierre},
+    abstract = {{Perception of and reasoning about dynamic environments is pertinent for mobile robotics and still constitutes one of the major challenges. To work in these environments, the mobile robot must perceive the environment with sensors; measurements are uncertain and normally treated within the estimation framework. Such an approach enables the mobile robot to model the dynamic environment and follow the evolution of its environment. With an internal representation of the environment, the robot is thus able to perform reasoning and make predictions to accomplish its tasks successfully. Systems for tracking the evolution of the environment have traditionally been a major component in robotics. Industries are now beginning to express interest in such technologies. One particular example is the application within the automotive industry for adaptive cruise control [Cou{\'e} et al., 2002], where the challenge is to reduce road accidents by using better collision detection sys- tems. The major requirement of such a system is a robust tracking system. Most of the existing target-tracking algorithms use an object-based represen- tation of the environment. However, these existing techniques must explicitly consider data association and occlusion. In view of these problems, a grid- based framework, the Bayesian occupancy filter (BOF) [Cou{\'e} et al., 2002, 2003], has been proposed.}},
+    language = {English},
+    affiliation = {E-MOTION - INRIA Grenoble Rh{\^o}ne-Alpes / LIG Laboratoire d'Informatique de Grenoble , Probayes , CSIRO Information and Commuciation Technologies - CSIRO ICT Centre},
+    booktitle = {{Probabilistic Reasoning and Decision Making in Sensory-Motor Systems}},
+    publisher = {Springer},
+    volume = {46},
+    editor = {Bessi{\`e}re, P. and Laugier, C. and Siegwart, R. },
+    series = {Springer Tracts in Advanced Robotics Series },
+    year = {2008},
+    pdf = {http://hal.inria.fr/inria-00295084/PDF/08-star-tay-etal.pdf},
+}
+
+%% inria-00493397, version 1
+%% http://hal.inria.fr/inria-00493397
+@inproceedings{PERROLLAZ-2010-493397,
+    hal_id = {inria-00493397},
+    url = {http://hal.inria.fr/inria-00493397},
+    title = {{Probabilistic representation of the uncertainty of stereo-vision and application to obstacle detection}},
+    author = {Perrollaz, Mathias and Spalanzani, Anne and Aubert, Didier},
+    abstract = {{Stereo-vision is extensively used for intelligent vehicles, mainly for obstacle detection, as it provides a large amount of data. Many authors use it as a classical 3D sensor which provides a large tri-dimensional cloud of metric measurements, and apply methods usually designed for other sensors, such as clustering based on a distance. For stereo-vision, the measurement uncertainty is related to the range. For medium to long range, often necessary in the field of intelligent vehicles, this uncertainty has a significant impact, limiting the use of this kind of approaches. On the other hand, some authors consider stereo-vision more like a vision sensor and choose to directly work in the disparity space. This provides the ability to exploit the connectivity of the measurements, but roughly takes into consideration the actual size of the objects. In this paper, we propose a probabilistic representation of the specific uncertainty for stereo-vision, which takes advantage of both aspects - distance and disparity. The model is presented and then applied to obstacle detection, using the occupancy grid framework. For this purpose, a computationally-efficient implementation based on the u-disparity approach is given.}},
+    language = {English},
+    affiliation = {E-MOTION - INRIA Grenoble Rh{\^o}ne-Alpes / LIG Laboratoire d'Informatique de Grenoble , Laboratoire sur les Interactions V{\'e}hicules-Infrastructure-Conducteurs - LIVIC},
+    booktitle = {{Intellignet Vehicles Symposium}},
+    address = {San Diego, United States},
+    editor = {IEEE },
+    audience = {international },
+    year = {2010},
+    pdf = {http://hal.inria.fr/inria-00493397/PDF/stereoUncertaintyForDetection.pdf},
+}
+
+%z01
+@inproceedings{Hu:2005:CUS:1068500.1068550,
+ author = {Hu, Zhencheng and Lamosa, Francisco and Uchimura, Keiichi},
+ title = {A Complete U-V-Disparity Study for Stereovision Based 3D Driving Environment Analysis},
+ booktitle = {Proceedings of the Fifth International Conference on 3-D Digital Imaging and Modeling},
+ series = {3DIM '05},
+ year = {2005},
+ isbn = {0-7695-2327-7},
+ pages = {204--211},
+ numpages = {8},
+ url = {http://dx.doi.org/10.1109/3DIM.2005.6},
+ doi = {10.1109/3DIM.2005.6},
+ acmid = {1068550},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+} 
+
+%z06
+
+@PHDTHESIS{Wang04a,
+  AUTHOR =       "Chieh-Chih Wang",
+  TITLE =        "Simultaneous Localization, Mapping and Moving Object Tracking",
+  SCHOOL =       "Robotics Institute, Carnegie Mellon University",
+  YEAR =         "2004",
+  address =      "Pittsburgh, PA",
+  month =        "April",
+}
+
+%z07
+@book{iyengar1991autonomous,
+  title={Autonomous Mobile Robots: Control, planning, and architecture},
+  author={Iyengar, S.S. and Elfes, A.},
+  isbn={9780818620188},
+  lccn={91013280},
+  series={IEEE catalog},
+  url={http://books.google.fr/books?id=1ehSAAAAMAAJ},
+  year={1991},
+  publisher={IEEE Computer Society Press}
+}
+
+%z09
+@article{DBLP:journals/aim/Moravec88,
+  author    = {Hans P. Moravec},
+  title     = {Sensor Fusion in Certainty Grids for Mobile Robots},
+  journal   = {AI Magazine},
+  volume    = {9},
+  number    = {2},
+  year      = {1988},
+  pages     = {61-74},
+  ee        = {http://www.aaai.org/ojs/index.php/aimagazine/article/view/676},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+%z10
+
+@INPROCEEDINGS{Wang03onlinesimultaneous,
+    author = {Chieh-Chih Wang and Charles Thorpe and Sebastian Thrun},
+    title = {Online Simultaneous Localization and Mapping with Detection and Tracking of Moving Objects: Theory and Results from a Ground Vehicle in Crowded Urban Areas},
+    booktitle = {In Proceedings of the IEEE International Conference on Robotics and Automation (ICRA},
+    year = {2003},
+    pages = {842--849}
+}
+
+%z11
+@article{Fitzpatrick:2008:TLR:1327539.1327705,
+ author = {Fitzpatrick, Paul and Metta, Giorgio and Natale, Lorenzo},
+ title = {Towards long-lived robot genes},
+ journal = {Robot. Auton. Syst.},
+ issue_date = {January, 2008},
+ volume = {56},
+ number = {1},
+ month = jan,
+ year = {2008},
+ issn = {0921-8890},
+ pages = {29--45},
+ numpages = {17},
+ url = {http://dx.doi.org/10.1016/j.robot.2007.09.014},
+ doi = {10.1016/j.robot.2007.09.014},
+ acmid = {1327705},
+ publisher = {North-Holland Publishing Co.},
+ address = {Amsterdam, The Netherlands, The Netherlands},
+ keywords = {Device drivers, Free software, Humanoid robotics, ICub humanoid, YARP},
+} 
+
+%z12
+
+@misc{bosch91can,
+    author = {Bosch, R.},
+    citeulike-article-id = {968922},
+    keywords = {specification},
+    month = sep,
+    posted-at = {2006-11-30 16:23:42},
+    priority = {0},
+    title = {{CAN} specification version 2.0},
+    year = {1991}
+}
+
+%There exists no eletronic version
+
+@phdthesis{Elfes:1989:OGP:916528,
+ author = {Elfes, Alberto},
+ title = {Occupancy grids: a probabilistic framework for robot perception and navigation},
+ year = {1989},
+ note = {AAI9006205},
+ publisher = {Carnegie Mellon University},
+ address = {Pittsburgh, PA, USA},
+} 
+

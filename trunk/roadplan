@@ -1,0 +1,49 @@
+introduction
+	adas general, 
+		examples, applications
+		realtime (differences in the book awareness of road participants 57 ch)
+	perception related to adas(localisation mapping tracking),
+		main perception tasks
+		localization
+		mapping
+		tracking
+		data fusion
+		detection / clustering
+		recognition / classification
+		multiple task at the sametime (SLAM)
+	sensor 
+	model for env description (grid)
+		grid 
+		scene understanding
+	
+problem (merged with introduction) {separation static dynamic}
+	colision risk estimation 
+		TTC, probabilistic risk estimation {behavior based}
+	extracting dynamic env.
+		interested only in the dynamic env.
+	dificulties {why is dificult?, sensors no semantics, low level representation}
+		incomplete data (ref. from mathias)
+		noisy data
+		precision
+		realtime processing
+state of the art
+	Other kind of separation
+	DATMO
+	SLAM / SLAMMOT
+	SLAM+DATMO
+	occupancy grid
+implementation {how do i solve the  problem}
+	grid based approach 
+	general approach: env classfication + datmo
+	datmo module
+	env classification module
+	impl with lidar
+
+evaluation
+	expedimental platform
+	qualitative results of classifications
+	quantitative results of classifications
+	error analysis {for the different components in the solution}
+conclusion
+
+
