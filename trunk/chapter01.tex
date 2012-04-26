@@ -1,16 +1,26 @@
 \section{Introduction}
 
-In this document we are mainly concerned about driving assistance. However, driving assistance is a vast research field with almost a century of evolution. Such systems aims to support the driver in the action of driving, this support is given in any form: alerts, actuators to name few.
+\subsection{Driving Support Systems}
 
-Since its appearance at the middle 50's, driving assistance has gained several branches, those branches have been heavily studied and contemporaneously are target of many research centers.
+In this document we are mainly concerned about driving assistance. However, driving assistance is a vast research field with almost a century of evolution. Such systems aims to support the driver in the action of driving, this support is given in any form: visual alerts, auditory perception, actuators or haptics\cite{riener2010sensor}.
 
-Drive-support systems are becoming more and more popular. The main reason for that is the increasing number of necessity to manage several instruments simultaneously into the vehicle\cite{riener2010sensor} and even follow up the action of the vehicles near by. The human non optimal, or even incapacity, of dealing with those situation engenders the need for drive-support systems.
+Since its appearance at the middle 50's, driving assistance has gained several branches, those branches have been heavily studied and currently are the target of many research centers.
 
-Driving assistance engineering is not related to computer science. The first mechanisms ever created for driving assistance were related purely with mechanics, some examples of such systems are Cruise Control(CC), Anti Break System (ABS).
+Drive-support systems are becoming more and more popular. There exist several reasons, all of them mostly related with reducing \textbf{risk of incidents} and/or increasing the \textbf{confort} of driving. 
 
-In this paper we concern mainly about driving assistance, thus, some issues faced by autonomous robotics are not in our scope, for instance: clustering, data association, tracking and mapping.
+The former is linked with the cognitive overload in which the human is submited to. Off course the cognitive limitation is not an absolute number, it varies according to several parameters like mental health, type of the channel used (visual, auditory, tactile), amount of information transmitted, etc. A research conducted 2008 had the intend to study the human cognitive limitation for visual (eye) channel, basing this limitation in the saccadic movement of the eye and in the channel information capacity theorem\cite{LautarutisV}. The latter is linked to the anatomy of the instruments and the means used by the driver to perform an activity.
 
-In vehicle time-line evolution, several techniques are concerned to improve the human ability and reaction when located behind a wheel, to name few: Anti-lock Break System(ABS), Adaptive Cruise Control(ACC), Collision Avoidance System(CAS).
+The human eye provides the largest amount of information for the brain. As the human visual sensors gives the major part of the world perception to the brain, it becomes per consequence the most used sensor.
+
+The action of driving did not change since its creation, but the environment has. Due to this evolution the Advanced Driver Assistence Systems (ADAS) was coined to characterize advanced techniques that enhances the capability of driving, improving the vehicle-handling performance and at the same time reduce the workload for the driver\cite{riener2010sensor}.
+
+The engineering of those types of systems is not related directly to computer science. The first mechanisms ever created for driving-support were purely mechanic, some examples of such systems are Cruise Control(CC), Anti-lock Break System (ABS), Collision Avoidance System(CAS).
+
+Advanced Driver Assistence Systems must to perceive the environment before act. ADAS, just like the human cognition, requires a mean to perceive the environment before dispatch any cognitive action. In the humanbody this is addressed for the human eyes, but ADAS requires some other kind of sensing, sense that mimics the environment perception just like the human eyes. 
+
+The different ways of perceiving the environment and different types of technology used to achieve characterizes the sensing instruments, usually called \textbf{sensors}.
+
+%% reviewed until here
 
 For decades academics researchers have studying and trying to understand and mimic the human vision perception in the robotics field, as the vision is a ground bases for human condition, this has a trivial meaning through a human perspective, but mimic this characteristics is extremely complex.
 
@@ -25,6 +35,12 @@ The LIDAR laser scanners output is the basis for development of this work. As in
 As our test platform is a vehicle, this kind of sensor is embedded in a vehicle as a set of sensors with different layers.
 
 By the end of this report, we will present the results achieved and the uncertainty generated by the sensor measurements and its impacts in algorithm outputs.
+
+%\end{comment}
+
+\subsection{Sensors}
+
+
 
 \subsection{Spatial representation}
 
