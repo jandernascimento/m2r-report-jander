@@ -1,4 +1,4 @@
-Ch 1
+Ch 1 - Introduction
 introduction {5-10}
 	adas
 	perception
@@ -11,17 +11,17 @@ introduction {5-10}
 		perception framework
 	problem introduction
 
-Ch 2
+Ch 2 - State of the art
 problem {6-10} & state of the art
 	BOF
 	Problem
 	state of the art {7}
 	
-Ch 3
+Ch 3 - Motion detection
 
 motion detection
 
-Ch 4
+Ch 4 - Implementation
 
 implementation {4-10} & results
 
