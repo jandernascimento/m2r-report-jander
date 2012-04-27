@@ -1,6 +1,4 @@
-\section{Introduction}
-
-\subsection{Driving Support Systems}
+\section{Driving Support Systems}
 
 In this document we are mainly concerned about driving assistance. However, driving assistance is a vast research field with almost a century of evolution. Such systems aims to support the driver in the action of driving, this support is given in any form: visual alerts, auditory perception, actuators or haptics\cite{riener2010sensor}.
 
@@ -16,7 +14,18 @@ The action of driving did not change since its creation, but the environment has
 
 The engineering of those types of systems is not related directly to computer science. The first mechanisms ever created for driving-support were purely mechanic, some examples of such systems are Cruise Control(CC), Anti-lock Break System (ABS), Collision Avoidance System(CAS).
 
-Advanced Driver Assistence Systems must to perceive the environment before act. ADAS, just like the human cognition, requires a mean to perceive the environment before dispatch any cognitive action. In the humanbody this is addressed for the human eyes, but ADAS requires some other kind of sensing, sense that mimics the environment perception just like the human eyes. 
+\textbf{ADAS} is handled separately by researchers. Among the inumerous fields of application (Figure \ref{fig:sensor:target}), this work will concentrate in application situated in \textbf{Safety} branch.
+
+\begin{figure}[h]
+\centering
+	\begin{tabular}{lr}\\
+		\includegraphics[scale=0.7]{img/fig:sensor:target} 
+	\end{tabular}
+	\caption{ADAS application stack and problem to be tacked (adapted from \cite{riener2010sensor})}
+	\label{fig:sensor:target}
+\end{figure}
+
+Advanced Driver Assistence Systems must to perceive the environment before act. ADAS works just like the human cognition, it requires a mean to perceive the environment before dispatch any cognitive action. In the humanbody the environment perception is addressed by the eyes, although ADAS requires some artificial kind of sensing, that mimics the environment. 
 
 The different ways of perceiving the environment and different types of technology used to achieve characterizes the sensing instruments, usually called \textbf{sensors}.
 
@@ -39,6 +48,8 @@ By the end of this report, we will present the results achieved and the uncertai
 %\end{comment}
 
 \subsection{Sensors}
+
+%maybe replace the world system in the diagram and text by "control systems"
 
 Pragmatically interacting with the physical environment requires sensing. Sensing is input for enumerous biological systems (e.g. nervous system, diggestive system), enabling such systems to respond properly to the changes observed by the sensors. 
 
@@ -70,30 +81,22 @@ There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}
 
 \subsubsection{Properties}
 
-The sensor is subject to issues. As the sensor is the capacity of a system to observe the environment, this affects diretly the solution (the main purpose of its existence).
+The sensors are subject to issues. As the sensor is the capacity of a system to observe the environment, this affects diretly the solution (the main purpose of its existence).
 
-The most common issues are: noise, imprecision, speed. 
+The most common issues are: noise, imprecision. 
 
-\paragraph{Precision}
+\paragraph{Noise} depending on the mean used by the sensor to perceive the physical events, it may become more of less subjected to interferances. Those interferances can cause instability in the data acquisition, possibly leading to its miss interpretations.
 
-\subsubsection{Calibration}
+\paragraph{Imprecision} sensors rely on physical properties of the observed \textbf{measurands}, those properties may vary according to the environment in which the sensor is deployed.
 
+Light Detection and Ranging can be a good example of imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light hit the object and be reflected back. Although in the space the speed of the light is constant, in earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing dramatically the measurements.
+
+%\subsubsection{Calibration} // need to look for material for this one
 %drift
 
+\section{Perception}
 
-
-
-
-\subsection{Spatial representation}
-
-There exists several ways to represent one environment in with respect to its spatial information. Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent. 
-
-At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. Occupancy grid can be used as well to represent tree-dimentional environment, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
-
-One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
-
-
-\subsubsection{SLAM}
+\subsection{SLAM}
 
 SLAM (Simultaneous Localization and Mapping) is a concurrent map and localization problem, where the initial position of the ego-robot is unknown. The SLAM uses the observation done by the robot's sensor to localize the ego-robot in the environment and build the map at the same time\cite{VU-2009-454238}. 
 
@@ -118,13 +121,13 @@ P(x_t,M | z_{0:t}, u_{1:t})
 \end{equation}
 
 
-\subsubsection{DATMO}
+\subsection{DATMO}
 
 Detection and Tracking of Moving Objects was initially studied by radar tracking systems \cite{VU-2009-454238} researches. Thus, they capture only moving object in the instrument, with those objects in scene they must solve the data association problem. The former assumption is unrealistic in the vision of a robot, the perception sensor senses all objects, independently on their motion, so static and dynamic objects are included.
 
 As DATMO is a large process, some researchers chose to pick just a part of this process, which is "Moving Object Tracking" and solve it, without worry about the detection phase.
 
-\subsubsection{SLAMMOT}
+\subsection{SLAMMOT}
 
 Researches considered SLAM and DATMO as two different problems that should be solved separately, \textit{Wang} was one of the first researches to put in evidence the similarities between both problems \cite{Wang03onlinesimultaneous}.
 
@@ -132,13 +135,13 @@ As result, the SLAMMOT term was coined and a derivation of the SLAM formula with
 
 As the GPS system or an good IMU for a good precision are too expensive, the paper propose a bayesian approach solution which satisties the navigation constraints without compromise the safety and at the sametime are not high costly as the other solutions based on a specialized hardware.
 
-\subsubsection{SLAM and DATMO}
+\subsection{SLAM and DATMO}
 
 Robots face a set of problems which are common among many robots, how to move in a certain environment is one of them.
 
 The general environment perception (Figure \ref{fig:perception:cycle}) requires at least two inputs: the perception measurements $Z$ which are usually are provided by cameras, LIDAR, or even radars, and motion measurements provided by the IMU (Inertial Measurement Unit).
 
-\begin{figure}[H]
+\begin{figure}[h]
    \centering
      \begin{tabular}{lr}
        \includegraphics[scale=0.5]{img/fig:perception:cycle}
@@ -160,6 +163,14 @@ Another set of problems concerns the most part of robots applications are highly
 
 Although these two classification are given in a separate manner, they can be used as complementary to each other as presented in the paper \cite{Wang04a}, which will be dissected later.
 
+\subsection{Spatial representation}
+
+There exists several ways to represent one environment in with respect to its spatial information. Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
+
+At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. Occupancy grid can be used as well to represent tree-dimentional environment, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
+
+One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
+
 \subsection{Occupancy grid mapping}
 
 Representing continous space when dealing with the uncertainty of an action of a mobile robot is extremely demanding in terms of resource usage, either in terms of processing power or memory allocation.
@@ -169,7 +180,7 @@ Thus, targeting to amortize the computational requirement for the incertainty in
 This kind of representations is done with multi-dimensional vectors and results in a bird-eye view of the discretized map obtained by the perception sensor Figure \ref{fig:grid:continuous:discretized}.
 
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 	\begin{tabular}{lr}\\
 		\includegraphics[width=0.25\columnwidth]{img/fig:grid:continuous} &
