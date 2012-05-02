@@ -20,6 +20,18 @@ The vehicle has two IBEO Lux Lidar in the front side of the car, one in each cor
 
 As IMU, the car is equipped with a Xsens IMU and a GPS for global positioning.
 
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+     \multicolumn{2}{c}{ \includegraphics[width=0.55\columnwidth]{img/testbed:car}}\\
+       \includegraphics[width=0.40\columnwidth]{img/testbed:ibeo}
+       &\includegraphics[width=0.40\columnwidth]{img/testbed:tyzx}
+     \end{tabular}
+   \caption{Lexus LS600h car equipped with two IBEO Lux lidars and a TYZX
+     stereo camera}
+   \label{fig:Lexus}
+ \end{figure}
+
 As the test platform requires a powerfull computer to process the stereo images in realtime, the car is equipped with a Dell workstation with an NVidia graphic card.
 
 DeepSea TYZX stereo vision camera has a base line of 22 cm with 512x320 pixels of resolution and focal length of 410 pixels, this camera is provided with a library which can estimate the distance in cm of the objects captured by the camera, but in our tests we used the estimators developed at Inria\cite{PERROLLAZ-2010-493397}.
@@ -27,31 +39,20 @@ DeepSea TYZX stereo vision camera has a base line of 22 cm with 512x320 pixels o
 %http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6170895
 %http://hal.inria.fr/index.php?halsid=fa9c2loot97ptftt2n38f6lvr5&view_this_doc=hal-00671208&version=1
 
-Each IBEO Lux Lidar is composed of four layers, each of them providing about 200 beams. The angular range of 100 degrees with angular resolution of 0.5 degrees. Each beam can reach until 200 m of distance measurement, with width of 40 m and maximum height of 2 m.
-
-MTi-G XSens minimum of 120Hz and maximum of 512Hz for data logging and angular resolution of 0.05 degrees, all specifications are valid when considering an homogenous eletromagnetic environment. Maximum altitude operation is 18 Km and maximum speed is 515 m/s.
-
-\begin{figure}[H]
+\begin{figure}[h]
    \centering
      \begin{tabular}{lr}
-     \multicolumn{2}{c}{ \includegraphics[width=0.55\columnwidth]{img/testbed:car}}\\
-       \includegraphics[width=0.42\columnwidth]{img/testbed:ibeo}
-       &\includegraphics[width=0.42\columnwidth]{img/testbed:tyzx}
-     \end{tabular}
-   \caption{Lexus LS600h car equipped with two IBEO Lux lidars and a TYZX
-     stereo camera}
-   \label{fig:Lexus}
- \end{figure}
-
-\begin{figure}[H]
-   \centering
-     \begin{tabular}{lr}
-       \includegraphics[width=0.55\columnwidth]{img/testbed:xsens}
-       & \includegraphics[width=0.55\columnwidth]{img/testbed:trunc}
+       \includegraphics[width=0.45\columnwidth]{img/testbed:xsens}
+       & \includegraphics[width=0.45\columnwidth]{img/testbed:trunc}
      \end{tabular}
    \caption{MTi-G XSens IMU unit \& Intel Xeon 3.4GHz linux box}
    \label{fig:Lexus}
  \end{figure}
+
+Each IBEO Lux Lidar is composed of four layers, each of them providing about 200 beams. The angular range of 100 degrees with angular resolution of 0.5 degrees. Each beam can reach until 200 m of distance measurement, with width of 40 m and maximum height of 2 m.
+
+MTi-G XSens minimum of 120Hz and maximum of 512Hz for data logging and angular resolution of 0.05 degrees, all specifications are valid when considering an homogenous eletromagnetic environment. Maximum altitude operation is 18 Km and maximum speed is 515 m/s.
+
 
 
 \subsubsection*{Software}
