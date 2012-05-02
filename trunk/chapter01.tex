@@ -54,7 +54,7 @@ Thus, sensor is just responsible for the data aquisition (physical or electric) 
 
 \subsubsection{Types}
 
-There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}) - in sometimes literatures called of \textbf{measurands}. They are essentially classified based in the measurands for which they were designed for.
+There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}) that can be observed by sensors - in sometimes literatures called of \textbf{measurands}. They are essentially classified based in the measurands for which they were designed for.
 
 \begin{figure}[h]
    \centering
@@ -77,21 +77,17 @@ The most common issues are: noise, imprecision.
 
 Light Detection and Ranging can be a good example of imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light hit the object and be reflected back. Although in the space the speed of the light is constant, in earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing dramatically the measurements.
 
-\subsubsection{Calibration} // need to look for material for this one
-	%drift
-Need material for this ones
-
 \section{Perception}
 
 Before talk about perception, its necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization} and \textit{mapping}.
 
-Localization provides the positioning of a origin point and a static reference, this gives as a point in the space where a main actor is using some reference .  
+Localization provides the coordinnate of a point with respect to a static reference, this gives to this point a spatial positionning where an system actor (ego-robot) is using some reference which belongs statically to the environment.  
 
 Mapping, as general knowledge, gives us information about a place, this representation gives as nothing but the static objects position. This might be confusion at some point, but this static objects positioning is provided using as reference other statics objects, and this is the key for this understanding.
 
-By putting these two concepts together, we can go even further. Imagine the following situation, we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folder? Not good.
+By putting these two concepts together, we can go even further. Imagine the following situation, we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
 
-For the exactly same reason we need constantly have the location of the moving object in the very same map, this is called \textit{tracking of moving objects} or even just \textit{tracking} \cite{Wang04a}.
+For the exactly same reason we need constantly to have the location of the moving object in the very same map, this is called \textit{tracking of moving objects} or even just \textit{tracking} \cite{Wang04a}.
 
 In the next sessions we are going to see in more details the approaches utilized by robotics research to tackle the localization and mapping issues.
 
@@ -99,22 +95,33 @@ In the next sessions we are going to see in more details the approaches utilized
 
 SLAM (Simultaneous Localization and Mapping) is an approach that tries to solve concurrently the \textit{mapping} and \textit{localization} issues\cite{VU-2009-454238}. In this approach its assumed that the the initial position of the ego-robot is unknown. 
 
-In such approach,  the observation acquired by the robot's sensor should be used - and be enough - to obtain the robot's \textit{localization}. Those localization coordinates (one of several in case of incertain) must be visible in the current map of the environment. 
+In such approach,  the observation acquired by the robot's sensor should be used. The sensor reading should be enough to obtain the robot's \textit{localization}. That localization coordinates (one or several in case of incertainties) must be visible in the current map of the environment. 
 
-Although, this model requires a precise \textit{mapping} of the environment. This precision is required duo to parallel action moving (which change the enviroment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position.
+Although, this model requires a precise \textit{mapping} of the environment. This precision is required duo to parallel actions performed by the robot: moving itself in the (which change the enviroment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position.
 
-The robot motion depends on the contact surface, inertial forces, the type of the ground surface in which the robot should move, its weight, speed, etc.
+The robot actions are subject of physical interferances as well. Depending in the kind of terrain in which the robot is moving affects how the robot movements can be trusted \cite{DBLP:conf/icra/LenainTHM11}. 
 
-All those variations bring an imprecision factor into the movement performed by a robot.
+Thus, \textbf{inertia} plays a key role in the trustability of the robot movements. Other properties affects \textbf{inertia} such as: balance, weight distribution, grip condition, type of movement, etc.
+
+All those variations bring an imprecision factor into the movement performed by a robot. This because those properties determines the resistence of the robot in changing its speed.
 
 From the probabilist point of view, this implies in estimate the joint probability distribution (Equation \ref{jpd:discrete}). Where the $u$ represents the observations and $z$ the measurements.
 
 Thus, the output of the SLAM process is the robot pose and a map of the stationary objects captured by the \textit{perception} sensors \cite{iyengar1991autonomous}.
 
-%\begin{equation}
-%\label{jpd:continuous}
-%\int_a^b f(x) \, \mathrm dx
-%\end{equation}
+\subsubsection{Formalization}
+
+In SLAM, our main concern is to localize ourselves and the static objects in the surrouding environment. 
+
+Intending to simplify the perspective of this problem, we will generate a scenario that will be used in analogy to the formula and may help the reader to absorbe the intuition behind the formalization.
+
+\paragraph*{Lost Robot} is positioned arbitrarily in a finite space unknown. This is a classical 4 wheeled robot. This same robot is subject of any kind of random forces and terrain condition. 
+
+Suppose we send a command to the robot to move one centimeter ahead, how do we ensure that he really changed one centimeter? Suppose that without observing the last position of the robot we send another command to move another centimeter ahead. 
+
+Thus, everytime we actuate in the robot without checking the real position, the incertainty grows, and the possible new position increases exponentially.
+
+Formalization of such dependency can be done through \textit{Bayes rule}. Bayes rule define the \textit{posteriori} probability distribution over a set $X$, normally represented as $p(A | B)$, which can be read as probability of $A$ knowing $B$.
 
 \begin{equation}
 \label{jpd:discrete}
@@ -124,15 +131,37 @@ P(x_t,M | z_{0:t}, u_{1:t})
 
 \subsection{DATMO}
 
-Detection and Tracking of Moving Objects was initially studied by radar tracking systems \cite{VU-2009-454238} researches. Thus, they capture only moving object in the instrument, with those objects in scene they must solve the data association problem. The former assumption is unrealistic in the vision of a robot, the perception sensor senses all objects, independently on their motion, so static and dynamic objects are included.
+Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems \cite{VU-2009-454238} researches. Since in RADAR only moving objects are visible.
+
+Those objects in scene they must solve the data association problem. The former assumption is unrealistic in the vision of a robot, the perception sensor senses all objects, independently on their motion, so static and dynamic objects are included in the representation.
 
 As DATMO is a large process, some researchers chose to pick just a part of this process, which is "Moving Object Tracking" and solve it, without worry about the detection phase.
+
+DATMO responsability is to:
+
+\begin{itemize}
+\item Detect and initialize new objects
+\item Remove objects that went out of the scene
+\item Moving object motion modeling
+\item Data association
+\end{itemize}
+
+
 
 \subsection{SLAMMOT}
 
 Researches considered SLAM and DATMO as two different problems that should be solved separately, \textit{Wang} was one of the first researches to put in evidence the similarities between both problems \cite{Wang03onlinesimultaneous}.
 
 As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiment showed that solving the SLAM with DATMO increased dramatically the performance of the algorithm comparing them with the results as individual solutions (performance was verified in crowded urban environment).
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.9]{img/fig:slammot}
+     \end{tabular}
+   \caption{SLAMMOT composition (adapted from \cite{Wang04a})}
+   \label{fig:slammot}
+ \end{figure}
 
 As the GPS system or an good IMU for a good precision are too expensive, the paper propose a bayesian approach solution which satisties the navigation constraints without compromise the safety and at the sametime are not high costly as the other solutions based on a specialized hardware.
 
@@ -147,7 +176,7 @@ The general environment perception (Figure \ref{fig:perception:cycle}) requires 
      \begin{tabular}{lr}
        \includegraphics[scale=0.5]{img/fig:perception:cycle}
      \end{tabular}
-   \caption{define}
+   \caption{Perception cycle}
    \label{fig:perception:cycle}
  \end{figure}
 
@@ -217,3 +246,7 @@ UV disparity come off from an technique called U-disparity, a technique which ai
 \textit{Goal: talk about multimodels, importance sampling (or other statistical sampling method), prior map knowledge }
 
 %multimodels, importance sampling, prior map knowledge
+
+\section{Risk assessment}
+
+
