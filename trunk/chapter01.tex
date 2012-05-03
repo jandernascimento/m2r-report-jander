@@ -193,15 +193,57 @@ Another set of problems concerns the most part of robots applications are highly
 
 Although these two classification are given in a separate manner, they can be used as complementary to each other as presented in the paper \cite{Wang04a}, which will be dissected later.
 
-\subsection{Spatial representation}
+\subsection{Map representation}
 
-There exists several ways to represent one environment in with respect to its spatial information. Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
+This is a key point in the resolution of the problematic. Thus, the type of representation is chosen right from the beginning.
+
+There exist several possible map representations. Among those, the most notable ones are \textbf{direct}, \textbf{grid} and \textbf{feature-based}. There exist others like topological representation, but it derives from grid-based or feature-based. Thus, we will not consider it in this work.
+
+\subsubsection{Direct}
+
+This type of representation, is nothing but the most lowest level representation of a sensor reading. 
+
+Frequently used in RADAR-like sensors, it depicts the point of impact of each beam in an image. Binary image is enough to represent such images, it is easy and fast to build, can be extremely oscilating depending on the type of the sensor and the deployment.
+
+This representation uses only range measurements (sonar or laser), this kind of representation is very convinient for its simplicity. This of course is limited by considering an static observation of single sensor reading. 
+
+Although, building a spatial coherent map from multiple readings is much more complex. The pose of the robot must be tracked, so the multiple shots can be assembled without losing  spatial coherence.
+
+The research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} concentrated mostly their stuties in the this approach. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario.
+
+Those readings were performed by a single robot and its position was calculated based in informations provided by the IMU.
+
+The result can be seen in the Figure \ref{fig:mapping:direct:result}. On the left image we have the original mapping, created with raw information and without any kind of filtering. On the right image a map buit with scan alignment\cite{Lu:1997:GCR:591441.591464}. On the second image we can see more sharp vertex and a precise alignment in the edges without mispositioning of lines.
+
+\begin{figure}[h]
+\centering
+	\begin{tabular}{lr}\\
+		\includegraphics[width=0.5\columnwidth]{img/fig:mapping:direct:a} &
+		\includegraphics[width=0.5\columnwidth]{img/fig:mapping:direct:b}
+	\end{tabular}
+	\caption{Direct mapping result}
+	\label{fig:mapping:direct:result}
+\end{figure}
+
+Despide of the good result obtained by scan alignment, it is not not necessary in our approach, since we are not worried about building a map of the environment. 
+
+\subsubsection{Feature-based}
+
+Another way to represent the environment, it is to make use of primitive shapes, like: circles, squared, dots.
+
+Those shapes can be used to represent the obstacles and the surrounding of the environment itself.
+
+Several well known methods for detecting those primitives are available. Hough-transformation, SIFT .
+
+Those methods are capable of detecting some features of an image and do a partial representation of its characteristics.
+
+\subsubsection{Grid-based}
+
+Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
 At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. Occupancy grid can be used as well to represent tree-dimentional environment, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
 
 One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
-
-\subsection{Occupancy grid mapping}
 
 Representing continous space when dealing with the uncertainty of an action of a mobile robot is extremely demanding in terms of resource usage, either in terms of processing power or memory allocation.
 
