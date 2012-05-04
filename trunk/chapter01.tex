@@ -10,7 +10,7 @@ The former is linked with the cognitive overload in which the human is submited 
 
 The human eye provides the largest amount of information for the brain. As the human visual sensors gives the major part of the world perception to the brain, it becomes per consequence the most used sensor.
 
-The action of driving did not change since its creation, but the environment has. Due to this evolution the Advanced Driver Assistence Systems (ADAS) was coined to characterize advanced techniques that enhances the capability of driving, improving the vehicle-handling performance and at the same time reduce the workload for the driver\cite{riener2010sensor}.
+The action of driving did not change since its creation, but the environment has. Advanced Driver Assistence Systems (ADAS) was coined to characterize advanced techniques that enhances the capability of driving, improving the vehicle-handling performance and at the same time reduce the workload for the driver\cite{riener2010sensor}.
 
 The engineering of those types of systems is not related directly to computer science. The first mechanisms ever created for driving-support were purely mechanic, some examples of such systems are Cruise Control(CC), Anti-lock Break System (ABS), Collision Avoidance System(CAS).
 
@@ -71,7 +71,7 @@ The sensors are subject to issues. As the sensor is the capacity of a system to 
 
 The most common issues are: noise, imprecision. 
 
-\paragraph{Noise} depending on the mean used by the sensor to perceive the physical events, it may become more of less subjected to interferances. Those interferances can cause instability in the data acquisition, possibly leading to its miss interpretations.
+\paragraph{Noise} depending on the mean used by the sensor to perceive the physical events, it may become more or less subjected to interferances. Those interferances can cause instability in the data acquisition, possibly leading to its miss interpretations.
 
 \paragraph{Imprecision} sensors rely on physical properties of the observed \textbf{measurands}, those properties may vary according to the environment in which the sensor is deployed.
 
@@ -115,11 +115,11 @@ In SLAM, our main concern is to localize ourselves and the static objects in the
 
 Intending to simplify the perspective of this problem, we will generate a scenario that will be used in analogy to the formula and may help the reader to absorbe the intuition behind the formalization.
 
-\paragraph*{Lost Robot} is positioned arbitrarily in a finite space unknown. This is a classical 4 wheeled robot. This same robot is subject of any kind of random forces and terrain condition. 
+\paragraph*{Lost Robot} is positioned arbitrarily in a finite unknown space. This is a classical 4 wheeled robot. This same robot is subject of any kind of random forces and terrain condition. 
 
-Suppose we send a command to the robot to move one centimeter ahead, how do we ensure that he really changed one centimeter? Suppose that without observing the last position of the robot we send another command to move another centimeter ahead. 
+Suppose we send a command to the robot to move one centimeter ahead, how do we ensure that he really changed one centimeter? Suppose that without observing the last position of the robot we send another command to move another centimeter ahead, what would be the consequences? 
 
-Thus, everytime we actuate in the robot without checking the real position, the incertainty grows, and the possible new position increases exponentially.
+Everytime we actuate in the robot without checking/knowing the real position, the incertainty grows, and the possible new position that can be assumed by the robot increases exponentially.
 
 Formalization of such dependency can be done through \textit{Bayes rule}. Bayes rule define the \textit{posteriori} probability distribution over a set $X$, normally represented as $p(A | B)$, which can be read as probability of $A$ knowing $B$.
 
@@ -128,6 +128,7 @@ Formalization of such dependency can be done through \textit{Bayes rule}. Bayes 
 P(x_t,M | z_{0:t}, u_{1:t})
 \end{equation}
 
+(Still need to develop de formalization..)
 
 \subsection{DATMO}
 
@@ -201,7 +202,7 @@ There exist several possible map representations. Among those, the most notable 
 
 \subsubsection{Direct}
 
-This type of representation, is nothing but the most lowest level representation of a sensor reading. 
+This type of representation, is nothing but the lowest level representation of a sensor reading. 
 
 Frequently used in RADAR-like sensors, it depicts the point of impact of each beam in an image. Binary image is enough to represent such images, it is easy and fast to build, can be extremely oscilating depending on the type of the sensor and the deployment.
 
@@ -209,7 +210,7 @@ This representation uses only range measurements (sonar or laser), this kind of 
 
 Although, building a spatial coherent map from multiple readings is much more complex. The pose of the robot must be tracked, so the multiple shots can be assembled without losing  spatial coherence.
 
-The research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} concentrated mostly their stuties in the this approach. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario.
+The research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} concentrated mostly their studies in the this approach. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario.
 
 Those readings were performed by a single robot and its position was calculated based in informations provided by the IMU.
 
@@ -233,7 +234,7 @@ Another way to represent the environment, it is to make use of primitive shapes,
 
 Those shapes can be used to represent the obstacles and the surrounding of the environment itself.
 
-Several well known methods for detecting those primitives are available. Hough-transformation, SIFT .
+Several well known methods for detecting those primitives are available. Hough-transformation, SIFT are examples.
 
 Those methods are capable of detecting some features of an image and do a partial representation of its characteristics.
 
@@ -274,13 +275,6 @@ This model can be extended to a more general model coined as \textit{inference g
 
 \textit{Goal: Why occupancy grid? how its built? }
 
-\subsection{Object Separation}
-
-\textit{Goal: u-disparity, uv-disparity}
-
-\paragraph*{UV-disparity} 
-
-UV disparity come off from an technique called U-disparity, a technique which aimed to separate the objects from the road surface.. (uv disparity slide 2)
 
 
 \subsection{Classification}
