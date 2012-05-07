@@ -1,7 +1,7 @@
 Ch 1 - Introduction
 introduction {5-10}
 	adas
-	perception
+	perception - explain
 		elements: slam, datmo, classification
 		link with next sections
 	risk assessment
