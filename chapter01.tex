@@ -99,7 +99,16 @@ SLAM (Simultaneous Localization and Mapping) is an approach that tries to solve 
 
 In such approach,  the observation acquired by the robot's sensor should be used. The sensor reading should be enough to obtain the robot's \textit{localization}. That localization coordinates (one or several in case of incertainties) must be visible in the current map of the environment. 
 
-Although, this model requires a precise \textit{mapping} of the environment. This precision is required duo to parallel actions performed by the robot: moving itself in the (which change the enviroment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position.
+Although, this model requires a precise \textit{mapping} of the environment. This precision is required duo to parallel actions performed by the robot: moving itself in the (which change the enviroment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position. The Input-processing-output scheme can be seen in the Figure \ref{fig:perception:slam}.
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.9]{img/fig:perception:slam}
+     \end{tabular}
+   \caption{SLAM process(adapted from \cite{Wang04a})}
+   \label{fig:perception:slam}
+\end{figure}
 
 The robot actions are subject of physical interferances as well. Depending in the kind of terrain in which the robot is moving affects how the robot movements can be trusted \cite{DBLP:conf/icra/LenainTHM11}. 
 
@@ -198,25 +207,25 @@ Although these two classification are given in a separate manner, they can be us
 
 \subsection{Map representation}
 
-This is a key point in the resolution of the problematic. Thus, the type of representation is chosen right from the beginning.
+This is a key point to solve some of the problems related to perception. Thus, the type of representation chosen can be the underline bases to achieve good results.
 
-There exist several possible map representations. Among those, the most notable ones are \textbf{direct}, \textbf{grid} and \textbf{feature-based}. There exist others like topological representation, but it derives from grid-based or feature-based. Thus, we will not consider it in this work.
+There exist several possible types of map that can be used to represent the surrounded environment. Among those, three of them gained importance, which are: \textbf{direct}, \textbf{grid} and \textbf{feature-based}. The topological representation is just a derivative type of map and they are not considered in this document.
 
 \subsubsection{Direct}
 
-This type of representation, is nothing but the lowest level representation of a sensor reading. 
+The direct map representation, is nothing but a straightforward representation of a sensor reading. 
 
-Frequently used in RADAR-like sensors, it depicts the point of impact of each beam in an image. Binary image is enough to represent such images, it is easy and fast to build, can be extremely oscilating depending on the type of the sensor and the deployment.
+This technique is frequently used in RADAR-like sensors, it depicts the point of impact of each beam (or radio wave frequency) in an image. Binary image is enough to represent such images, it is easy and fast to build, can be extremely oscilating depending on the type of the sensor and the deployment depending on the quality of the sensors.
 
-This representation uses only range measurements (sonar or laser), this kind of representation is very convinient for its simplicity. This of course is limited by considering an static observation of single sensor reading. 
+This representation uses only range measurements (e.g. sonar, laser, etc.), this kind of representation is very convenient due to its simplicity. 
 
-Although, building a spatial coherent map from multiple readings is much more complex. The pose of the robot must be tracked, so the multiple shots can be assembled without losing  spatial coherence.
+Although, building a spatial coherent map from multiple readings is much more complex. As the robot moves in the space, its location is always subject of uncertainties this brings us one big issue, how assembly all the informations captured by the robot if we do not know exactly what was the robot's pose and position? 
 
-The research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} concentrated mostly their studies in the this approach. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario.
+A research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} focused their studies in the this issue. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario. The scenario perceived by the robot can be seen in the Figure \ref{fig:mapping:direct:result}.
 
 Those readings were performed by a single robot and its position was calculated based in informations provided by the IMU.
 
-The result can be seen in the Figure \ref{fig:mapping:direct:result}. On the left image we have the original mapping, created with raw information and without any kind of filtering. On the right image a map buit with scan alignment\cite{Lu:1997:GCR:591441.591464}. On the second image we can see more sharp vertex and a precise alignment in the edges without mispositioning of lines.
+The result can be seen in the Figure \ref{fig:mapping:direct:result}. On the left image we have the original mapping, created with raw information and without any kind of filtering or pre-processing. On the right image, we have a map built with scan alignment technique\cite{Lu:1997:GCR:591441.591464}. On the second image we can see more sharp vertex and a precise alignment in the edges without mispositioning of the lines.
 
 \begin{figure}[h]
 \centering
@@ -232,19 +241,29 @@ Despide of the good result obtained by scan alignment, it is not not necessary i
 
 \subsubsection{Feature-based}
 
-Another way to represent the environment, it is to make use of primitive shapes, like: circles, squared, dots.
+Another way to perceive the environment is the feature-based representation. In this type of map we use primitive shapes (e.g. circles, lines, dots, ..) to represent the environment and its obstacles.
 
-Those shapes can be used to represent the obstacles and the surrounding of the environment itself.
+Several well known methods for detecting those features are available. Hough-transformation, SIFT are good examples. 
 
-Several well known methods for detecting those primitives are available. Hough-transformation, SIFT are examples.
+Hough-transformations in able to give us equation of lines that are part of the image. One good application for such method is to detect the edges of a road (left and right borders). By having an image of a plane road where the borders reache the infinity, the Hough-transformation is capable to detect the line equation that represents the edges. [put reference]
 
-Those methods are capable of detecting some features of an image and do a partial representation of its characteristics.
+Scale-invariant feature transform (SIFT) detect similar points between two images, even if this similar points were changes in scale, rotation or illuminance. [put reference] 
+
+Those methods are capable of detecting some features of an image and do a partial representation of its characteristics. 
+
+The representation of the environment is not complete and it is subject to failures after applying the previous techniques.
+
+This unprecise representation may generate false interpretation of the environment, that is why applying this kind of representation is not safe when ADAS is the goal platform.
 
 \subsubsection{Grid-based}
 
 Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
-At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. Occupancy grid can be used as well to represent tree-dimentional environment, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
+The changing the size of the cells we can give more or less precision for the representation (reducing or increasing the cell size respectively).
+
+At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. 
+
+Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
 
 One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
 
@@ -253,7 +272,6 @@ Representing continous space when dealing with the uncertainty of an action of a
 Thus, targeting to amortize the computational requirement for the incertainty in the displacement of a robot, discretization models are used, Occupancy Grid\cite{Elfes:1989:UOG:68491.68495} is one of the former models proposed to tackle this issue.
 
 This kind of representations is done with multi-dimensional vectors and results in a bird-eye view of the discretized map obtained by the perception sensor Figure \ref{fig:grid:continuous:discretized}.
-
 
 \begin{figure}[h]
 \centering
@@ -264,7 +282,6 @@ This kind of representations is done with multi-dimensional vectors and results 
 	\caption{Continuous \& discretized representation of a map}
 	\label{fig:grid:continuous:discretized}
 \end{figure}
-
 
 In grid framework each cell $C$ can be assigned have its state $\phi(C)$ configured to binary domain, so, either the current state of the cell is \textit{occupied} or it is \textit{free}, in this paper we state that the value $1$ represents the occupied state and $0$ a $free$ space Equation \ref{eq:binarycell}.
 
@@ -277,18 +294,24 @@ This model can be extended to a more general model coined as \textit{inference g
 
 \textit{Goal: Why occupancy grid? how its built? }
 
-\subsection{Risk Assessment}
-
-
-
 \subsection{Classification}
 
-Before acting, it is required understand the scene in the first place. 
+Before acting, it is required to understand the scene in the first place.
 
-\textit{Goal: talk about multimodels, importance sampling (or other statistical sampling method), prior map knowledge }
+\textbf{Scenario 1}: In a simpler scenario we can have a robot that moves in an environment, where all objects in its sorroundings are static. The robot is the only element present in the environment that is moving.
+
+In this case, the static environment is everything that the robot can perceive. So the robot should use these information to buit a map of the navigable path.
+
+\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with diffent type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (e.g. to build the map) and which to use as dynamic (e.g. to calculate the risk of collision)?
+
+As we saw, in the \textbf{Scenario 2} it is much more complicated to obtain any information from the environment 
+
+The scene understanding usually implicates in distinguish differents types of objects in the scene. This distiction can be done by using the objects' features, path perceived or even its behavior. 
+
+
 
 %multimodels, importance sampling, prior map knowledge
 
-\section{Risk assessment}
+\subsection{Risk Assessment}
 
 
