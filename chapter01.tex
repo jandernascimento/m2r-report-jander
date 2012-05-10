@@ -61,7 +61,7 @@ There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}
 \begin{figure}[h]
    \centering
      \begin{tabular}{lr}
-       \includegraphics[scale=0.50]{img/fig:sensors}
+       \includegraphics[scale=0.70]{img/fig:sensors}
      \end{tabular}
    \caption{Different types of measurands (adapted from \cite{WhiteRichard})}
    \label{fig:sensors}
@@ -139,8 +139,6 @@ Formalization of such dependency can be done through \textit{Bayes rule}. Bayes 
 P(x_t,M | z_{0:t}, u_{1:t})
 \end{equation}
 
-(Still need to develop de formalization..)
-
 \subsection{DATMO}
 
 Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems \cite{VU-2009-454238} researches. Since in RADAR only moving objects are visible.
@@ -157,8 +155,6 @@ DATMO responsability is to:
 \item Moving object motion modeling
 \item Data association
 \end{itemize}
-
-
 
 \subsection{SLAMMOT}
 
@@ -247,7 +243,7 @@ Several well known methods for detecting those features are available. Hough-tra
 
 Hough-transformations in able to give us equation of lines that are part of the image. One good application for such method is to detect the edges of a road (left and right borders). By having an image of a plane road where the borders reache the infinity, the Hough-transformation is capable to detect the line equation that represents the edges. [put reference]
 
-Scale-invariant feature transform (SIFT) detect similar points between two images, even if this similar points were changes in scale, rotation or illuminance. [put reference] 
+Scale-invariant feature transform (SIFT) detect similar points between two images, even if this similar points were changes in scale, noise, rotation or illuminance. [put reference] 
 
 Those methods are capable of detecting some features of an image and do a partial representation of its characteristics. 
 
@@ -257,13 +253,13 @@ This unprecise representation may generate false interpretation of the environme
 
 \subsubsection{Grid-based}
 
-Occupancy Grid is one of these methods and it is largely applied, its built based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
+Occupancy Grid is one of these methods and it is largely applied, its built and based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
-The changing the size of the cells we can give more or less precision for the representation (reducing or increasing the cell size respectively).
+The changing the size of the cells we can give more or less precision for the representation (reducing or increasing the size of the cell respectively).
 
 At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. 
 
-Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
+Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}. The results are interesting to say the least.
 
 One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
 
@@ -294,7 +290,7 @@ This model can be extended to a more general model coined as \textit{inference g
 
 \textit{Goal: Why occupancy grid? how its built? }
 
-\subsection{Classification}
+\section{Classification}
 
 Before acting, it is required to understand the scene in the first place.
 
@@ -302,16 +298,39 @@ Before acting, it is required to understand the scene in the first place.
 
 In this case, the static environment is everything that the robot can perceive. So the robot should use these information to buit a map of the navigable path.
 
-\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with diffent type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (e.g. to build the map) and which to use as dynamic (e.g. to calculate the risk of collision)?
+\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with diffent type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (e.g. to build the map) and which to use as dynamic (e.g. to calculate the risk of collision)? 
 
-As we saw, in the \textbf{Scenario 2} it is much more complicated to obtain any information from the environment 
+In the \textbf{Scenario 2}, it is much more complicated to obtain any information from the environment.
+
+This lead us to one conclusion: it is hard to do risk analisis when you do not know the objects of the scene.
+
+Thus, as a stepping stone we can perform the dynamic and static environment classification, this solves part of the problem, by classifying the environment in two categories. This will help to:
+
+\begin{enumerate}
+\item Build the map
+\item Perform risk assessment
+\end{enumerate}
 
 The scene understanding usually implicates in distinguish differents types of objects in the scene. This distiction can be done by using the objects' features, path perceived or even its behavior. 
 
-
-
 %multimodels, importance sampling, prior map knowledge
 
-\subsection{Risk Assessment}
+\section{Risk Assessment}
 
+\textbf{Risk Assessment} is a term adopted in several fields, to indicate the mitigation of the risks involved in the target activity. 
 
+Before describe Risk Assessment and its relation with ADAS, we have first to understand what risk means.
+
+\textbf{Risk} is anything that can affect (negatively or positively) a subject. By positive meaning that if such thing happens to be true: something good may happen to the subject, or negative meaning if another given thing happens to be true, the subject may suffer negative consequences. It is a common practice to track just the negative risks, that is why positive risk looks so unfamiliar for most of the readers. 
+
+For that reason some literature use terms like hazard or threat to refer to negative risks. But in this document when we refer to risk, we mean the negative risk - something happens to be true something bad may happen to the subject.
+
+As we saw in certain level of details the meaning of risk, now we can understand the whole meaning of the term, but not without first understanding what "assessment" means.
+
+The \textbf{assessment} is the action of study what variations can affect the subject, this variation can be \textbf{direct} or \textbf{indirect} as well, but we will not explain in details, it is sufficient to know that something it is related with the "thing" that affects the subject, did it happened directly with the subject? or indirectly?
+
+One good example to illustrate the \textbf{direct} and \textbf{indirect} situations, imagine you bought a very good amount of shares from Apple Inc\copyright. But you forgot that its products are manufactured in an asian country and suddenly this asian country government annouces that it is forbiden to export of any kind of product to western countries. 
+
+Well, needless to say that you are bankrupt. Something that was not directly related - international diplomacy relations - to your subject can affect dramatically its value. We can refer to the subject as assets, or future assets.
+
+Thus, the subject can be anything with enough degree of importance to justify the risk assessment. Some examples are: a project, stocks, a schedule, an action.
