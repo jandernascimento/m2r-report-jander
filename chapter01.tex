@@ -1,6 +1,6 @@
 \section{Driving support systems}
 
-In this document we are mainly concerned about driving assistance systems. Such systems facilitates the task of driving, this support can appear in several forms: 
+In this document we are mainly concerned about driving assistance systems. Such system facilitates the task of driving, this support can appear in several forms: 
 
 \begin{itemize}
 \item visual alerts
@@ -8,26 +8,26 @@ In this document we are mainly concerned about driving assistance systems. Such 
 \item tactile alerts (haptics\cite{riener2010sensor})
 \end{itemize}
 
-Driving support system may provide support in a less passive manner as well, for instance:
+Driving support system may provide support in a less passive manner as well:
 
 \begin{itemize}
-\item changing the car responds to the drivers commands
-\item changing the car behaviour
+\item change the car responds to the drivers commands
+\item change the car behaviour
 \end{itemize}
 
-This field has gained several adepts, automobil industry and researchers have studied it throughout the years.
+This field has gained several adepts, auto-mobile industry and researchers have studied it throughout the years.
 
-Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, Brazil changed its law to turn mandatory the ABS(Anti-lock break systems) in all cars manufatured in the country.
+Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed its law to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance.
 
-One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing that numbers in next years, so driving support systems is coping with task of making the car a safer cage, among others tasks \ref{fig:sensor:target}.
+One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems is coping with task of making the car a safer transportation system, among others tasks \ref{fig:sensor:target}.
 
-Those incidents may be related with the cognitive capacity limitation of the human being. 
+Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects in which the human is capable of track simultaneously. 
+
+Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrouding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk.
 
 %Although, cognition is not an absolute number it varies according to several parameters, like mental health, type of sensing mechanism (visual, auditory, tactile), amount of information transmitted, etc. 
 
-A research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects in which the human is capable of track simultaneously. 
-
-The action of driving did not change since its creation but several mechanisms to support the driver have been included in the vehicle. All to provide a better experience and safety for the driver\cite{riener2010sensor}.
+The action of driving did not change since its creation but several mechanisms to support the driver have been included in the vehicle. All to provide a better and safer experience for the driver\cite{riener2010sensor}.
 
 A more modern approach of driving support system has appeared: Advanced Driver Assistance Systems (ADAS). 
 
@@ -37,7 +37,7 @@ ADAS relies in computerized systems to process informations provided by the car 
 
 The goal of this work is to tackle a very common issue in safety application (object classification) and \textbf{not} develop an application.
 
-This will be done by providing a theorerical framework to classificate the environment in a high level manner, separating static and dynamic objects a priori.
+This will be done by providing a theorerical framework to classify the environment in a high level manner, separating static and dynamic objects \textit{a priori}.
 
 \begin{figure}[h]
 \centering
@@ -48,19 +48,22 @@ This will be done by providing a theorerical framework to classificate the envir
 	\label{fig:sensor:target}
 \end{figure}
 
-Advanced Driver Assistance Systems must to perceive the environment before acting. ADAS works just like the human cognition, it requires a mean to perceive the environment before dispatch any cognitive action. In the human body the environment perception is addressed by the eyes, although ADAS requires some artificial kind of sensing, that mimics the environment. 
+Advanced Driver Assistance Systems must to perceive the environment before acting. ADAS works just like the human cognition, it requires a mean to perceive the environment before dispatch any action. 
 
-The different ways of perceiving the environment and different types of technology used to achieve characterizes the sensing instruments, usually called \textbf{sensors}.
+There are different ways of perceiving the environment, usually we observe its aspects, like: lighting, appearance, etc. Each one of those aspects have its own "observer": the sensor.
+
+Every aspect requires a mechanism to convert physical characteristics into electronic signal that can be read by other equipments. The peripherals responsible for that is called \textbf{sensors}, which will be discussed in more details in the Section \ref{sec:sensors}.
 
 %% reviewed until here
 
-In this paper we are concerned with electromagnetic radiation scanners, LIDAR(Light Detection and Ranging) laser for instance.
-
 \subsection{Sensors}
+\label{sec:sensors}
 
 %maybe replace the world system in the diagram and text by "control systems"
 
-Pragmatically interacting with the physical environment requires sensing. Sensing is input for numerous biological systems (e.g. nervous system, digestive system), enabling such systems to respond properly to the changes observed by the sensors. 
+Sensing is input for numerous biological systems (e.g. nervous system, digestive system), enabling such systems to respond properly to the changes observed by our sensors(eye, skin, etc.). 
+
+This cooperation is as important to robotics as for they are for human being. In order to interact with the environment, a robot, needs first to perceive it. We do that by capturing its aspects, or at least some of them. The aspects that are going to be observed depends on the application needs.
 
 \begin{figure}[h]
    \centering
@@ -71,13 +74,17 @@ Pragmatically interacting with the physical environment requires sensing. Sensin
    \label{fig:sensors:role}
  \end{figure}
 
-Sensors do not perform action. They are the means in which complex systems acquire informations about the environment. Although, the sensors play a key role in almost every systems, they are located in a low layer (Figure \ref{fig:sensors:role}), meaning that they have a low level of importance in terms of processing/filtering the data. Normally, incapable to respond directly to external stimulus without a system to observe the input data (provided by one or multiple sensors). The system react to the sensor stimulus through other means.
+Sensors do not perform action. They are the means in which complex systems acquire informations about the environment. Although, the sensors play a key role in almost every systems, they are closer to tha hardware layer (Figure \ref{fig:sensors:role}), meaning that it is not they role to process information, only acquire them. 
 
-Thus, sensor is just responsible for the data acquisition (physical or electric) for a system located in a upper layer level of abstraction.
+The sensors are normally, incapable to respond to external stimulus without a system to observe the data provided by it, and act. The system react to the sensor stimulus through other means.
+
+Thus, sensor is responsible for the data acquisition (electric interpretation of a physical stimulus). This data is directed to a perception layer which is allocated in an upper layer.
 
 \subsubsection{Types}
 
-There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}) that can be observed by sensors - in sometimes literatures called of \textbf{measurands}. They are essentially classified based in the measurands for which they were designed for.
+There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}) that we want to observe. In sometimes literatures those properties can be called \textbf{measurands}. 
+
+The sensors are classified based in which the measurands they were designed to observe.
 
 \begin{figure}[h]
    \centering
@@ -90,7 +97,7 @@ There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}
 
 \subsubsection{Properties}
 
-The sensors are subject to issues. As the sensor is the capacity of a system to observe the environment, this affects directly the solution (the main purpose of its existence).
+The sensors are subject to issues, like any other electrical device. As the sensor is the capacity of a system to observe the environment, this affects directly the solution (the main purpose of its existence).
 
 The most common issues are: noise, imprecision. 
 
@@ -98,7 +105,7 @@ The most common issues are: noise, imprecision.
 
 \paragraph{Imprecision} sensors rely on physical properties of the observed \textbf{measurands}, those properties may vary according to the environment in which the sensor is deployed.
 
-Light Detection and Ranging can be a good example of imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light hit the object and be reflected back. Although in the space the speed of the light is constant, in earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing dramatically the measurements.
+Light Detection and Ranging (LIDAR) can be a good example of imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light hit the object and be reflected back. Although in the space the speed of the light is constant, in earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing dramatically the measurements.
 
 \section{Perception}
 

@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="Nouveau document 1">
+   sodipodi:docname="fig:sensor:target.svg">
   <defs
      id="defs4">
     <marker
@@ -129,9 +129,9 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="997"
-     inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-height="949"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -141,7 +141,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -158,18 +158,19 @@
        y="458.38519" />
     <text
        xml:space="preserve"
-       style="font-size:24.94859123px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="270.14508"
-       y="489.6839"
-       id="text3590"><tspan
+       style="font-size:24.94859123px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="383.38501"
+       y="490.23557"
+       id="text3590"
+       sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan3592"
-         x="270.14508"
-         y="489.6839">Advanced Driver </tspan><tspan
+         x="383.38501"
+         y="490.23557"
+         id="tspan3594">Advanced Driver Assistence Systems</tspan><tspan
          sodipodi:role="line"
-         x="270.14508"
-         y="520.86963"
-         id="tspan3594">Assistence Systems</tspan></text>
+         x="383.38501"
+         y="521.42133"
+         id="tspan2854">(ADAS)</tspan></text>
     <g
        id="g3749"
        transform="translate(-84.643701,48.282662)">
@@ -289,6 +290,6 @@
          sodipodi:role="line"
          id="tspan4390"
          x="480.91327"
-         y="371.87601">Issue</tspan></text>
+         y="371.87601">Focus</tspan></text>
   </g>
 </svg>
