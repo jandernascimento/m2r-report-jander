@@ -4,11 +4,11 @@
 
 The main goal of this research is to distinguish all dynamic objects present in the scene. The scene is observed from a camera installed in a car.
 
-This setup brings one issue: a priori all the objects are moving, since the car moves in the scene, thus the entire scene seems to change in every instant. 
+This setup brings one issue: \textit{apriori} all the objects are moving, since the car moves in the scene, thus the entire scene seems to change in every instant. 
 
 When we talk about distinguish static and dynamic object, we are refeering them to be dynamic or static state with respect to the earth, not to the vehicle.
 
-\section{demonstrator} %configuration of the lasers, diagram
+\section{Demonstrator configuration} %configuration of the lasers, diagram
 \label{sec:demonstrator}
 
 Our testbed used is a Toyota Lexus car equipped with two LIDAR lasers scanner (Section~\ref{sec:testbed} for the specification) installed in the frontal bumber (Figure~\ref{fig:demonstrator:birdeye}).
@@ -24,7 +24,7 @@ Our testbed used is a Toyota Lexus car equipped with two LIDAR lasers scanner (S
 
 The LIDAR is distributed in layers (Figure~\ref{fig:demonstrator:lateral}) and scanning range (Figure~\ref{fig:demonstrator:superior}). 
 
-There are four layers in total, each layer disposed in different angles. The terrain is considered as base for the formation of this angle. This angle is constructed by the angle formed between an imaginary line, which is parallel to the road surface, and the layer, those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
+There are four layers in total, each layer disposed in different angles. The terrain is considered as base for the formation of this angle. This angle is constructed by the angle formed between an imaginary line, which is parallel to the road surface, and the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
 
 \begin{figure}[h]
    \centering
@@ -35,7 +35,17 @@ There are four layers in total, each layer disposed in different angles. The ter
    \label{fig:demonstrator:lateral}
 \end{figure}
 
-Every layer spread in a given range, 
+Every layer spread in a given range, in the Table~\ref{tab:beam:interception} we can see the layers and their specific range. The LIDAR laser scanner used in our tests have the $+0.5^circ$ resolution. 
+
+To calculate the number of beams available in the layer $\ell$, we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum  , respectively, range available for the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR laser scanner $\rho$, this specification is given by the manufacturer. 
+
+From that we can calculate the number of beams we have in the layer according with its range, let's take as example the first layer and calculate the number of beans available in this layer. The first layer has a range that varies from $+35^\circ$ to $-60^\circ$ (minimum and maximum range, respectively), the resolution is $+0.5^\circ$, according to the specification of the manufacturer, Equation~\ref{eq:totalbeams} this layer contains $190$ beams.
+
+\begin{equation}
+\label{eq:totalbeams}
+beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
+\end{equation}
+
 
 From beams individually is possible to obtain the distance between the LIDAR laser scanner and the first object to intercept this beam of light.
 
@@ -50,6 +60,7 @@ From beams individually is possible to obtain the distance between the LIDAR las
 
 
 \begin{table}
+\label{tab:beam:interception}
 	\begin{center}
 	    \begin{tabular}{ | c | c | c | c | c |}
 		    \hline
@@ -60,16 +71,37 @@ From beams individually is possible to obtain the distance between the LIDAR las
 		    1 &  & + & + & + \\ \hline
 		    $\cap$ &  & + & + &  \\ \hline
 	    \end{tabular}
-	\end{center}    
-    \label{tab:beam:interception}
-    \caption{Beam spreading and layers interception}
+	\end{center}
+    \caption{Layers and the horizontal distribution of the beams}
 \end{table}
 
-
+Multiple sensor usage in the demonstrator makes of it a complex system, due to the number of data gathered and overlaped information. Thus, all sensor information must be carried in a consistent manner and this is done by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
 
 \section{Sensor pre-processing} %fusion module
+\label{sec:sensor:fusion}
 
 % in the last subsection, output form (occupancy grid), digrams; explains that this is our input
+
+\subsection{Purpose}
+
+The demonstrator car is composed with two LIDAR laser scanner sensors, as we saw in the Section~\ref{sec:sensor:fusion}. Each of the LIDAR laser scanner is composed of few layers and each layer contains several beams. Those beams are spread horizontally in a given angle range, the ranging (initial and final angles) depends on the layer.
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.30]{img/fig:motion:framework}
+     \end{tabular}
+   \caption{General framework for moving objects detection}
+   \label{fig:motion:framework}
+\end{figure}
+
+This data must be gathered together, but how put the information provided by the sensors in one single visualization? Recall that there are overlaping scanner reading, which means that there may exist conflicting readings due to the sensor failure.
+
+For that proposed, the \textit{Linear Opinion Pools} is used as sensor fusion technique, which result in the Occupancy Grid with fused data\cite{ADARVE-2012-671211}.
+
+\subsection{Building the Occupancy Grid}
+
+
 
 \section{The algorithm}
 %motion detection
