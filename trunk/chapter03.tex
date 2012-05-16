@@ -31,7 +31,7 @@ There are four layers in total, each layer disposed in different angles. The ter
      \begin{tabular}{lr}
        \includegraphics[scale=0.5]{img/fig:demonstrator:lateral}
      \end{tabular}
-   \caption{Lateral view: Four LIDAR laser scanner layers}
+   \caption{Lateral view: Four layers of the left LIDAR laser scanner}
    \label{fig:demonstrator:lateral}
 \end{figure}
 
@@ -47,7 +47,7 @@ beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
 \end{equation}
 
 
-From beams individually is possible to obtain the distance between the LIDAR laser scanner and the first object to intercept this beam of light.
+From every invidual beam is possible to obtain the distance between the LIDAR laser scanner and the first object to intercept this beam of light.
 
 \begin{figure}[h]
    \centering
@@ -97,11 +97,61 @@ The demonstrator car is composed with two LIDAR laser scanner sensors, as we saw
 
 This data must be gathered together, but how put the information provided by the sensors in one single visualization? Recall that there are overlaping scanner reading, which means that there may exist conflicting readings due to the sensor failure.
 
-For that proposed, the \textit{Linear Opinion Pools} is used as sensor fusion technique, which result in the Occupancy Grid with fused data\cite{ADARVE-2012-671211}.
+To solve that issue, the data of the different layers are fused. The technique adopted for the fusion was \textit{Linear Opinion Pools}, which results in the Occupancy Grid with fused data\cite{ADARVE-2012-671211}.
 
 \subsection{Building the Occupancy Grid}
 
 
+\subsubsection{The Grid}
+\label{ch03:buildgrid:grid}
+
+In a grid, the space interacting with the robot (the car demonstrator in our case) is discretized in regular sized independent cells, just like the one depicted in the Section~\ref{ch02:gridbased}.
+
+If we plot the output data from the LIDAR laser scanner sensors in an image, we will have something simitar to \ref{fig:??01}, which is the representatin of the impact points. This representation suffer from two problems:
+
+\begin{itemize}
+\item singular sensing
+\item oblivious blindspot 
+\end{itemize}
+
+Singular sensing meaning that this model is represented in the image by using only one layer information, by the LIDAR provides several layers with overlapping spots which can reduce the uncertainty of the sensors in some areas of the image. 
+
+Oblivious blindspot happens due to reduced information provided by the environment - impact points, thus, nothing is said about the other regions of the environment. We must to have a complete, or at least as complete as possible, representation of the environment even for those spots that are not observed by the sensor. In the \ref{fig:??01}, there is no information about spots locate right after the impact point.
+
+Based in the work \cite{ADARVE-2012-671211} we can build a grid which contains the occupancy probability for all cells in the map for LIDAR laser scanner.
+
+For that we need to make the fusion of the layers($\ell$) provided by LIDAR. In the Equation~\ref{eq:sensor:lidarfusion} we want calculate for given cell $C$, the probability of having this cell occupied with the agreement of all layers provided by the LIDAR.
+
+\begin{equation}
+\label{eq:sensor:lidarfusion}
+P(C|\ell_1,\ell_2,\ell_3,\ell_4)
+\end{equation}
+
+Assuming we want to generate the occupancy grid for an space of $NxM$ cells, this would be calculated according to the Equation~\ref{eq:sensor:gridcalculation}. The Equation~\ref{eq:sensor:gridcalculation} take into consideration the confidence weight $w(C)$ for the measure obtained for the cell $C$.
+
+\begin{equation}
+\label{eq:sensor:gridcalculation}
+P(C|\ell_1,\ell_2,\ell_3,\ell_4)=\alpha \sum_{i=1}^{4} w_i(C)P(C|\ell_i)
+\end{equation}
+
+The cell occupancy, case it is locate before the impact point, its calculated with an uncertainty by using a normal $\eta$ PDF function. 
+
+
+
+\subsubsection{Justifying the performance}
+
+The independence among the cells is the main responsible for the high level of parallelism in the algorithm, the high level of parallelism and the performance can be assured by \textit{Amidahls law}.
+
+\textit{Amidahls law} is a diminshing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm\cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really be accomplished in parallel, of course this is an simplistic view, but gives you an idea.
+
+Although in our case, where the cells are completely independent, the gaining in parallelization is maximum if we ignore the communication cost of the information processed.
+
+In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequencial part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multicore processor).
+
+\begin{equation}
+\label{eq:amidahls}
+T_p=T_{seq}+{T_{par} \over p}
+\end{equation}
 
 \section{The algorithm}
 %motion detection
