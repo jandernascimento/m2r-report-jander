@@ -61,7 +61,7 @@ Every aspect requires a mechanism to convert physical characteristics into elect
 
 %maybe replace the world system in the diagram and text by "control systems"
 
-Sensing is input for numerous biological systems (e.g. nervous system, digestive system), enabling such systems to respond properly to the changes observed by our sensors(eye, skin, etc.). 
+Sensing is input for numerous biological systems (\textit{e.g.} nervous system, digestive system), enabling such systems to respond properly to the changes observed by our sensors(eye, skin, etc.). 
 
 This cooperation is as important to robotics as for they are for human being. In order to interact with the environment, a robot, needs first to perceive it. We do that by capturing its aspects, or at least some of them. The aspects that are going to be observed depends on the application needs.
 
@@ -241,7 +241,7 @@ The direct map representation, is nothing but a straightforward representation o
 
 This technique is frequently used in RADAR-like sensors, it depicts the point of impact of each beam (or radio wave frequency) in an image. Binary image is enough to represent such images, it is easy and fast to build, can be extremely oscillating depending on the type of the sensor and the deployment depending on the quality of the sensors.
 
-This representation uses only range measurements (e.g. sonar, laser, etc.), this kind of representation is very convenient due to its simplicity. 
+This representation uses only range measurements (\textit{e.g.} sonar, laser, etc.), this kind of representation is very convenient due to its simplicity. 
 
 Although, building a spatial coherent map from multiple readings is much more complex. As the robot moves in the space, its location is always subject of uncertainties this brings us one big issue, how assembly all the informations captured by the robot if we do not know exactly what was the robot's pose and position? 
 
@@ -265,7 +265,7 @@ Despide of the good result obtained by scan alignment, it is not not necessary i
 
 \subsubsection{Feature-based}
 
-Another way to perceive the environment is the feature-based representation. In this type of map we use primitive shapes (e.g. circles, lines, dots, ..) to represent the environment and its obstacles.
+Another way to perceive the environment is the feature-based representation. In this type of map we use primitive shapes (\textit{e.g.} circles, lines, dots, ..) to represent the environment and its obstacles.
 
 Several well known methods for detecting those features are available. Hough-transformation, SIFT are good examples. 
 
@@ -280,6 +280,7 @@ The representation of the environment is not complete and it is subject to failu
 This imprecise representation may generate false interpretation of the environment, that is why applying this kind of representation is not safe when ADAS is the goal platform.
 
 \subsubsection{Grid-based}
+\label{ch02:gridbased}
 
 Occupancy Grid is one of these methods and it is largely applied, its built and based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
@@ -307,7 +308,7 @@ This kind of representations is done with multi-dimensional vectors and results 
 	\label{fig:grid:continuous:discretized}
 \end{figure}
 
-In grid framework each cell $C$ can be assigned have its state $\phi(C)$ configured to binary domain, so, either the current state of the cell is \textit{occupied} or it is \textit{free}, in this paper we state that the value $1$ represents the occupied state and $0$ a $free$ space Equation \ref{eq:binarycell}.
+In grid framework each cell $C$ can be assigned have its state $\phi(C)$ configured to binary domain, so, either the current state of the cell is \textit{occupied} or it is \textit{free}, in this paper we state that the value $1$ represents the occupied state and $0$ a $free$ space Equation \ref{eq:binarycell}. A different domain may be used in the grid, for instance to represent random variable with a probability of occupancy of the cell (Section~\ref{ch03:buildgrid:grid}).
 
 \begin{equation}
 P(\phi(C)=1) + P(\phi(C)=0) = 1
@@ -326,7 +327,7 @@ Before acting, it is required to understand the scene in the first place.
 
 In this case, the static environment is everything that the robot can perceive. So the robot should use these information to build a map of the navigable path.
 
-\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with different type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (e.g. to build the map) and which to use as dynamic (e.g. to calculate the risk of collision)? 
+\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with different type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (\textit{e.g.} to build the map) and which to use as dynamic (\textit{e.g.} to calculate the risk of collision)? 
 
 In the \textbf{Scenario 2}, it is much more complicated to obtain any information from the environment.
 
@@ -339,7 +340,7 @@ Thus, as a stepping stone we can perform the dynamic and static environment clas
 \item Perform risk assessment (Section~\ref{sec:riskassessment})
 \end{enumerate}
 
-The scene understanding usually implicates in distinguish different types of objects in the scene. This distinction can be done by using the objects' features, path perceived or even its behavior. 
+The scene understanding usually implicates in distinguish different types of objects in the scene. This distinction can be done by using the objects' features(\textit{e.g.} color, shape, etc.), path perceived or even its behavior. 
 
 %multimodels, importance sampling, prior map knowledge
 
