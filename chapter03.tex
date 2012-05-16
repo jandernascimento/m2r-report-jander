@@ -107,7 +107,7 @@ To solve that issue, the data of the different layers are fused. The technique a
 
 In a grid, the space interacting with the robot (the car demonstrator in our case) is discretized in regular sized independent cells, just like the one depicted in the Section~\ref{ch02:gridbased}.
 
-If we plot the output data from the LIDAR laser scanner sensors in an image, we will have something simitar to \ref{fig:??01}, which is the representatin of the impact points. This representation suffer from two problems:
+If we plot the output data from the LIDAR laser scanner sensors in an image, we will have something simitar to \ref{fig:motion:impactpoint}, which is the representatin of the impact points. This representation suffer from two problems:
 
 \begin{itemize}
 \item singular sensing
@@ -116,7 +116,18 @@ If we plot the output data from the LIDAR laser scanner sensors in an image, we 
 
 Singular sensing meaning that this model is represented in the image by using only one layer information, by the LIDAR provides several layers with overlapping spots which can reduce the uncertainty of the sensors in some areas of the image. 
 
-Oblivious blindspot happens due to reduced information provided by the environment - impact points, thus, nothing is said about the other regions of the environment. We must to have a complete, or at least as complete as possible, representation of the environment even for those spots that are not observed by the sensor. In the \ref{fig:??01}, there is no information about spots locate right after the impact point.
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[width=0.3\columnwidth]{img/fig:motion:impactpoint:01}
+       & \includegraphics[width=0.3\columnwidth]{img/fig:motion:impactpoint:02}
+     \end{tabular}
+   \caption{LIDAR laser scanner and impact points: On left the real environment \& On the right side the grid with impact point}
+   \label{fig:motion:impactpoint}
+ \end{figure}
+
+
+Oblivious blindspot happens due to reduced information provided by the environment - impact points, thus, nothing is said about the other regions of the environment. We must to have a complete, or at least as complete as possible, representation of the environment even for those spots that are not observed by the sensor. In the \ref{fig:motion:impactpoint}, there is no information about spots locate right after the impact point.
 
 Based in the work \cite{ADARVE-2012-671211} we can build a grid which contains the occupancy probability for all cells in the map for LIDAR laser scanner.
 
@@ -134,9 +145,16 @@ Assuming we want to generate the occupancy grid for an space of $NxM$ cells, thi
 P(C|\ell_1,\ell_2,\ell_3,\ell_4)=\alpha \sum_{i=1}^{4} w_i(C)P(C|\ell_i)
 \end{equation}
 
-The cell occupancy, case it is locate before the impact point, its calculated with an uncertainty by using a normal $\eta$ PDF function. 
+The calculation of the cell occupancy is made differently depending on two situations. Depending on the position of the cell $C$ relative to the impact point.
 
+If the cell $C$ is located before an impact point (in between the LIDAR and impact point trajectory), the occupancy of that cell is calculated in function of the distance between the cell and the impact point, due to the undertainty of the sensor model the normal distribution function $\eta$ is taken in consideration.
 
+If the cell $C$ is located after the impact point, the probability assigned to the cell will be $max(0,5,d(p_c,p_l))$.
+
+\begin{equation}
+\label{eq:sensor:normal}
+\eta(x;\mu,\sigma)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2} 
+\end{equation}
 
 \subsubsection{Justifying the performance}
 
@@ -164,7 +182,7 @@ But before jump on explanations on how those two frames are going to be used, we
 
 In the Section~\ref{sec:demonstrator}, we saw that our test platform is composed by two scanners, each of them containing several layers. Every layer has a certain number of beams, which are spread horizontally within a regular angle interval. 
 
-So, before having a frame that can be used by our algorithm, its required to perform the fusion of all those beans, which is done in the \textit{}. 
+So, before having a frame that can be used by our algorithm, its required to perform the fusion of all those beans, which is done in the Section~\ref{ch03:buildgrid:grid}. 
 
 \subsection{Occupancy Counting} 
 
