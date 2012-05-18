@@ -192,14 +192,14 @@ The independence among the cells is the main responsible for the high level of p
 
 \textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm\cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really be accomplished in parallel, of course this is an simplistic view, but gives you an idea.
 
-Although in our case, where the cells are completely independent, the gaining in parallelization is maximum if we ignore the communication cost of the information processed.
-
 In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequential part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multi-core processor).
 
 \begin{equation}
 \label{eq:amidahls}
 T_p=T_{seq}+{T_{par} \over p}
 \end{equation}
+
+As in our case the cells are completely independent, the gaining in parallelization is maximum since the term $T_{seq}$ is zero (the sequential code is inexistant), and the processing time is divided among the workers.
 
 \section{The algorithm}
 %motion detection
@@ -216,31 +216,50 @@ So, before having a frame that can be used by our algorithm, its required to per
 
 The details about the techniques adopted and the data processing were explained in the Section~\ref{ch03:buildgrid:grid}. From here on, we are going to proceed with explanation of our methods, which is identified as \textbf{Motion detection module}. This module is located at the end of the processing chain, as exhibit in the Figure~\ref{fig:motion:framework}. 
 
+\subsection{Non-static sensor issue}
+
+The LIDAR is installed on a vehicle, the goal is to acquire measures while vehicle is moving. So it captures the surrounding and the data is processed by the \textbf{fusion module} resulting in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input required by the \textbf{motion detection module}.
+
+The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, by the LIDAR sensor perspective the entire scenario is moving and all subjects are changing their position, except for those who are following the same trajectory as the vehicle and at the speed. 
+
+The footage used in the tests are recorded in $24fps$ (frames per second). Although we have a large amount of frames in a sequence we are able to achieve good qualitative results by using two frames. 
+
+Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in situational examples.
+
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[width=0.35\columnwidth]{img/fig:motion:algorithm:nonstatic:01}
+       & \includegraphics[width=0.3\columnwidth]{img/fig:motion:algorithm:nonstatic:02}
+     \end{tabular}
+   \caption{frames $f_t$ and $f_{t+1}$ with the intersection area}
+   \label{fig:motion:algorithm:nonstatic:01}
+ \end{figure}
+
+The method developed in this document requires the static sensor contraint, this constraint assumes that there is an exact correspondence between the cells among the two frames analysed. Such constraint is not true in our application since the goal is to have it running in a moving care, as an ADAS application. 
+
+To better understand this issue take a look at the example: assume our vehicle is driving along a street and makes a left turn, we capture two frames, one while the car was driving straight $f_t$, and the second frame  after the car initiate the left turn $f_{t+1}$. We observe an a static object in the frame $f_t$ that was located at $d_t$ meters from the car, and in the frame $f_{t+1}$ this very same object will be at $d_t-\Delta d(f_t,f_{t+1})$ and will be slightly moved to the right side (due to the left turn). The fuction $\Delta d$ returns the distance traveled by the car between the two frames. This behavior can be seen in the Figure~\ref{fig:motion:algorithm:nonstatic:01}, and as we can see, we can consider only as two frames the overlapping area (Figure~\ref{fig:motion:algorithm:nonstatic:01} dotted area in the left image), but since this analysis is done in very small time variation, we have a great portion of overlapping area.
+
+This problem is solved by introducing the Inertial Measurement Unit(IMU). The IMU provides information, the ones used are speed $s$, yaw angle, vertical $v_v$ and horizontal $v_h$ velocity. Those informations are used to apply the necessary transformation to the $f_t$ making its cells match the cells $f_{t+1}$. Thus finding the correspondence between cells of $f_t$ and $f_{t+1}$.
+
+From the IMU information we calculate two parameters: angular velocity and the linear velocity. 
+
+Angular velocity is obtained by finding the angle variation between the frames $f_t$ and $f_{t+1}$, according to the Equation~\ref{eq:angularvelocity}, $\Delta t$ represents the time variation between the frames.
+
+\begin{equation}
+\label{eq:angularvelocity}
+\omega(f_t,f_{t+1}) = \frac{Yaw_{t+1}-Yaw_t}{\Delta t(f_t,f_{t+1})} 
+\end{equation} 
+
+The angular velocity $\omega(f_t,f_{t+1})$ is used to adjust the angle of $f_t$, after this calculation is need to calculate the displacement of the grid
+
 \subsection{Occupancy counting}
 
 For the moment, we assume that the LIDAR sensor is statically positioned and observes the environment.
 
 How to update the probability of an Occupancy grid with 
 In the occupancy counting, 
-
-
-\subsection{Non-static sensor issue}
-
-The LIDAR is installed on a vehicle, the goal is to acquire measures while vehicle is moving. 
-
-The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, by the LIDAR sensor perspective the entire scenario is moving and all subjects are changing their position, except for those who are following the same trajectory as the vehicle and at the speed.
-
-The footage used in the tests are recorded in $24fps$ (frames per second). Although we have a large amount of frames in a sequence we are able to achieve good results by using two frames. 
-
-Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in situational examples.
-
-\begin{equation}
-footage()=\sum_{i=0}^{m} f_i
-\end{equation}
-
-At a given time $t$ we have two frames, $f_{t}$ and $f_{t+1}$. Recall that the camera is installed in a car, and the tests are done with the in motion. 
-
-In the hypothetical time $t$, the LIDAR captures the surrounding and the data is processed by the \textbf{fusion module} resulting in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input required by the \textbf{motion detection module}.
 
 
 \subsection{Solution}
