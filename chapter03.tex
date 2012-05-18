@@ -2,16 +2,20 @@
 
 \section{Introduction}
 
-The main goal of this research is to distinguish all dynamic objects present in the scene. The scene is observed from a camera installed in a car.
+The main goal of this research is to distinguish all dynamic objects present in the scene. The scene is observed from a camera installed in a vehicle, so called testbed.
 
-This setup brings one issue: \textit{apriori} all the objects are moving, since the car moves in the scene, thus the entire scene seems to change in every instant. 
+This setup brings one big issue: non-static camera. Thus, \textit{apriori} all the objects are moving, even the static objects, due to the motion executed by the vehicle.
 
-When we talk about distinguish static and dynamic object, we are refeering them to be dynamic or static state with respect to the earth, not to the vehicle.
+The distinction between static and dynamic are considering the subjects in world reference frame, so the goal is to be able to classify the dynamic object in the scene using the world as reference frame. By finding the dynamic objects $O_{dynamic}$ we can perfectly obtain the static $O_{static}$ ones as well, by subtracting the dynamic one from the scene $S$.
+
+\begin{equation}
+S=O_{static}+O_{dynamic}
+\end{equation}
 
 \section{Demonstrator configuration} %configuration of the lasers, diagram
 \label{sec:demonstrator}
 
-Our testbed used is a Toyota Lexus car equipped with two LIDAR lasers scanner (Section~\ref{sec:testbed} for the specification) installed in the frontal bumber (Figure~\ref{fig:demonstrator:birdeye}).
+Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for the specification) installed in the frontal bumper (Figure~\ref{fig:demonstrator:birdeye}).
 
 \begin{figure}[h]
    \centering
@@ -22,9 +26,9 @@ Our testbed used is a Toyota Lexus car equipped with two LIDAR lasers scanner (S
    \label{fig:demonstrator:birdeye}
 \end{figure}
 
-The LIDAR is distributed in layers (Figure~\ref{fig:demonstrator:lateral}) and scanning range (Figure~\ref{fig:demonstrator:superior}). 
+Each LIDAR is distributed in layers (Figure~\ref{fig:demonstrator:lateral}) and scanning range (Figure~\ref{fig:demonstrator:superior}). 
 
-There are four layers in total, each layer disposed in different angles. The terrain is considered as base for the formation of this angle. This angle is constructed by the angle formed between an imaginary line, which is parallel to the road surface, and the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
+There are four layers in total, each layer disposed vertically in different angles. The road is considered as base for the angle formation. This angle is formed by an imaginary line, which is parallel to the road surface, and the layer trajectory. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
 
 \begin{figure}[h]
    \centering
@@ -35,11 +39,13 @@ There are four layers in total, each layer disposed in different angles. The ter
    \label{fig:demonstrator:lateral}
 \end{figure}
 
-Every layer spread in a given range, in the Table~\ref{tab:beam:interception} we can see the layers and their specific range. The LIDAR laser scanner used in our tests have the $+0.5^circ$ resolution. 
+A single layer sweeps the environment in a limited range, in the Table~\ref{tab:beam:interception} we can see the layers and their specific range. The LIDAR laser scanner used in our tests have the $0.5^{\circ}$ resolution, meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of distance in between. 
 
-To calculate the number of beams available in the layer $\ell$, we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum  , respectively, range available for the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR laser scanner $\rho$, this specification is given by the manufacturer. 
+To calculate the number of beams available in the layer $\ell$, we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum angles that can be reached by the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR laser scanner $\rho$, this specification is provided by the manufacturer. 
 
-From that we can calculate the number of beams we have in the layer according with its range, let's take as example the first layer and calculate the number of beans available in this layer. The first layer has a range that varies from $+35^\circ$ to $-60^\circ$ (minimum and maximum range, respectively), the resolution is $+0.5^\circ$, according to the specification of the manufacturer, Equation~\ref{eq:totalbeams} this layer contains $190$ beams.
+Thus, we can calculate the number of beams in a layer according with its range. Let's take as example the first layer and calculate the number of beans available in this layer. 
+
+The first layer has a range that varies from $+35^\circ$ to $-60^\circ$ (minimum and maximum range, respectively), the resolution is $0.5^\circ$, according to the specification of the manufacturer. By applying those values in the Equation~\ref{eq:totalbeams} we have $190$ beams available for the first layer.
 
 \begin{equation}
 \label{eq:totalbeams}
@@ -47,7 +53,7 @@ beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
 \end{equation}
 
 
-From every invidual beam is possible to obtain the distance between the LIDAR laser scanner and the first object to intercept this beam of light.
+From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam.
 
 \begin{figure}[h]
    \centering
@@ -75,7 +81,7 @@ From every invidual beam is possible to obtain the distance between the LIDAR la
     \caption{Layers and the horizontal distribution of the beams}
 \end{table}
 
-Multiple sensor usage in the demonstrator makes of it a complex system, due to the number of data gathered and overlaped information. Thus, all sensor information must be carried in a consistent manner and this is done by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
+The testbed has two LIDAR installed, the multiple sensor usage in the demonstrator car makes of it a complex system, due to the number of data gathered, overlapped information and possible conflicted data. Thus, all sensor information must be carried in a consistent manner and this is accomplished by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
 
 \section{Sensor pre-processing} %fusion module
 \label{sec:sensor:fusion}
@@ -95,7 +101,7 @@ The demonstrator car is composed with two LIDAR laser scanner sensors, as we saw
    \label{fig:motion:framework}
 \end{figure}
 
-This data must be gathered together, but how put the information provided by the sensors in one single visualization? Recall that there are overlaping scanner reading, which means that there may exist conflicting readings due to the sensor failure.
+This data must be gathered together, but how give a unique representation for all information provided by the sensors in one single visualization? Recall that there are overlapping scanner reading, which means that there may exist conflicting readings due to the sensor failure.
 
 To solve that issue, the data of the different layers are fused. The technique adopted for the fusion was \textit{Linear Opinion Pools}, which results in the Occupancy Grid with fused data\cite{ADARVE-2012-671211}.
 
@@ -107,14 +113,14 @@ To solve that issue, the data of the different layers are fused. The technique a
 
 In a grid, the space interacting with the robot (the car demonstrator in our case) is discretized in regular sized independent cells, just like the one depicted in the Section~\ref{ch02:gridbased}.
 
-If we plot the output data from the LIDAR laser scanner sensors in an image, we will have something simitar to \ref{fig:motion:impactpoint}, which is the representatin of the impact points. This representation suffer from two problems:
+If we plot the output data from the LIDAR laser scanner sensors in an image, it will be similar to Figure~\ref{fig:motion:impactpoint}, which is the representation of the impact points. This representation suffer from two problems:
 
 \begin{itemize}
 \item singular sensing
-\item oblivious blindspot 
+\item oblivious blind spot 
 \end{itemize}
 
-Singular sensing meaning that this model is represented in the image by using only one layer information, by the LIDAR provides several layers with overlapping spots which can reduce the uncertainty of the sensors in some areas of the image. 
+\textbf{Singular sensing} meaning that this representation presents information obtained by only one layer, although the LIDAR provides several layers with overlapping spots, which can help reduce the uncertainty of the sensors in some areas of the image. 
 
 \begin{figure}[h]
    \centering
@@ -127,18 +133,18 @@ Singular sensing meaning that this model is represented in the image by using on
  \end{figure}
 
 
-Oblivious blindspot happens due to reduced information provided by the environment - impact points, thus, nothing is said about the other regions of the environment. We must to have a complete, or at least as complete as possible, representation of the environment even for those spots that are not observed by the sensor. In the \ref{fig:motion:impactpoint}, there is no information about spots locate right after the impact point.
+\textbf{Oblivious blind spot} happens due to missing information about some cells, nothing is said about the other regions of the environment other than the impact points. We must to have a complete, or at least as complete as possible, representation of the environment even for those spots that are not observed by the sensor. In the Figure~\ref{fig:motion:impactpoint}, we can observe that there is no information about spots locate right after the impact point.
 
 Based in the work \cite{ADARVE-2012-671211} we can build a grid which contains the occupancy probability for all cells in the map for LIDAR laser scanner.
 
-For that we need to make the fusion of the layers($\ell$) provided by LIDAR. In the Equation~\ref{eq:sensor:lidarfusion} we want calculate for given cell $C$, the probability of having this cell occupied with the agreement of all layers provided by the LIDAR.
+For that we need to make the fusion of the layers($\ell$) provided by LIDAR. In the Equation~\ref{eq:sensor:lidarfusion} we want calculate the values for every individual cell. For given cell $C$, the probability of having this cell occupied is calculated with the agreement of all layers provided by the LIDAR.
 
 \begin{equation}
 \label{eq:sensor:lidarfusion}
 P(C|\ell_1,\ell_2,\ell_3,\ell_4)
 \end{equation}
 
-Assuming we want to generate the occupancy grid for an space of $NxM$ cells, this would be calculated according to the Equation~\ref{eq:sensor:gridcalculation}. The Equation~\ref{eq:sensor:gridcalculation} take into consideration the confidence weight $w(C)$ for the measure obtained for the cell $C$.
+Assuming we want to generate the occupancy grid for an space of $NxM$ cells, this would be calculated according to the Equation~\ref{eq:sensor:gridcalculation}. The Equation~\ref{eq:sensor:gridcalculation} take into consideration a confidence weight $w(C)$ for the measure obtained for the cell $C$ and the probability that the cell is occupied $P(C|\ell_i)$.
 
 \begin{equation}
 \label{eq:sensor:gridcalculation}
@@ -147,24 +153,48 @@ P(C|\ell_1,\ell_2,\ell_3,\ell_4)=\alpha \sum_{i=1}^{4} w_i(C)P(C|\ell_i)
 
 The calculation of the cell occupancy is made differently depending on two situations. Depending on the position of the cell $C$ relative to the impact point.
 
-If the cell $C$ is located before an impact point (in between the LIDAR and impact point trajectory), the occupancy of that cell is calculated in function of the distance between the cell and the impact point, due to the undertainty of the sensor model the normal distribution function $\eta$ is taken in consideration.
+If the cell $C$ is located before an impact point (in between the LIDAR and impact point), the occupancy of that cell is calculated in function of the distance between the cell and the impact point, due to the uncertainty of the sensor model the normal distribution function $\eta$ is taken into consideration.
 
-If the cell $C$ is located after the impact point, the probability assigned to the cell will be $max(0,5,d(p_c,p_l))$.
+If the cell $C$ is located after the impact point, the probability assigned to the cell will be $max(0.5;d(p_c,p_l))$.
 
 \begin{equation}
 \label{eq:sensor:normal}
 \eta(x;\mu,\sigma)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2} 
 \end{equation}
 
+The function $w(C)$, which is the confidence of the value measured, has two components: the probability of an \textbf{unexpected object} to appear and the \textbf{angle} of the beam with respect to the road.
+
+\paragraph*{Beam hit angle} the angle formed between the beam (from LIDAR laser scanner) and the road can determine the maximum distance in which the beam can reach. By determining this factor we can establish the confidence of the beam in function of its maximum distance. By that we reduce the reliability of the impact points if it happen beyond the this \textit{maxima}. 
+
+This confidence is calculated according to the Equation~\ref{eq:sensor:confidence:angle}. In which the $z$ represents the distance between the target cell for the calculation and the LIDAR, the angle of the beam $\phi$ and the height of the LIDAR $h_l$ are parameters to calculate the maximum distance of the beam. 
+
+\begin{equation}
+\label{eq:sensor:confidence:angle}
+C_{angle}=max{1+\frac{z\tan{\phi}}{h_l},0}
+\end{equation}
+
+\paragraph*{Unexpected object} the probability of an unexpected object to appear is modeled with exponential distribution and normal distribution. If the cell located before the impact point it is modeled with exponential distribution, otherwise the normal normal $\eta$ distribution is used. The canonical form for the exponential distribution is given in the Equation~\ref{eq:sensor:confidence:uo:ed}
+
+\begin{equation}
+\label{eq:sensor:confidence:uo:ed}
+C_{unexpect}=\lambda e^{\lambda \xi}
+\end{equation}
+
+\paragraph*{Confidence composition} is done by gathering the Equations~\ref{eq:sensor:confidence:angle} and ~\ref{eq:sensor:confidence:uo:ed}.
+
+\begin{equation}
+C_{total}=C_{total}\ x\ C_{unexpect}
+\end{equation}
+
 \subsubsection{Justifying the performance}
 
 The independence among the cells is the main responsible for the high level of parallelism in the algorithm, the high level of parallelism and the performance can be assured by \textit{Amidahls law}.
 
-\textit{Amidahls law} is a diminshing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm\cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really be accomplished in parallel, of course this is an simplistic view, but gives you an idea.
+\textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm\cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really be accomplished in parallel, of course this is an simplistic view, but gives you an idea.
 
 Although in our case, where the cells are completely independent, the gaining in parallelization is maximum if we ignore the communication cost of the information processed.
 
-In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequencial part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multicore processor).
+In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequential part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multi-core processor).
 
 \begin{equation}
 \label{eq:amidahls}
@@ -178,15 +208,41 @@ T_p=T_{seq}+{T_{par} \over p}
 
 \textit{Frame} is a snapshot of the current environment representation, it is used as one of the inputs required for the algorithm developed in this work. This algorithm requires the minimum amount of two \textit{frames} to work. 
 
-But before jump on explanations on how those two frames are going to be used, we need to describe how those frames are obtained and how they mimic the environment and off course its limitations.
+But before jump on explanations on how those two frames are going to be used, we need to describe how those frames are obtained and how they mimic the environment.
 
 In the Section~\ref{sec:demonstrator}, we saw that our test platform is composed by two scanners, each of them containing several layers. Every layer has a certain number of beams, which are spread horizontally within a regular angle interval. 
 
-So, before having a frame that can be used by our algorithm, its required to perform the fusion of all those beans, which is done in the Section~\ref{ch03:buildgrid:grid}. 
+So, before having a frame that can be used by our algorithm, its required to perform the fusion of the layers from the LIDAR, which is done by the \textbf{Fusion module}. 
 
-\subsection{Occupancy Counting} 
+The details about the techniques adopted and the data processing were explained in the Section~\ref{ch03:buildgrid:grid}. From here on, we are going to proceed with explanation of our methods, which is identified as \textbf{Motion detection module}. This module is located at the end of the processing chain, as exhibit in the Figure~\ref{fig:motion:framework}. 
 
-\subsection{Bringing old frame up to speed}
+\subsection{Occupancy counting}
+
+For the moment, we assume that the LIDAR sensor is statically positioned and observes the environment.
+
+In the occupancy counting, the cells present in the 
+
+
+\subsection{Non-static sensor issue}
+
+The LIDAR is installed on a vehicle, the goal is to acquire measures while vehicle is moving. 
+
+The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, by the LIDAR sensor perspective the entire scenario is moving and all subjects are changing their position, except for those who are following the same trajectory as the vehicle and at the speed.
+
+The footage used in the tests are recorded in $24fps$ (frames per second). Although we have a large amount of frames in a sequence we are able to achieve good results by using only two of them. 
+
+Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in situational examples.
+
+\begin{equation}
+footage()=\sum_{i=0}^{m} f_i
+\end{equation}
+
+At a given time $t$ we have two frames, $f_{t}$ and $f_{t+1}$. Recall that the camera is installed in a car, and the tests are done with the in motion. 
+
+In the hypothetical time $t$, the LIDAR captures the surrounding and the data is processed by the \textbf{fusion module} resulting in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input required by the \textbf{motion detection module}.
+
+
+\subsection{Solution}
 
 
 \section{summary}
