@@ -220,7 +220,8 @@ The details about the techniques adopted and the data processing were explained 
 
 For the moment, we assume that the LIDAR sensor is statically positioned and observes the environment.
 
-In the occupancy counting, the cells present in the 
+How to update the probability of an Occupancy grid with 
+In the occupancy counting, 
 
 
 \subsection{Non-static sensor issue}
@@ -229,7 +230,7 @@ The LIDAR is installed on a vehicle, the goal is to acquire measures while vehic
 
 The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, by the LIDAR sensor perspective the entire scenario is moving and all subjects are changing their position, except for those who are following the same trajectory as the vehicle and at the speed.
 
-The footage used in the tests are recorded in $24fps$ (frames per second). Although we have a large amount of frames in a sequence we are able to achieve good results by using only two of them. 
+The footage used in the tests are recorded in $24fps$ (frames per second). Although we have a large amount of frames in a sequence we are able to achieve good results by using two frames. 
 
 Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in situational examples.
 
