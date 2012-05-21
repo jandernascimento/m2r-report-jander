@@ -153,7 +153,7 @@ P(C|\ell_1,\ell_2,\ell_3,\ell_4)=\alpha \sum_{i=1}^{4} w_i(C)P(C|\ell_i)
 
 The calculation of the cell occupancy is made differently depending on two situations. Depending on the position of the cell $C$ relative to the impact point.
 
-If the cell $C$ is located before an impact point (in between the LIDAR and impact point), the occupancy of that cell is calculated in function of the distance between the cell and the impact point, due to the uncertainty of the sensor model the normal distribution function $\eta$ is taken into consideration.
+If the cell $C$ is located before an impact point (in between the LIDAR and impact point), the occupancy of that cell is calculated in function of the distance between the cell and the impact point, due to the uncertainty of the sensor model the normal distribution function $\eta$ is taken into consideration\cite{iyengar1991autonomous} Equation~\ref{eq:sensor:normal}.
 
 If the cell $C$ is located after the impact point, the probability assigned to the cell will be $max(0.5;d(p_c,p_l))$.
 
@@ -170,7 +170,7 @@ This confidence is calculated according to the Equation~\ref{eq:sensor:confidenc
 
 \begin{equation}
 \label{eq:sensor:confidence:angle}
-C_{angle}=max{1+\frac{z\tan{\phi}}{h_l},0}
+C_{angle}=max\{1+\frac{z\tan{\phi}}{h_l},0\}
 \end{equation}
 
 \paragraph*{Unexpected object} the probability of an unexpected object to appear is modeled with exponential distribution and normal distribution. If the cell located before the impact point it is modeled with exponential distribution, otherwise the normal normal $\eta$ distribution is used. The canonical form for the exponential distribution is given in the Equation~\ref{eq:sensor:confidence:uo:ed}
