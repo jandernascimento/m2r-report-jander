@@ -182,18 +182,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.42897811"
-     inkscape:cx="426.31066"
-     inkscape:cy="784.90086"
+     inkscape:zoom="1.7159124"
+     inkscape:cx="733.81274"
+     inkscape:cy="848.99665"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1002"
-     inkscape:window-height="555"
+     inkscape:window-width="1280"
+     inkscape:window-height="949"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -203,7 +203,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -286,14 +286,18 @@
          style="fill:#e6e6e6;stroke:#000000;stroke-width:0.73266047" />
       <text
          id="text4486-9-1"
-         y="51.226513"
-         x="130.46161"
+         y="37.822567"
+         x="118.22322"
          style="font-size:21.41884613px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
          xml:space="preserve"><tspan
            id="tspan4529-3"
-           y="51.226513"
-           x="130.46161"
-           sodipodi:role="line">IMU</tspan></text>
+           y="37.822567"
+           x="118.22322"
+           sodipodi:role="line">MTi-G </tspan><tspan
+           y="64.596123"
+           x="118.22322"
+           sodipodi:role="line"
+           id="tspan4642">sensor</tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -315,18 +319,18 @@
        id="path4650" />
     <text
        xml:space="preserve"
-       style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="185.7709"
-       y="82.391136"
+       style="font-size:15.69461441px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="180.83"
+       y="86.362411"
        id="text4673"><tspan
          sodipodi:role="line"
-         id="tspan4675"
-         x="185.7709"
-         y="82.391136">Inertial</tspan><tspan
+         x="180.83"
+         y="86.362411"
+         id="tspan4702">IMU +GPS+barometer</tspan><tspan
          sodipodi:role="line"
-         x="185.7709"
-         y="108.89912"
-         id="tspan4702">Measurements</tspan></text>
+         x="180.83"
+         y="105.98068"
+         id="tspan4646">data</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
        d="m 613.60555,282.58008 168.81768,0"
@@ -334,13 +338,13 @@
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="680.98743"
-       y="252.16862"
+       x="748.00714"
+       y="255.66531"
        id="text4673-9"><tspan
          sodipodi:role="line"
-         x="680.98743"
-         y="252.16862"
-         id="tspan4702-9">{Moving objects}</tspan></text>
+         x="748.00714"
+         y="255.66531"
+         id="tspan4702-9">{Moving parts}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
