@@ -41,7 +41,7 @@ With four layers in total, the layers are arranged as planes with different angl
    \label{fig:demonstrator:lateral}
 \end{figure}
 
-A single layer sweeps the environment in a limited horizontal FoV, in the Table~\ref{tab:beam:interception} we can see the layers and their specific range. The LIDAR laser scanner, used in our tests, have the $0.5^{\circ}$ resolution. Meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
+A single layer sweeps the environment in a limited horizontal FoV, in the Table~\ref{tab:beam:interception} we can see the layers and their specific FoV The LIDAR laser scanner, used in our tests, have the $0.5^{\circ}$ resolution. Meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
 
 To calculate the number of beams available in the layer $\ell$, we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum angles that can be reached by the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR laser scanner $\rho$, this is a specification provided by the manufacturer. 
 
@@ -61,7 +61,7 @@ From every individual beam is possible to obtain the \textit{impact point}, mean
      \begin{tabular}{lr}
        \includegraphics[scale=0.5]{img/fig:demonstrator:superior}
      \end{tabular}
-   \caption{Bird-eye view: Left LIDAR laser scanner range, for the first layer}
+   \caption{Bird-eye view: Left LIDAR laser scanner FoV, for the first layer}
    \label{fig:demonstrator:superior}
 \end{figure}
 
@@ -175,11 +175,11 @@ As in our case the cells are completely independent, the gaining in parallelizat
 
 \subsection{Principle} 
 
-\textit{Frame} is a snapshot of the current environment representation, it is used as one of the inputs required for the algorithm developed in this work. This algorithm requires the minimum amount of two \textit{frames} to work. 
+\textit{Frame} is a snapshot of the current environment representation, it is used as one of the inputs required for the algorithm developed in this work.
 
 But before jump on explanations on how those two frames are going to be used, we need to describe how those frames are obtained and how they mimic the environment.
 
-In the Section~\ref{sec:demonstrator}, we saw that our test platform is composed by two scanners, each of them containing several layers. Every layer has a certain number of beams, which are spread horizontally within a regular angle interval. 
+In the Section~\ref{sec:demonstrator}, we saw that our test platform is composed by two scanners, each of them containing several layers. Every layer has a certain number of beams, which are distributed in the horizontal FoV within a regular angle interval. 
 
 So, before having a frame that can be used by our algorithm, its required to perform the fusion of the layers from the LIDAR, which is done by the \textbf{Fusion module}. 
 
