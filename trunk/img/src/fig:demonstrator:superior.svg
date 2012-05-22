@@ -406,6 +406,13 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4870"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -416,14 +423,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.91316713"
      inkscape:cx="191.98912"
-     inkscape:cy="649.38642"
+     inkscape:cy="824.60079"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="997"
-     inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-height="949"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -566,8 +573,9 @@
     </g>
     <path
        style="fill:#e6e6e6;fill-opacity:1;stroke:none"
-       d="M 130.50587,158.95909 425.08502,57.11574 332.00239,212.61849 293.67424,236.71047 130.50587,158.95909 z"
-       id="path5868" />
+       d="M 130.50587,158.95909 274.0916,109.31793 425.08502,57.11574 332.00239,212.61849 293.67424,236.71047 130.50587,158.95909 z"
+       id="path5868"
+       sodipodi:nodetypes="cccccc" />
     <text
        xml:space="preserve"
        style="font-size:29.64422417px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
@@ -588,9 +596,13 @@
          id="tspan5893-7-8-4-1"
          x="418.78934"
          y="48.004829">-60°</tspan></text>
+    <path
+       style="fill:#e6e6e6;fill-opacity:0.9848485;stroke:none"
+       d="m 308.08194,13.118301 c -86.75142,0 -158.99247,62.46331 -174.75,145.124999 L 275.36319,109.1183 425.14444,57.337051 C 393.85288,29.807196 352.91435,13.118301 308.08194,13.118301 z m 130.28125,57.125 3.0625,3.34375 c -0.99878,-1.136155 -2.03576,-2.233594 -3.0625,-3.34375 z"
+       id="path4860" />
     <g
        id="g2959-8"
-       transform="translate(438.24131,-146.86682)">
+       transform="translate(450.24131,-190.86682)">
       <path
          transform="matrix(1.2057774,0,0,1.2057774,50.358133,0.1802761)"
          d="m -138.37535,256.05118 c 0,7.93065 -6.42906,14.3597 -14.35971,14.3597 -7.93065,0 -14.35971,-6.42905 -14.35971,-14.3597 0,-7.93065 6.42906,-14.35971 14.35971,-14.35971 7.93065,0 14.35971,6.42906 14.35971,14.35971 z"
@@ -615,12 +627,12 @@
     <text
        xml:space="preserve"
        style="font-size:27.85991669px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="204.78354"
-       y="167.54997"
+       x="216.78354"
+       y="123.54997"
        id="text2865"><tspan
          sodipodi:role="line"
          id="tspan2867"
-         x="204.78354"
-         y="167.54997">layer</tspan></text>
+         x="216.78354"
+         y="123.54997">layer</tspan></text>
   </g>
 </svg>
