@@ -145,11 +145,12 @@ Each of the  two lidar sensors installed on the vehicle provides 4 layers of sca
 The principle is to generate a posterior distribution over the occupancy of a cell $C$ of the grid given the opinion of $m$ sensors $\left\{ Y_1 \dots Y_m \right\}$.
 Each sensor gives two quantities: its estimation for the occupancy of the cell $P(C | Y_i)$ and $w_i(C)$, a measure of the confidence for such estimations.
 The idea is to shut-down those sensors that do not give relevant information to the process by assigning a low weight to them. The fusion of all sensory information will be as follows:
+
 \begin{equation}
 \label{linealOpinionPoolEQ}
   P(C | Y_1 \dots Y_m) = \alpha \sum \limits^m_{i=1} w_i(C) P(C | Y_i)
 \end{equation}
-where $\alpha = \left[ \sum \limits^m_{i=1} w_i(C) \right]^{-1}$ is a normalization factor for the weights.  Equation \eqref{linealOpinionPoolEQ} is used to generate
+Where $\alpha = \left[ \sum \limits^m_{i=1} w_i(C) \right]^{-1}$ is a normalization factor for the weights.  Equation \eqref{linealOpinionPoolEQ} is used to generate
 2D-occupancy grids. For each sensor $Y_i$ we must define $P(C | Y_i)$, the probability of a cell being occupied given the sensor information; and $w_i(C)$, the confidence on the opinion. Complete derivations for these quantities are given in \cite{ADARVE-2012-671211}. The output of this fusion module is an occupancy grid. %write about occupancy grid
 
 Note that we assume independence among cells. This assumption, though it is very strong, is necessary to be efficient in computing equation \eqref{linealOpinionPoolEQ}, for each cell in parallel. %add section about performance
