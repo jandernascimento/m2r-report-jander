@@ -1,3 +1,79 @@
+\section{Algorithm}
+
+\subsection{General method}
+
+In the Algorithm \ref{al:general}, we provide an overview of the general framework created for detecting moving parts.
+
+\begin{lstlisting}[title={Algorithm},label=al:general,caption={General framework algorithm for motion detection}]
+//keeps the occupancy grid for t and t-1, for that reasor 2 position in one of the dimentions
+var OccupancyGrid[2][N]
+var FreeCounter[N] 
+var OccupiedCounter[N] 
+var MovingParts[N]
+var IMUData ut
+var deltaT, t1,t2
+var boolean quit
+
+MotionDetection(t)
+		while not quit do
+			//OG[t-1] is already filled up 		
+			initializeGrid(t,OG[t-1],FreeCounter,OccupiedCounter)
+			OG[t]=FusionModule()
+			imuData=MTiSensorData()
+			UpdateCounterArrays(OG[t],OG[t-1],FreeCounter,OccupiedCounter,imuData)
+			MovingParts=MotionDetectionModule(FreeCounter,OccupiedCounter)
+\end{lstlisting}
+
+The elements from the Algorithm \ref{al:general} are defined in the highest level possible. During the next Sections we will explain the main methods in which this algorithm is composed.
+
+\subsection{Step 1: Grid initialization}
+
+In the Algorithm \ref{al:gridinitialization} the algorithm used in the grid initialization is shown.
+
+\begin{lstlisting}[title={Algorithm},label=al:gridinitialization,caption={Grid initialization}]
+var MotionGrid[N]
+
+initializeGrid(t,OG,FreeCounter,OccupiedCounter)
+	for i=0 to N-1 do
+		if OG[i] > 0.5 then 
+			OccupiedCounter[i]=1
+			FreeCounter[i]=0
+		else
+			OccupiedCounter[i]=0
+			FreeCounter[i]=1
+
+\end{lstlisting}
+
+\subsection{Step 2: Integrating new frames into the counter}
+
+At this point, we must show integrate new frames into the counter arrays. In the next algorithm.
+
+\begin{lstlisting}[title={Newframes},label=al:newframes,caption={Integrating new frames}]
+
+var FreeCounterPrime[N]
+var OccupiedCounterPrime[N]
+
+UpdateCounterArrays(OG[t],OG[t-1],FreeCounter,OccupiedCounter)
+	//bringing the t-1 grid up to speed, which the correct positioning
+	OG[t-1]=TransformationModule(OG[t-1],imuData)
+	initializeGrid(t,OG[t],FreeCounterPrime,OccupiedCounterPrime)
+	//updates the counter
+	for i=0 to N-1 do
+		FreeCounter[i]=FreeCounter[i]+FreeCounterPrime[i]
+		OccupiedCounter[i]=OccupiedCounter[i]+OccupiedCounterPrime[i]
+	
+\end{lstlisting}
+
+How the transformation is applied in the previous occupancy grid(Line $\#7$ ) was not explained in this algorithm. This is due to the fact that they can be really verbose and mask the real goal of our algorithm. 
+
+Although all the transformation applied are derivated from physics, specifically from mechanics, and they are presented in the algorithm 
+
+\begin{lstlisting}[title={Transformation},label=al:transformation,caption={Previous grid transformation}]
+
+
+
+\end{lstlisting}
+
 \section{Experiment}
 
 In the beginning of the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
