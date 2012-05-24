@@ -25,6 +25,10 @@ Ch 4 - Implementation
 
 implementation {4-10} & results
 
+	describe hugr platform	
+	preparing input
+		method of input OGt 
+
 //evaluation {5-9}
 
 conclusion {2-3}
