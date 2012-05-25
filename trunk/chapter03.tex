@@ -307,7 +307,7 @@ updated counter arrays at time $t-1$ and we want to update new counters $FreeCou
 from these old counts. Since vehicle has undergone a position change determined by $u_t=(\nu_t, \omega_t)$
 so there is no direct correspondence between cells of two occupancy grids $OG_t$ and $OG_{t-1}$ and we
 must find transformations that map a cell in  $OG_{t-1}$ to a cell in $OG_{t}$ using $u_t$. This situation is
-shown in figure \ref{fig:gridmove}, $OG_{t-1}$ has origin at $O_{t-1}$ and $OG_t$ has origin at $O_t$. To find this transformation suppose $O_{t-1}=(x_{t-1}, y_{t-1}, \theta_{t-1}) = (0,0,0)$ is the pose (position and orientation) of the occupancy grid at time instant $t-1$ (i.e in $OG_{t-1}$) and we want to find $O_t=(x_t, y_t, \theta_t)$, the pose of $OG_t$ with respect to $OG_{t-1}$ after it has undergone a motion of $u_t$. By taking $O_{t-1}=(0,0,0)$ in each iteration of the algorithm.
+shown in Figure \ref{fig:gridmove}, $OG_{t-1}$ has origin at $O_{t-1}$ and $OG_t$ has origin at $O_t$. To find this transformation suppose $O_{t-1}=(x_{t-1}, y_{t-1}, \theta_{t-1}) = (0,0,0)$ is the pose (position and orientation) of the occupancy grid at time instant $t-1$ (i.e in $OG_{t-1}$) and we want to find $O_t=(x_t, y_t, \theta_t)$, the pose of $OG_t$ with respect to $OG_{t-1}$ after it has undergone a motion of $u_t$. By taking $O_{t-1}=(0,0,0)$ in each iteration of the algorithm.
 
 We highlight the fact that we solve localization only for two consecutives frames and do not care about the global localization. 
 
