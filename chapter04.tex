@@ -1,5 +1,7 @@
 \section{Algorithm}
 
+In this section we are going to diplay all very same formulas seen in previous sections but as algorithms, which complements the understanding of previous sections.
+
 \subsection{General method}
 
 In the Algorithm \ref{al:general}, we provide an overview of the general framework created for detecting moving parts.
@@ -171,9 +173,27 @@ MTi-G XSens minimum of 120Hz and maximum of 512Hz for data logging and angular r
 
 The high end cars are composed of several internal networks, each of them responsible to handle the transmission of the informations that are captured in that network to other one which need to process that information. This type of network is known as Controller Area Network (CAN) and provides a cheap and reliable way to communicate with devices, so CAN bus have been replacing the regular point-to-point wiring interconnection among the components\cite{bosch91can}.
 
-Car manufacturers use platforms like YARP - Yet Another Robot Platform -, URBI or ROS to publish the information gathered by those networks, frameworks like ROS, allow the car to put the information into a shared memory array which can be access by other applications, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
+Car manufacturers use platforms like YARP (Yet Another Robot Platform) URBI or ROS to publish the information gathered by those networks, frameworks like ROS, allow the car to push information collected by the CAN bus into a shared memory array which can be access by other applications, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
 
 For this project Robot Operating System(ROS) was adopted, ROS gives us the hability to save all information obtained during a run (driving the test platform) from all sensors, and replay it later in the laboratory, this by far allow to have a consistent test samples and a historical evolution of all scenarios gathered during the algorithm evolution, alowing the retro-performance benchmarking with other versions of the algorithm.
+
+\subsubsection*{HugrStore}
+
+Data Distribution Service\cite{dds} is a set of specifications for data distribution in real-time systems, this specification is maintained by OMG Data Distribution SIG (DDSIG).
+
+DDS works in a publish-subscriber manner, where the subscriber acquire the data by subscribing to one or several  "topics", which is the name assigned for a data provider (the publisher itself). The goal is to promote the lose coupling and real-time data sharing between applications.
+
+Now that we are aware of DDS specification, we can talk about HugrStore, which is the implementation chosed. Thus, hughr is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.50]{img/fig:dds:hugr}
+     \end{tabular}
+   \caption{Publisher-Subscriber scheme}
+   \label{fig:dds:hugr}
+\end{figure}
+
 
 \subsubsection*{Assumptions}
 
@@ -184,8 +204,6 @@ For this project Robot Operating System(ROS) was adopted, ROS gives us the habil
 \paragraph{Occupancy Grid visual representation}
 
 Representating the occupancy grid, implies in taking some precautions in the pattern used to represent each state, in this work the value $1$ represents occupied spaces and $0$ free spaces, although in the visual representation of the occupancy grid the $black$ dots represent occupied spaces and $white$ ones represent free spaces. In certain occasions, where the grid depicted is not binary, spaces where framework has absolutely no information about certain spaces (\textit{e.g.} due unreachability of the perception sensors in that sector), the color used is $gray$.
-
-%\paragraph{FoV} Field of View
 
 \paragraph{Uncertain spatial relationship notation} In this document we are using the same notation as applied in the work \cite{Wang04a}. With:
 
