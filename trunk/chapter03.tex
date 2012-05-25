@@ -329,7 +329,7 @@ Now if $\Delta t$ is the time difference between the instants $t$ and $t-1$ then
 An important thing is to notice that we are concerned with the localization of two consecutive frames only
 and need not solve the complete SLAM problem, making the technique very fast. Moreover, empirical observation suggests that the odometry error between two consective frames is less than 10 cm whereas the cell size assigned is $20cm \; x \; 20cm$ enabling us to assume that cell mapping (explained next) from grid at $t-1$ to grid at $t$ is exact.
 
-Mapping a cell of the grid $OG_{t-1}$ to $OG_t$ consist in bring $OG_{t-1}$ up to speed based in the MTi-G sensor unit information. Suppose point $P$ (shown in figure \ref{fig:gridmove}) is the center of a cell in grid $OG_{t-1}$ and we want to find its corresponding cell in grid $OG_t$. We define following two pose manipulation operations. if $P_{ij}=[x_{ij}, y_{ij}, \theta_{ij}]^T$ is the pose of origin $j$ w.r.t origin $i$ and $P_{jk}=[x_{jk}, y_{jk}, \theta_{jk}]^T$ is the pose of origin $k$ w.r.t $j$ then the pose of $k$ w.r.t $i$ denoted as $P_{ik}=[x_{ik}, y_{ik}, \theta_{ik}]^T$ is given as:
+Mapping a cell of the grid $OG_{t-1}$ to $OG_t$ consist in bring $OG_{t-1}$ up to speed based in the MTi-G sensor unit information. Suppose point $P$ (shown in Figure \ref{fig:gridmove}) is the center of a cell in grid $OG_{t-1}$ and we want to find its corresponding cell in grid $OG_t$. We define following two pose manipulation operations. if $P_{ij}=[x_{ij}, y_{ij}, \theta_{ij}]^T$ is the pose of origin $j$ w.r.t origin $i$ and $P_{jk}=[x_{jk}, y_{jk}, \theta_{jk}]^T$ is the pose of origin $k$ w.r.t $j$ then the pose of $k$ w.r.t $i$ denoted as $P_{ik}=[x_{ik}, y_{ik}, \theta_{ik}]^T$ is given as:
 
 \begin{equation}
 P_{ik} \equiv \oplus (P_{ij}, P_{jk}) = \left[ \begin{array}{c}
@@ -359,7 +359,7 @@ or
 P_{O_tP} = \oplus (\ominus(P_{O_{t-1}O_t}), P_{O_{t-1}P})
 \end{equation}
 
-First two components of $P_{O_tP}$ give $x$ and $y$ position of the point $P$ w.r.t origin $O_t$. From these $x$ and $y$ values we can easily calculate the index of the cell where point $P$ lies in grid $OG_t$. In the Equation~\ref{eq:grid:cell:calculation} we calculate the row and column of the cell in which $P$ lies, where $cell_{size}$ is $0.2m$ and $gridWidth$ is $2m$ .
+First two components of $P_{O_tP}$ give $x$ and $y$ position of the point $P$ w.r.t origin $O_t$. From these $x$ and $y$ values we can easily calculate the index of the cell where point $P$ lies in grid $OG_t$. In the Equation~\ref{eq:grid:cell:calculation} we calculate the row and column of the cell in which $P$ lies, where $cell_{size}$ is $0.2m$ and $gridWidth$ is $20m$ .
 
 \begin{equation}
 cell(column,row)=\left\{\frac{1}{cell_{size}}(x+\frac{gridWidth}{2}),\frac{y}{cell_{size}} \right\}
@@ -395,7 +395,8 @@ We repeat this process for all cells of grid $OG_{t-1}$ to update counter values
 MotionGrid_t[i] = \begin{cases} 1, & \mbox{$OG_t[i] > 0.5$ and} \\ & \mbox {$FreeCount_t[i]>2\;  x \; OccupiedCount_t[i]$} \\
                                 0, & \mbox{otherwise}\end{cases}
 \end{equation}
-After this processing the $MotionGrid_t$ has 1's in the cells which are detected as belonging to moving parts, and 0's otherwise.
+After this process, the $MotionGrid_t$ becomes a binary grid, where it has 1's assigned to the cells which belongs to moving parts, and 0's otherwise.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

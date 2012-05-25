@@ -49,7 +49,6 @@ initializeGrid(t,OG,FreeCounter,OccupiedCounter)
 At this point, we must show integrate new frames into the counter arrays. In the next algorithm.
 
 \begin{lstlisting}[title={Newframes},label=al:newframes,caption={Integrating new frames}]
-
 var FreeCounterPrime[N]
 var OccupiedCounterPrime[N]
 
@@ -64,19 +63,55 @@ UpdateCounterArrays(OG[t],OG[t-1],FreeCounter,OccupiedCounter)
 	
 \end{lstlisting}
 
-How the transformation is applied in the previous occupancy grid(Line $\#7$ ) was not explained in this algorithm. This is due to the fact that they can be really verbose and mask the real goal of our algorithm. 
+How the transformation is applied in the previous occupancy grid(Line $\#7$) was not explained in this algorithm. This is due to the fact that they can be really verbose and mask the real goal of our algorithm. 
 
-Although all the transformation applied are derivated from physics, specifically from mechanics, and they are presented in the algorithm 
+All the transformations applied are derivated from physics, specifically from mechanics, and they are presented in the algorithm below.
 
 \begin{lstlisting}[title={Transformation},label=al:transformation,caption={Previous grid transformation}]
+TransformationModule(OG,imuData)
+	//velocity vector from horizontal and vertical speed	
+	velX=getVelocityX(imuData)
+	velY=getVelocityY(imuData)
+	vt=sqrt(velX*velX+velY*velY)
+	
+	//quaternion to euler angles conversion	
+	q=getQuaternion(imuData,t-1)
+	yaw=atan2(2(q[0]*q[3]+q[1]*q[2]),1-2(q[2]*q[2]+q[3]*q[3]))	
 
-
-
+	q=getQuaternion(imuData,t)
+	yawPrime=atan2(2(q[0]*q[3]+q[1]*q[2]),1-2(q[2]*q[2]+q[3]*q[3]))	
+	
+	w=(yawPrime-yaw)/delta(t,t-1)
+	
+	//required information for grid transformation	
+	translationX=vt/w * sin(w*delta(t,t-1))
+	translationY=vt/w - vt/w * sin(w*delta(t,t-1))
+	angle=w*delta(t,t-1)
+		
 \end{lstlisting}
+
+\subsection{Step 3: Motion detection}
+
+After the cells among the analised frames have been put in correspondence, we can apply the motion detection to estimate the moving parts.
+
+\begin{lstlisting}[title={Transformation},label=al:transformation,caption={Previous grid transformation}]
+var	MotionGrid[N]
+
+MotionDetectionModule(OG,FreeCounter,OccupiedCounter)
+	for i=0 to N-1
+		//the "FreeCounter[i] > 2 x OccupiedCounter[i]" is only possible due to correspondence among cells
+		if OG[i] and FreeCounter[i] > 2 x OccupiedCounter[i]
+			MotionGrid[i]=1
+		else
+			MotionGrid[i]=0
+	return MotionGrid
+\end{lstlisting}
+
+The result of the algorithm is a binary grid, where 1's are moving parts and 0's in static parts. Although, in image resulting image, we represent the black spots as the moving parts and white in otherwise.
 
 \section{Experiment}
 
-In the beginning of the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
+In the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
 
 From mechanical physics we obtain the angular velocity and from the vehicle \emph{CAN bus} we obtain the data time stamp, and along with it the time variation, $\Delta t$.
 
