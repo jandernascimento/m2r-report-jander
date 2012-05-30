@@ -4,112 +4,106 @@ In this section we are going to diplay all very same formulas seen in previous s
 
 \subsection{General method}
 
-In the Algorithm \ref{al:general}, we provide an overview of the general framework created for detecting moving parts.
+In the Algorithm \ref{al:general}, we provide an overview of the framework created for detecting moving parts.
 
-\begin{lstlisting}[title={Algorithm},label=al:general,caption={General framework algorithm for motion detection}]
+\begin{lstlisting}[title={Algorithm},mathescape=true,label=al:general,caption={General framework algorithm for motion detection}]
 //keeps the occupancy grid for t and t-1, for that reasor 2 position in one of the dimentions
-var OccupancyGrid[2][N]
-var FreeCounter[N] 
-var OccupiedCounter[N] 
-var MovingParts[N]
-var IMUData ut
-var deltaT, t1,t2
-var boolean quit
+struct MotionData { $timestamp$, $velocity_x$, $velocity_y$, $quaternion \{q0,q1,q2,q3\}$ }
+struct u_t { $speed$, $angular$_$speed$, $dt$ }
+$OG_t$[N]
+$OC_t$[N] $OC_{t-1}$[N]
+$FC_t$[N] $FC_{t-1}$[N]
+$MotionData_t$ $MotionData_{t-1}$
 
-MotionDetection(t)
-		while not quit do
-			//OG[t-1] is already filled up 		
-			initializeGrid(t,OG[t-1],FreeCounter,OccupiedCounter)
-			OG[t]=FusionModule()
-			imuData=MTiSensorData()
-			UpdateCounterArrays(OG[t],OG[t-1],FreeCounter,OccupiedCounter,imuData)
-			MovingParts=MotionDetectionModule(FreeCounter,OccupiedCounter)
+DetectMotion() 
+
+	while not quit do 
+		$OG_t$ = ReadAndFuseLaserData() //write about it
+		$MotionData_t$ = ReadMotionData()
+		$u_t$=FindMovement($MotionData_t$,$MotionData_{t-1}$)
+		InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
+		UpdateCounterArraysFromPrevious($u_t$)
+		$MotionData_{t-1}$=$MotionData_t $
+		$OC_{t-1}$=$OC_t$
+		$FC_{t-1}$=$FC_t$
+		DataMotion($OG_t$)
+
+FindMovement($MotionData_t$,$MotionData_{t-1}$)
+	//explained in next sections
+
+InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
+	//explained in next sections
+
+UpdateCounterArraysFromPrevious()
+	//explained in next sections
+	
 \end{lstlisting}
 
-The elements from the Algorithm \ref{al:general} are defined in the highest level possible. During the next Sections we will explain the main methods in which this algorithm is composed.
+The elements from the Algorithm \ref{al:general} are defined in the high level of abstraction. In the next sections we are going to explain the calls made in this code.
 
-\subsection{Step 1: Grid initialization}
+All variables declared out of the function scope are considered as global variables, but for better understanding of the dependencies among the functions, the input data are going to be sent by parameter in some situations.
 
-In the Algorithm \ref{al:gridinitialization} the algorithm used in the grid initialization is shown.
+\subsection{Finding the movement}
 
-\begin{lstlisting}[title={Algorithm},label=al:gridinitialization,caption={Grid initialization}]
-var MotionGrid[N]
+\begin{lstlisting}[label=al:movement,mathescape=true,caption={Find the movement of the vehicle}]
+FindMovement($MotionData_t$,$MotionData_{t-1}$)
+	//velocity vector from horizontal and vertical speed	
+	velX=$MotionData.velocity_x$
+	velY=$MotionData.velocity_y$
+	$u_t.speed$=sqrt(velX*velX+velY*velY)
+	
+	//quaternion to euler angles conversion	
+	Q=$MotionData_t.quaternion$
+	yaw=atan2(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))	
 
-initializeGrid(t,OG,FreeCounter,OccupiedCounter)
-	for i=0 to N-1 do
+	Q=MotionData_{t-1}.quaternion
+	yaw2=atan2(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))	
+	
+	$u_t$.dt=$MotionData_t.timestamp$-$MotionData_{t-1}.timestamp$
+	
+	$u_t$.angular_speed=(yaw2-yaw)/$u_t.dt$
+	
+	return $u_t$
+\end{lstlisting}
+
+This algorithm is used to calculate the $u_t$, mathematically explained previous sections, $u_t$ 
+
+\subsection{Initializing Grid}
+
+\begin{lstlisting}[label=al:initializeGrid,mathescape=true,caption={Initialization of the grid}]
+InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
+		for i=0 to N-1 do
 		if OG[i] > 0.5 then 
 			OccupiedCounter[i]=1
 			FreeCounter[i]=0
-		else
+		else if OG[i] < 0.5
 			OccupiedCounter[i]=0
 			FreeCounter[i]=1
-
-\end{lstlisting}
-
-\subsection{Step 2: Integrating new frames into the counter}
-
-At this point, we must show integrate new frames into the counter arrays. In the next algorithm.
-
-\begin{lstlisting}[title={Newframes},label=al:newframes,caption={Integrating new frames}]
-var FreeCounterPrime[N]
-var OccupiedCounterPrime[N]
-
-UpdateCounterArrays(OG[t],OG[t-1],FreeCounter,OccupiedCounter)
-	//bringing the t-1 grid up to speed, which the correct positioning
-	OG[t-1]=TransformationModule(OG[t-1],imuData)
-	initializeGrid(t,OG[t],FreeCounterPrime,OccupiedCounterPrime)
-	//updates the counter
-	for i=0 to N-1 do
-		FreeCounter[i]=FreeCounter[i]+FreeCounterPrime[i]
-		OccupiedCounter[i]=OccupiedCounter[i]+OccupiedCounterPrime[i]
-	
-\end{lstlisting}
-
-How the transformation is applied in the previous occupancy grid(Line $\#7$) was not explained in this algorithm. This is due to the fact that they can be really verbose and mask the real goal of our algorithm. 
-
-All the transformations applied are derivated from physics, specifically from mechanics, and they are presented in the algorithm below.
-
-\begin{lstlisting}[title={Transformation},label=al:transformation,caption={Previous grid transformation}]
-TransformationModule(OG,imuData)
-	//velocity vector from horizontal and vertical speed	
-	velX=getVelocityX(imuData)
-	velY=getVelocityY(imuData)
-	vt=sqrt(velX*velX+velY*velY)
-	
-	//quaternion to euler angles conversion	
-	q=getQuaternion(imuData,t-1)
-	yaw=atan2(2(q[0]*q[3]+q[1]*q[2]),1-2(q[2]*q[2]+q[3]*q[3]))	
-
-	q=getQuaternion(imuData,t)
-	yawPrime=atan2(2(q[0]*q[3]+q[1]*q[2]),1-2(q[2]*q[2]+q[3]*q[3]))	
-	
-	w=(yawPrime-yaw)/delta(t,t-1)
-	
-	//required information for grid transformation	
-	translationX=vt/w * sin(w*delta(t,t-1))
-	translationY=vt/w - vt/w * sin(w*delta(t,t-1))
-	angle=w*delta(t,t-1)
-		
-\end{lstlisting}
-
-\subsection{Step 3: Motion detection}
-
-After the cells among the analised frames have been put in correspondence, we can apply the motion detection to estimate the moving parts.
-
-\begin{lstlisting}[title={Transformation},label=al:transformation,caption={Previous grid transformation}]
-var	MotionGrid[N]
-
-MotionDetectionModule(OG,FreeCounter,OccupiedCounter)
-	for i=0 to N-1
-		//the "FreeCounter[i] > 2 x OccupiedCounter[i]" is only possible due to correspondence among cells
-		if OG[i] and FreeCounter[i] > 2 x OccupiedCounter[i]
-			MotionGrid[i]=1
 		else
-			MotionGrid[i]=0
-	return MotionGrid
+			OccupiedCounter[i]=0
+			FreeCounter[i]=0
 \end{lstlisting}
 
-The result of the algorithm is a binary grid, where 1's are moving parts and 0's in static parts. Although, in image resulting image, we represent the black spots as the moving parts and white in otherwise.
+At this point, we initialize the counters (occupied and free) based on the informations available in the current Occupancy Grid $OG_t$.
+
+\subsection{Updating Counter arrays}
+
+\begin{lstlisting}[label=al:updatecounter,mathescape=true,caption={Update counter arrays}]
+UpdateCounterArraysFromPrevious()
+	newPose=FindPoseOfNewGrid($u_t$)
+	repose=FindInversePose(newPose)
+	for i=0 to N-1 do
+		$P_i$=PoseOfCell_i in $OG_{t-1}$
+		$P_j$=CompoundPose(repose,$P_i$)
+		$cell_j$=CellFromPose()
+		If $cell_j$ is not visible in $OG_t$ then
+			continue
+		$O_t$[$cell_j$]+=$O_{t-1}[cell_j]$
+		$F_t$[$cell_j$]+=$F_{t-1}[cell_j]$
+\end{lstlisting}
+
+In this function we integrate new data acquisition from the LIDAR to the current counters. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
+The functions $FindPoseOfNewGrid$ applies the Equation~\ref{eq:circularmotion}, \ref{eq:pose:compound}  and \ref{eq:pose:compound:inverse}. The function $CompoundPose$ comes from the Equation~\ref{eq:composepose}. $CellFromPose$ is mapped from Equation~\ref{eq:grid:cell:calculation}.
 
 \section{Experiment}
 

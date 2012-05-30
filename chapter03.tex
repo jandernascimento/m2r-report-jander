@@ -47,7 +47,7 @@ To calculate the number of beams available in a layer $\ell$ we apply the Equati
 
 Thus, we can calculate the number of beams in a layer based on its horizontal FoV and LIDAR resolution. Let's take as an example the first layer (layer 1) and calculate the number of beams available in this layer. 
 
-The first layer (layer 1) has a horizontal FoV that varies from $+35^\circ$ to $-60^\circ$ (minimum and maximum FoV, respectively), the resolution of the LIDAR is $0.5^\circ$, according to the specification of the manufacturer. By applying those values in  the Equation~\ref{eq:totalbeams} we have as result $190$ beams available for the first layer.
+The first layer (layer 1) has a horizontal FoV that varies from $+35^\circ$ to $-60^\circ$ (minimum and maximum FoV, respectively), the resolution of the LIDAR is $0.5^\circ$, according to the specification of the manufacturer. By applying those values in the Equation~\ref{eq:totalbeams} we have as result $190$ beams available for the first layer.
 
 \begin{equation}
 \label{eq:totalbeams}
@@ -316,6 +316,7 @@ Now if $\Delta t$ is the time difference between the instants $t$ and $t-1$ then
 \begin{equation}
 \left[\begin{array}{c}x_t \\ y_t\\ \theta_t \end{array} \right] = 
 \left[\begin{array}{c} {\nu_t \over \omega_t} \sin(\omega_t \Delta t) \\ {\nu_t \over \omega_t} - {\nu_t \over \omega_t} \cos(\omega_t \Delta t) \\ \omega_t \Delta t \end{array}\right]
+\label{eq:circularmotion}
 \end{equation}
 
 \begin{figure}[h]
@@ -336,6 +337,7 @@ P_{ik} \equiv \oplus (P_{ij}, P_{jk}) = \left[ \begin{array}{c}
 x_{jk}\cos(\theta_{ij})-y_{jk}\sin(\theta_{ij})+x_{ij} \\
 x_{jk}\sin(\theta_{ij})+y_{jk}\cos(\theta_{ij})+y_{ij} \\
 \theta_{ij}+\theta_{jk} \end{array} \right] 
+\label{eq:composepose}
 \end{equation}
 
 For the pose $P_{ij}$ the reverse pose relationship $P_{ji}=[x_{ji}, y_{ji}, \theta_{ji}]^T$ (pose of $i$ w.r.t $j$) is defined as:
@@ -351,12 +353,14 @@ Since the pose of $O_t$ w.r.t $O_{t-1}$ is $P_{O_{t-1}O_t}=[x_t,y_t,\theta_t]^T$
 
 \begin{equation}
 P_{O_tP} = \oplus (P_{O_tO_{t-1}}, P_{O_{t-1}P})
+\label{eq:pose:compound}
 \end{equation}
 
 or
 
 \begin{equation}
 P_{O_tP} = \oplus (\ominus(P_{O_{t-1}O_t}), P_{O_{t-1}P})
+\label{eq:pose:compound:inverse}
 \end{equation}
 
 First two components of $P_{O_tP}$ give $x$ and $y$ position of the point $P$ w.r.t origin $O_t$. From these $x$ and $y$ values we can easily calculate the index of the cell where point $P$ lies in grid $OG_t$. In the Equation~\ref{eq:grid:cell:calculation} we calculate the row and column of the cell in which $P$ lies, where $cell_{size}$ is $0.2m$ and $gridWidth$ is $20m$ .
