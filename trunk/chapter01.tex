@@ -1,6 +1,6 @@
 \section{Driving support systems}
 
-In this document we are mainly concerned about driving assistance systems. Such system facilitates the task of driving, this support can appear in several forms: 
+In this document we are mainly concerned about driving assistance systems. Such system facilitates the task of driving. This support can appear in several forms: 
 
 \begin{itemize}
 \item visual alerts
@@ -8,22 +8,22 @@ In this document we are mainly concerned about driving assistance systems. Such 
 \item tactile alerts (haptics\cite{riener2010sensor})
 \end{itemize}
 
-Driving support system may provide support in a less passive manner as well:
+Driving support system may also provide support in a less passive manner as well:
 
 \begin{itemize}
-\item change the car responds to the drivers commands
-\item change the car behaviour
+\item change how the car respond to the drivers commands for assisting a manoeuver
+\item change how the car behaves
 \end{itemize}
 
-This field has gained several adepts, auto-mobile industry and researchers have studied it throughout the years.
+This field has gained several adepts. Automotive industry and researchers have studied it throughout the years.
 
-Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed its law to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance.
+Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed their laws to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance.
 
-One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems is coping with task of making the car a safer transportation system, among others tasks \ref{fig:sensor:target}.
+One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems is coping with task of making the car a safer transportation system, among others tasks (Figure~\ref{fig:sensor:target}).
 
-Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects in which the human is capable of track simultaneously. 
+Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects which the human is capable of track simultaneously. 
 
-Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrouding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk.
+Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrouding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk. Besides, several factors can affect this behaviour, like fatigue, cognitive capacity or simply bad decisions.
 
 %Although, cognition is not an absolute number it varies according to several parameters, like mental health, type of sensing mechanism (visual, auditory, tactile), amount of information transmitted, etc. 
 
@@ -33,7 +33,7 @@ A more modern approach of driving support system has appeared: Advanced Driver A
 
 ADAS relies in computerized systems to process informations provided by the car (through sensors) to improve the user experience. 
 
-\textbf{ADAS} is splitted in different research branches, each of them with its own application and goals. Among those different branches (Figure \ref{fig:sensor:target}), this work will concentrate in applications situated in \textbf{Safety} branch. 
+\textbf{ADAS} is splitted in different research branches, each of them with its own applications and goals. Among those different branches (Figure \ref{fig:sensor:target}), our work will concentrate in applications situated in \textbf{Safety} branch. 
 
 The goal of this work is to tackle a very common issue in safety application (object classification) and \textbf{not} develop an application.
 
@@ -48,11 +48,11 @@ This will be done by providing a theorerical framework to classify the environme
 	\label{fig:sensor:target}
 \end{figure}
 
-Advanced Driver Assistance Systems must to perceive the environment before acting. ADAS works just like the human cognition, it requires a mean to perceive the environment before dispatch any action. 
+Advanced Driver Assistance Systems rely on the perception. An ADAS works somehow similar to the human cognition, it requires a mean to perceive the environment before dispatch any action. 
 
-There are different ways of perceiving the environment, usually we observe its aspects, like: lighting, appearance, etc. Each one of those aspects have its own "observer": the sensor.
+There are different ways of perceiving the environment, usually we observe specific features, like: lighting, appearance, etc. Those features are observed through a sensor.
 
-Every aspect requires a mechanism to convert physical characteristics into electronic signal that can be read by other equipments. The peripherals responsible for that is called \textbf{sensors}, which will be discussed in more details in the Section \ref{sec:sensors}.
+Every feature requires a mechanism to convert physical characteristics into electronic signal that can be read by other equipments. The peripherals responsible for that is called \textbf{sensors}, which will be discussed in more details in the Section \ref{sec:sensors}.
 
 %% reviewed until here
 
@@ -61,9 +61,9 @@ Every aspect requires a mechanism to convert physical characteristics into elect
 
 %maybe replace the world system in the diagram and text by "control systems"
 
-Sensing is input for numerous biological systems (\textit{e.g.} nervous system, digestive system), enabling such systems to respond properly to the changes observed by our sensors(eye, skin, etc.). 
+Sensing is the input for numerous biological systems (\textit{e.g.} nervous system, digestive system), enabling such systems to respond properly to the information provided by such sensors(eye, skin, etc.). 
 
-This cooperation is as important to robotics as for they are for human being. In order to interact with the environment, a robot, needs first to perceive it. We do that by capturing its aspects, or at least some of them. The aspects that are going to be observed depends on the application needs.
+This scheme is as important to robotics as for they are for human being. In order to interact with the environment, a robot, needs first to perceive it. This is done by capturing specific features, or at least some of them. The features observed depends on the application needs.
 
 \begin{figure}[h]
    \centering
@@ -74,17 +74,21 @@ This cooperation is as important to robotics as for they are for human being. In
    \label{fig:sensors:role}
  \end{figure}
 
-Sensors do not perform action. They are the means in which complex systems acquire informations about the environment. Although, the sensors play a key role in almost every systems, they are closer to tha hardware layer (Figure \ref{fig:sensors:role}), meaning that it is not they role to process information, only acquire them. 
+Sensors do not perform action. They are the means in which complex systems acquire information about the environment. Although, the sensors play a key role in almost every systems, they are closer to the hardware layer (Figure \ref{fig:sensors:role}), meaning that it is not they role to process information, only acquire them. 
 
-The sensors are normally, incapable to respond to external stimulus without a system to observe the data provided by it, and act. The system react to the sensor stimulus through other means.
+The sensors are normally incapable to respond to external stimulus without a system to provess the data provided by it, and act. The system reacts to the sensor stimulus through other means.
 
-Thus, sensor is responsible for the data acquisition (electric interpretation of a physical stimulus). This data is directed to a perception layer which is allocated in an upper layer.
+Thus, a sensor is responsible for the data acquisition (electric interpretation of a physical stimulus). This data is directed to a perception layer which is allocated in an upper layer, which will be responsible to take the decisions.
 
-\subsubsection{Types}
+\subsubsection{Classification}
 
-There are virtually sensors for all kinds of properties (Figure\ref{fig:sensors}) that we want to observe. In sometimes literatures those properties can be called \textbf{measurands}. 
+There are virtually sensors for all kinds of properties (Figure~\ref{fig:sensors}) that we want to observe. In sometimes literatures those properties can be called \textbf{measurands}\cite{riener2010sensor}. 
 
-The sensors are classified based in which the measurands they were designed to observe.
+There exists two sets of classifications for sensors, they can be Proprioceptive/Exteroceptive with respect to the type of measurands and \cite{iyengar1991autonomous} they are classified in the manner how the measurands are obtained, which can be in a passive or active manner. Active sensors emit energy to the environment so the measurand can be collected, a passive sensor is capable of observing the measurand without emit any type of energy in the environment.
+
+\textit{Proprioceptive} evaluate the ego-robot properties, giving informations about some \textbf{measurand} of the robot. Motor speed, payload, robot joint angles, battery voltage are some examples.  Inertial Measurement Unit (IMU) is a \textit{proprioceptive} sensor that observes the orientation, velocity and gravitational forces of the robot, it is a very common type of sensor and largely applied in robotics and in aviation.
+
+\textit{Exteroceptive} gives information about the environment in which the robot is located. Thus, they extract useful environmental features. Light intensity, sound amplitude are some examples of \textit{exteroceptive} sensor.
 
 \begin{figure}[h]
    \centering
@@ -97,54 +101,54 @@ The sensors are classified based in which the measurands they were designed to o
 
 \subsubsection{Properties}
 
-The sensors are subject to issues, like any other electrical device. As the sensor is the capacity of a system to observe the environment, this affects directly the solution (the main purpose of its existence).
+The sensors are subject to issues. As the sensor is the capacity of a system to observe the environment, this affects directly subsequent processing.
 
-The most common issues are: noise, imprecision. 
+The most common issues are: imprecision, uncertainty and incomplete data. 
 
 \paragraph{Noise} depending on the mean used by the sensor to perceive the physical events, it may become more or less subjected to interferences. Those interferences can cause instability in the data acquisition, possibly leading to its miss interpretations.
 
 \paragraph{Imprecision} sensors rely on physical properties of the observed \textbf{measurands}, those properties may vary according to the environment in which the sensor is deployed.
 
-Light Detection and Ranging (LIDAR) can be a good example of imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light hit the object and be reflected back. Although in the space the speed of the light is constant, in earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing dramatically the measurements.
+Light Detection and Ranging (LIDAR) can be a good example of sensor with imprecision. LIDARs uses light to measure the distance from objects, it does this by counting the time taken to the light to hit the object and be reflected back called Time-of-Flight(ToF). Although in the space the speed of the light is constant, on earth it depends on density of the atmosphere, amount of water particles in the air, among others. All those properties can change the speed of the light, thus, influencing the measurements.
 
 \section{Perception}
 
-Before talk about perception, its necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization} and \textit{mapping}.
+Before talking about perception, it is necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization} and \textit{mapping}.
 
 Localization provides the coordinate of a point with respect to a static reference, this gives to this point a spatial positioning where an system actor (ego-robot) is using some reference which belongs statically to the environment.  
 
 Mapping, as general knowledge, gives us information about a place, this representation gives as nothing but the static objects position. This might be confusion at some point, but this static objects positioning is provided using as reference other statics objects, and this is the key for this understanding.
 
-By putting these two concepts together, we can go even further. Imagine the following situation, we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
+By putting these two concepts together, we can go even further. Imagine the following situation: we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
 
-For the exactly same reason we need constantly to have the location of the moving object in the very same map, this is called \textit{tracking of moving objects} or even just \textit{tracking} \cite{Wang04a}.
+For the exact same reason we need constantly to know the location of the moving object in the very same map, this is called \textit{tracking of moving objects} or even just \textit{tracking} \cite{Wang04a}.
 
-In the next sessions we are going to see in more details the approaches utilized by robotics research to tackle the localization and mapping issues.
+In the next sections we are going to see in more details the approaches used in robotics research to tackle the localization and mapping issues.
 
 \subsection{SLAM}
 
-SLAM (Simultaneous Localization and Mapping) is an approach that tries to solve concurrently the \textit{mapping} and \textit{localization} issues\cite{VU-2009-454238}. In this approach its assumed that the the initial position of the ego-robot is unknown. 
+SLAM (Simultaneous Localization and Mapping) is an approach that tries to solve concurrently the \textit{mapping} and \textit{localization} problems\cite{VU-2009-454238}. In this approach it is assumed that the initial position of the ego-robot is unknown. 
 
-In such approach,  the observation acquired by the robot's sensor should be used. The sensor reading should be enough to obtain the robot's \textit{localization}. That localization coordinates (one or several in case of uncertainties) must be visible in the current map of the environment. 
+In such approaches, the observation acquired by the robot's sensor must be used for estimation. The sensor readings should be enough to obtain the robot's \textit{localization}. That localization coordinates must be visible in the current map of the environment. 
 
-Although, this model requires a precise \textit{mapping} of the environment. This precision is required duo to parallel actions performed by the robot: moving itself in the (which change the environment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position. The Input-processing-output scheme can be seen in the Figure \ref{fig:perception:slam}.
+Although, this model requires a precise \textit{mapping} of the environment. This precision is required due to parallel actions performed by the robot: moving itself in the scene(which change the environment from the robots perspective) and localizing the robot at the same time, and as the robot motion is performed in a continuous space, any interference in the measurements are accumulated and can affect severely the localization, diverging the calculated position from the real position. The Input-processing-output scheme can be seen in the Figure \ref{fig:perception:slam}.
 
 \begin{figure}[h]
    \centering
      \begin{tabular}{lr}
        \includegraphics[scale=0.9]{img/fig:perception:slam}
      \end{tabular}
-   \caption{SLAM process(adapted from \cite{Wang04a})}
+   \caption{SLAM process (adapted from \cite{Wang04a})}
    \label{fig:perception:slam}
 \end{figure}
 
 The robot actions are subject of physical interferences as well. Depending in the kind of terrain in which the robot is moving affects how the robot movements can be trusted \cite{DBLP:conf/icra/LenainTHM11}. 
 
-Thus, \textbf{inertia} plays a key role in the reliable the robot movements are. Other properties affects \textbf{inertia} such as: balance, weight distribution, grip condition, type of movement, etc.
+Thus, \textbf{inertia} plays a key role in how reliable the robot movements are. Other properties affects \textbf{inertia} such as: balance, weight distribution, grip condition, type of movement, etc.
 
-All those variations bring an imprecision factor into the movement performed by a robot. This because those properties determines the resistance of the robot in changing its speed.
+All those variations bring an imprecision factor into the movement performed by a robot. This because those properties determine the resistance of the robot in changing its speed.
 
-From the probabilist point of view, this implies in estimate the joint probability distribution (Equation \ref{jpd:discrete}). Where the $u$ represents the observations and $z$ the measurements.
+From the probabilistic point of view, this implies in estimate the joint probability distribution (Equation \ref{jpd:discrete}). Where the $u$ represents the observations and $z$ the measurements.
 
 Thus, the output of the SLAM process is the robot pose and a map of the stationary objects captured by the \textit{perception} sensors \cite{iyengar1991autonomous}.
 
@@ -154,13 +158,13 @@ In SLAM, our main concern is to localize ourselves and the static objects in the
 
 Intending to simplify the perspective of this problem, we will generate a scenario that will be used in analogy to the formula and may help the reader to absorb the intuition behind the formalization.
 
-\paragraph*{Lost Robot} is positioned arbitrarily in a finite unknown space. This is a classical 4 wheeled robot. This same robot is subject of any kind of random forces and terrain condition. 
+\paragraph*{Lost Robot} is positioned arbitrarily in a finite unknown space. This is a classical 4 wheeled robot. This same robot is subject to any kind of random forces and terrain condition. 
 
 Suppose we send a command to the robot to move one centimeter ahead, how do we ensure that he really changed one centimeter? Suppose that without observing the last position of the robot we send another command to move another centimeter ahead, what would be the consequences? 
 
-Every time we actuate in the robot without checking/knowing the real position, the uncertainty grows, and the possible new position that can be assumed by the robot increases exponentially.
+Every time we actuate in the robot without checking/knowing the real position, the uncertainty on localization grows, and the number of possible new positions that can be assumed by the robot increases exponentially.
 
-Formalization of such dependency can be done through \textit{Bayes rule}. Bayes rule define the \textit{posteriori} probability distribution over a set $X$, normally represented as $p(A | B)$, which can be read as probability of $A$ knowing $B$.
+Formalization of such dependency can be done through \textit{Bayes rule}. Bayes rule defines the \textit{posteriori} probability distribution over a set $X$, normally represented as $p(A | B)$, which can be read as probability of $A$ knowing $B$.
 
 \begin{equation}
 \label{jpd:discrete}
@@ -169,7 +173,7 @@ P(x_t,M | z_{0:t}, u_{1:t})
 
 \subsection{DATMO}
 
-Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems \cite{VU-2009-454238} researches. Since in RADAR only moving objects are visible.
+Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems \cite{VU-2009-454238} researchers. Since in RADAR data only moving objects are visible, unless the RADAR itself is moving instead, in this case the object can be static and the RADAR will be able to detect the static objects.
 
 Those objects in scene they must solve the data association problem. The former assumption is unrealistic in the vision of a robot, the perception sensor senses all objects, independently on their motion, so static and dynamic objects are included in the representation.
 
@@ -178,17 +182,17 @@ As DATMO is a large process, some researchers chose to pick just a part of this 
 DATMO responsibility is to:
 
 \begin{itemize}
-\item Detect and initialize new objects
-\item Remove objects that went out of the scene
-\item Moving object motion modeling
-\item Data association
+\item Detect and initialize new objects;
+\item Remove objects that went out of the scene;
+\item Moving object motion modeling;
+\item Associate data with corresponding to the objects;
 \end{itemize}
 
 \subsection{SLAMMOT}
 
-Researches considered SLAM and DATMO as two different problems that should be solved separately, \textit{Wang} was one of the first researches to put in evidence the similarities between both problems \cite{Wang03onlinesimultaneous}.
+Generally, researches considered SLAM and DATMO as two different problems that should be solved separately. \textit{Wang} was one of the first researchers to put in evidence the similarities between both problems and propose simultaneous processing of those tasks\cite{Wang03onlinesimultaneous}.
 
-As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiment showed that solving the SLAM with DATMO increased dramatically the performance of the algorithm comparing them with the results as individual solutions (performance was verified in crowded urban environment).
+As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiments showed that solving simultaneously the SLAM with DATMO increased dramatically the performance of the algorithm comparing them with the results as individual solutions (performance was verified in crowded urban environment).
 
 \begin{figure}[h]
    \centering
@@ -199,13 +203,13 @@ As result, the SLAMMOT term was coined and a derivation of the SLAM formula with
    \label{fig:slammot}
  \end{figure}
 
-As the GPS system or an good IMU for a good precision are too expensive, the paper propose a bayesian approach solution which satisfies the navigation constraints without compromise the safety and at the same time are not high costly as the other solutions based on a specialized hardware.
+As the GPS system or an good IMU for a good precision are too expensive, the paper propose a bayesian approach solution which satisfies the navigation constraints without compromising the safety and at the same time not as costly as the other solutions based on a specialized hardware.
 
 \subsection{SLAM and DATMO}
 
-Robots face a set of problems which are common among many robots, how to move in a certain environment is one of them.
+Robots face a set of problems which are common among many robots. How to move in a certain environment having only noisy and incomplete measurements.
 
-The general environment perception (Figure \ref{fig:perception:cycle}) requires at least two inputs: the perception measurements $Z$ which are usually are provided by cameras, LIDAR, or even radars, and motion measurements provided by the IMU (Inertial Measurement Unit).
+The general environment perception (Figure \ref{fig:perception:cycle}) requires at least two inputs: the perception measurements $Z$ which are usually are provided by sensors.
 
 \begin{figure}[h]
    \centering
@@ -217,15 +221,15 @@ The general environment perception (Figure \ref{fig:perception:cycle}) requires 
  \end{figure}
 
 
-He perceives the environment by using as input sensors informations and can be composed of several sensors, or even heterogeneous types of sensors, and those give a partial observation of the environment (according with the current technology applied in those sensors). Thus, the robot does not known what paths can be perceived to reach a given point in a space.
+The robot perceives the environment by using as input sensors informations and can be composed of several sensors, or even heterogeneous types of sensors, and those give a partial observation of the environment (according to the current technology applied in those sensors). Thus, the robot does not known what paths can be perceived to reach a given point in a space.
 
-So, knowing the positions that can be assumed by the robot is essential and necessary so robot cat move in this environment, this is done by observing the environment through the sensors and creating a spatial relation between the static objects in this space, this is known as SLAM - or Simultaneous Localizations and Mapping \cite{iyengar1991autonomous}.
+So, knowing the positions that can be assumed by the robot is essential and necessary so that the robot can move in this environment. This is done by observing the environment through the sensors and creating a spatial relationship between the static objects in this space. This is known as SLAM - or Simultaneous Localizations and Mapping \cite{iyengar1991autonomous}.
 
-Although, this just concern a small set of the problems related with robots applications, for instance robots that are used for mining, in this type of environment the only element that can change the environment and the spatial relation between the static objects is the robot itself. 
+Although, this just concerns a small set of the problems related with robots applications. For instance robots that are used for mining. In this type of environment the only element that can change the environment and the spatial relationship between the static objects is the robot itself. 
 
-Depending in the goal of the robots perception, may be required to make distinction between each object, with cameras we can use characteristics like color, shape. Whereas, classify an object based in a LIDAR or radar information neither shape nor color are available, at least not directly without pre-processing.
+Depending on the goal of the robots perception, it may be required to make distinction between each object, with cameras we can use characteristics like color, shape. Whereas, classify an object based in a LIDAR or radar information neither shape nor color are available, at least not directly without pre-processing.
 
-Another set of problems concerns the most part of robots applications are highly dynamic environments, where the objects can change their position with respect to the static environment, those objects can become an obstacle for the robots, for this reason its necessary to map those objects, this relation called DATMO - Detection and Tracking of Moving Objects.
+Another set of problems which concerns the most part of robots applications are highly dynamic environments, where the objects can change their position with respect to the static environment, those objects can become an obstacle for the robots, for this reason its necessary to map those objects, this relation called DATMO - Detection and Tracking of Moving Objects.
 
 Although these two classification are given in a separate manner, they can be used as complementary to each other as presented in the paper \cite{Wang04a}, which will be dissected later.
 
@@ -233,7 +237,7 @@ Although these two classification are given in a separate manner, they can be us
 
 This is a key point to solve some of the problems related to perception. Thus, the type of representation chosen can be the underline bases to achieve good results.
 
-There exist several possible types of map that can be used to represent the surrounded environment. Among those, three of them gained importance, which are: \textbf{direct}, \textbf{grid} and \textbf{feature-based}. The topological representation is just a derivative type of map and they are not considered in this document.
+There exist several possible types of map that can be used to represent the surrounded environment. Among those, three of them gained importance, which are: \textbf{direct}, \textbf{grid} and \textbf{feature-based}\cite{Wang04a}. The topological representation is just a derivative type of map and they are not considered in this document.
 
 \subsubsection{Direct}
 
@@ -261,7 +265,7 @@ The result can be seen in the Figure \ref{fig:mapping:direct:result}. On the lef
 	\label{fig:mapping:direct:result}
 \end{figure}
 
-Despide of the good result obtained by scan alignment, it is not not necessary in our approach, since we are not worried about building a map of the environment. 
+Despite the good result obtained by scan alignment, it is not necessary in our approach, since we are not worried about building a map of the environment. 
 
 \subsubsection{Feature-based}
 
@@ -269,9 +273,9 @@ Another way to perceive the environment is the feature-based representation. In 
 
 Several well known methods for detecting those features are available. Hough-transformation, SIFT are good examples. 
 
-Hough-transformations in able to give us equation of lines that are part of the image. One good application for such method is to detect the edges of a road (left and right borders). By having an image of a plane road where the borders reache the infinity, the Hough-transformation is capable to detect the line equation that represents the edges. [put reference]
+Hough-transformations in able to give us equation of lines that are part of the image. One good application for such method is to detect the edges of a road (left and right borders). By having an image of a plane road where the borders reach infinity, the Hough-transformation is capable to detect the line equation that represents the edges. \cite{Ballard:1987:GHT:33517.33574}
 
-Scale-invariant feature transform (SIFT) detect similar points between two images, even if this similar points were changes in scale, noise, rotation or illumination. [put reference] 
+Scale-invariant feature transform (SIFT) detect similar points between two images, even if these similar points change in scale, noise, rotation or illumination \cite{Lowe:1999:ORL:850924.851523}.
 
 Those methods are capable of detecting some features of an image and do a partial representation of its characteristics. 
 
@@ -282,13 +286,13 @@ This imprecise representation may generate false interpretation of the environme
 \subsubsection{Grid-based}
 \label{ch02:gridbased}
 
-Occupancy Grid is one of these methods and it is largely applied, its built and based on a multidimensional field that maintains the occupancy state information in a cell\cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
+Occupancy Grid is largely used, it is built and based on a multidimensional field that maintains the occupancy state information in a cell \cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
-The changing the size of the cells we can give more or less precision for the representation (reducing or increasing the size of the cell respectively).
+By changing the size of the cells we can give more or less precision for the representation changing the resolution of the grid, which is reduce or increasing the size of the cell.
 
-At the same time Occupancy Grid (a.k.a. certainty grids) is effective in data representation it is also effective in represent sensor fusion information with it. 
+At the same time the Occupancy Grid, also known as \textit{certainty grids}, is effective in data representation it is also effective in representing sensor fusion information with it. 
 
-Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}. The results are interesting to say the least.
+Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
 
 One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) - contains the velocity and the probability distribution in Bayesian framework.
 
@@ -308,7 +312,7 @@ This kind of representations is done with multi-dimensional vectors and results 
 	\label{fig:grid:continuous:discretized}
 \end{figure}
 
-In grid framework each cell $C$ can be assigned have its state $\phi(C)$ configured to binary domain, so, either the current state of the cell is \textit{occupied} or it is \textit{free}, in this paper we state that the value $1$ represents the occupied state and $0$ a $free$ space Equation \ref{eq:binarycell}. A different domain may be used in the grid, for instance to represent random variable with a probability of occupancy of the cell (Section~\ref{sec:sensor:fusion}).
+In the grid framework each cell $C$ can be assigned have its state $\phi(C)$ configured to binary domain, so, either the current state of the cell is \textit{occupied} or it is \textit{free}, in this paper we state that the value $1$ represents the occupied state and $0$ a $free$ space Equation \ref{eq:binarycell}. A different domain may be used in the grid, for instance to represent random variable with a probability of occupancy of the cell (Section~\ref{sec:sensor:fusion}).
 
 \begin{equation}
 P(\phi(C)=1) + P(\phi(C)=0) = 1
@@ -317,26 +321,23 @@ P(\phi(C)=1) + P(\phi(C)=0) = 1
 
 This model can be extended to a more general model coined as \textit{inference grids} that encapsulate multiple properties\cite{Elfes:1989:OGP:916528}.
 
-\textit{Goal: Why occupancy grid? how its built? }
-
 \section{Classification}
 
-Before acting, it is required to understand the scene in the first place.
-
-\textbf{Scenario 1}: In a simpler scenario we can have a robot that moves in an environment, where all objects in its surroundings are static. The robot is the only element present in the environment that is moving.
+\textbf{Scenario 1}: in a simpler scenario we can have a robot that moves in an environment, where all objects in its surroundings are static. The robot is the only element present in the environment that is moving.
 
 In this case, the static environment is everything that the robot can perceive. So the robot should use these information to build a map of the navigable path.
 
-\textbf{Scenario 2}: Now, if we pick another scenario: suppose the robot is moving in an overly crowded environment, with different type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.) , static and moving objects are mixed. Which object to use as static objects (\textit{e.g.} to build the map) and which to use as dynamic (\textit{e.g.} to calculate the risk of collision)? 
+\textbf{Scenario 2}: suppose the robot is moving in an overly crowded environment, with different type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.), static and moving objects are mixed. Which object to use as static objects (\textit{e.g.} to build the map) and which to use as dynamic (\textit{e.g.} to calculate the risk of collision)? 
 
 In the \textbf{Scenario 2}, it is much more complicated to obtain any information from the environment.
 
-This lead us to one conclusion: it is hard to do risk analysis when you do not know the objects of the scene.
+This leads us to one conclusion: it is hard to do risk analysis when you do not know the objects of the scene, in adiction is hard to find the motion model of a specific object in the scene(behavior analysis).
 
-Thus, as a stepping stone we can perform the dynamic and static environment classification, this solves part of the problem, by classifying the environment in two categories. This will help to:
+Thus, as a stepping stone we can perform the dynamic and static environment classification. This solves part of the problem, by classifying the environment in two categories. This will help to:
 
 \begin{enumerate}
-\item Build the map
+\item Build the map (which is not the our goal)
+\item Perform DATMO
 \item Perform risk assessment (Section~\ref{sec:riskassessment})
 \end{enumerate}
 
@@ -351,22 +352,22 @@ The scene understanding usually implicates in distinguish different types of obj
 
 Before describe Risk Assessment and its relation with ADAS, we first, must to understand what risk means.
 
-\textbf{Risk} is anything that can affect (negatively or positively) a subject. By positive meaning that if such thing happens to be true: something good may happen to the subject, or negative meaning if another given thing happens to be true, the subject may suffer negative consequences. It is a common practice to track just the negative risks, that is why positive risk looks so unfamiliar for most of the readers. 
+\textbf{Risk} is anything that can affect (negatively or positively) a subject \cite{mulcahy2011pmp}. By positive meaning that if such things happen to be true: something good may happen to the subject, or negative meaning if another given thing happens to be true, the subject may suffer negative consequences. It is a common practice to track just the negative risks, that is why positive risk looks so unfamiliar for most of the readers. 
 
 For that reason some literature use terms like hazard or threat to refer to negative risks. But in this document when we refer to risk, we mean the negative risk.
 
-As we saw in certain level of details the meaning of risk, we can understand the whole meaning of the term "Risk assessment" , but first it is better understanding what "assessment" means.
+As we saw in certain level of details the meaning of risk, we can understand the whole meaning of the term "Risk assessment", but first it is better understanding what "assessment" means.
 
-The \textbf{assessment} is the action of study what variations can affect the subject, this variation can be \textbf{direct} or \textbf{indirect} as well, but we will not explain in details, it is sufficient to know that it is related with how the "thing" affected the subject, did it happened directly on the subject? or indirectly?
+The \textbf{assessment} is the action of studying what variations can affect the subject, this variation can be \textbf{direct} or \textbf{indirect} as well.
 
-One good example to illustrate the \textbf{direct} and \textbf{indirect} situations, imagine you bought a very good amount of shares from Apple Inc\copyright. But you forgot that its products are manufactured in an Asian country. Suddenly this Asian country government announces that it is forbidden to export any kind of product to western countries. 
+A didatic example to illustrate the \textbf{direct} and \textbf{indirect} situations: imagine you bought a very good amount of shares from Apple Inc\copyright. But you forgot that its products are manufactured in an Asian country. Suddenly this Asian country government announces that it is forbidden to export any kind of product to western countries. 
 
 Well, needless to say that you are bankrupt. Something that was not directly related - international diplomacy relations - to your subject can affect dramatically its value. We can refer to the subject as assets, or future assets.
 
 Thus, the subject can be anything with enough degree of importance to justify the risk assessment. Some examples are: a project, stock market share, a schedule, an action.
 
-Risk assessment applied in ADAS is done to evaluate the risk of collision between vehicles. Thus, we are worried about direct risk. 
+Risk assessment applied in ADAS is generally done to evaluate the risk of collision between vehicles. Thus, we are worried about direct risk. 
 
-This is done by perceiving the environment, specifically the dynamic environment. The dynamic environment is chosen to be studied rather than static due to its close relation with  collisions situations. 
+This is done by perceiving the environment, specifically the dynamic environment. The dynamic environment is chosen to be studied rather than static due to its close relationship with  collisions situations. 
 
-The collisions can be caused by several factors, but independent objects moving and sharing the same space are responsible for a big part of the collisions, thus the relationship among dynamic objects are important for the risk assessment.
+The collisions can be caused by several factors, but commonly other vehicles sharing the same space are responsible for a big part of the collisions, the study \cite{Hurt_1981} showed statistically that $75\%$ of collitions are between two vehicles, and only $22\%$ are vehicles coliding with static objects. Therefore, the relationship among dynamic objects are important for the risk assessment.
