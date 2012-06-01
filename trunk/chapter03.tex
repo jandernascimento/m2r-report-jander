@@ -12,12 +12,12 @@ The distinction between static and dynamic are considering the subjects in a glo
 S=O_{static}+O_{dynamic}
 \end{equation}
 
-\section{Demonstrator configuration} %configuration of the lasers, diagram
+\section{XP Platform configuration} %configuration of the lasers, diagram
 \label{sec:demonstrator}
 
 \subsection{LIDAR laser scanners}
 
-Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for the specification) installed in the frontal bumper (Figure~\ref{fig:demonstrator:birdeye}).
+Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for the specification) installed on the front bumper (Figure~\ref{fig:demonstrator:birdeye}).
 
 \begin{figure}[h]
    \centering
@@ -28,9 +28,9 @@ Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check 
    \label{fig:demonstrator:birdeye}
 \end{figure}
 
-Each LIDAR is capable of scanning in four layers, their relationship is shown  in the Figure~\ref{fig:demonstrator:lateral}, and every layers have its horizontal Field of View (FoV), one example is given for the layer 1 in the Figure~\ref{fig:demonstrator:superior}.
+Each LIDAR is capable of scanning in four layers, their relationship is shown  in the Figure~\ref{fig:demonstrator:lateral}, and every layers have its own horizontal Field of View (FoV). One example is given for the layer 1 in the Figure~\ref{fig:demonstrator:superior}.
 
-With four layers in total, the layers are arranged as planes with different angles but one common vetex, anchored at center of the LIDAR. The road is considered as base for the angle formation, it is formed with an imaginary plane, parallel to the road surface, and the a plane formed by the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
+With four layers in total, the layers are arranged as planes with different angles but one common vetex, anchored at center of the LIDAR. The road is considered as the base for the angle formation. It is formed with an imaginary plane, parallel to the road surface, and the plane formed by the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
 
 \begin{figure}[h]
    \centering
@@ -41,9 +41,9 @@ With four layers in total, the layers are arranged as planes with different angl
    \label{fig:demonstrator:lateral}
 \end{figure}
 
-A single layer sweeps the environment in a limited horizontal FoV, in the Table~\ref{tab:beam:interception} we can have the layers and their specific FoV. The LIDAR laser scanner, used in our tests, have the $0.5^{\circ}$ resolution. Meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
+A single layer sweeps the environment in a limited horizontal FoV. In the Table~\ref{tab:beam:interception} we can have the layers and their specific FoV. The LIDAR, used in our tests, have the $0.5^{\circ}$ resolution, meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
 
-To calculate the number of beams available in a layer $\ell$ we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum angles that can be reached by the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR laser scanner $\rho$, this is a specification provided by the manufacturer. 
+To calculate the number of beams available in a layer $\ell$ we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum angles that can be reached by the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR $\rho$, this is a specification provided by the manufacturer. 
 
 Thus, we can calculate the number of beams in a layer based on its horizontal FoV and LIDAR resolution. Let's take as an example the first layer (layer 1) and calculate the number of beams available in this layer. 
 
@@ -82,7 +82,7 @@ From every individual beam is possible to obtain the \textit{impact point}, mean
 \label{tab:beam:interception}
 \end{table}
 
-The multiple sensor usage in the demonstrator car makes of it a complex system, due to the number of data gathered, overlapped information and possible conflicted data (Figure~\ref{fig:demonstrator:superior:overlap}). Thus, all sensor information must be carried in a consistent manner and this is accomplished by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
+The multiple sensors usage in the demonstrator car makes of it a complex system, due to the number of data gathered, overlapped information and possible conflicted data (Figure~\ref{fig:demonstrator:superior:overlap}). Thus, all sensor information must be carried in a consistent manner and this is accomplished by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
 
 \begin{figure}[h]
    \centering
@@ -108,11 +108,11 @@ As we are about to see in the next Sections, the algorithm developed in this doc
    \label{fig:xsens:mtig}
  \end{figure}
 
-MTi-G unit (Figure~\ref{fig:xsens:mtig}) is a combination of Inertial Measurement Unit (IMU), GPS and barometer. The concept of MTi-G unit is not just gathering a set of sensors, it is about using information among them so that each individual sensor information can get benefits from the other ones and provide more precise information.
+MTi-G unit (Figure~\ref{fig:xsens:mtig}) is a combination of an Inertial Measurement Unit (IMU), a Global Positioning System (GPS) and barometer. The concept of MTi-G unit is not just gathering a set of sensors, it is about using information among them so that each individual sensor information can get benefits from the other ones and provide more precise information through the data sensor fusion.
 
-One example good example is that the GPS can use the other sensor to estimate the position, this is useful in case of a short-period communication outages, giving the global position estimation even without GPS signal. 
+One example is that the GPS can use the other sensor to estimate the position, this is useful in case of a short-period communication outages, giving the global position estimation even without GPS signal. 
 
-From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizontal $v_x$ velocity and the $Yaw$ angle of the car. The $Yaw$ is the angle of the car with respect to some fix point in earth (\textit{e.g.} north oriented). The fix point is irrelevant, since we are concerned about the angle variation and not the exactly angles theirselves, as we are going to see in the Section~\ref{ch03:motiondetection}.
+From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizontal $v_x$ velocity and the $Yaw$ angle of the car \cite{etkin2005dynamics}. 
 
 \section{Sensor pre-processing} %fusion module
 \label{sec:sensor:fusion}
@@ -123,7 +123,7 @@ From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizo
 
 The demonstrator car is composed with two LIDAR laser scanner sensors, as we saw in the Section~\ref{sec:sensor:fusion}. Each of the LIDAR laser scanner is composed of few layers and each layer contains several beams. Those beams are spread in a given horizontal FoV. The horizontal FoV is layer dependent, varying according to the layer.
 
-In the Figure~\ref{fig:motion:framework}, we have represented the general framework modules for detecting the moving parts, our algorithm core is contained in the motion detection module, which will be explored later. We are making usage of two LIDARs, they provide several information from different specifications (different ranges and FoV), thus we use a fusion module which is responsible for gathering the information provided by all of the LIDAR in a consistent manner.
+In the Figure~\ref{fig:motion:framework}, we have represented the general framework modules for detecting the moving parts. Our algorithm core is contained in the motion detection module, which will be explored later. The LIDARs provide several information with different specifications (different ranges and FoV), thus we use a fusion module to gather the information provided by all of the LIDAR in a single consistent manner.
 
 \begin{figure}[H]
    \centering
@@ -145,6 +145,7 @@ Each of the  two LIDAR sensors installed on the vehicle provides us 4 layers of 
 
 The principle is to generate a posterior distribution over the occupancy of a cell $C$ of the grid given the opinion of $m$ sensors $\left\{ Y_1 \dots Y_m \right\}$.
 Each sensor gives two quantities: its estimation for the occupancy of the cell $P(C | Y_i)$ and the confidence weight $w_i(C)$.
+
 The idea is to shut-down those sensors that do not give relevant information to the process by assigning a low weight to them. The fusion of all sensory information will be as follows:
 
 \begin{equation}
@@ -154,13 +155,13 @@ The idea is to shut-down those sensors that do not give relevant information to 
 Where $\alpha = \left[ \sum \limits^m_{i=1} w_i(C) \right]^{-1}$ is a normalization factor for the weights.  Equation \eqref{linealOpinionPoolEQ} is used to generate
 2D-occupancy grids. For each sensor $Y_i$ we must define $P(C | Y_i)$, the probability of a cell being occupied given the sensor information. Complete derivations for these quantities are provided in \cite{ADARVE-2012-671211}. The output of this fusion module is an occupancy grid. %write about occupancy grid
 
-Note that we assume independence among cells. This assumption is very strong, although it is necessary so the computation of the Equation~\eqref{linealOpinionPoolEQ} be efficient, by computing each cell value in parallel. %add section about performance
+Note that the method assumes independence among cells. This assumption is very strong, although it is necessary so the computation of the Equation~\eqref{linealOpinionPoolEQ} be efficient, by computing each cell value in parallel. %add section about performance
 
 \subsubsection{Justifying the performance}
 
-The independence among the cells is the main responsible for the high level of parallelism in the algorithm, the high level of parallelism and the performance can be assured by \textit{Amidahls law}.
+The independence among the cells is the main responsible for the high level of parallelism in the algorithm. The performance can be assured by \textit{Amidahls law}.
 
-\textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm\cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really accomplished in parallel, of course this is an simplistic view, but gives you an idea.
+\textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm \cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really accomplished in parallel, of course this is an simplistic view, but gives an idea.
 
 In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequential part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multi-core processor).
 
