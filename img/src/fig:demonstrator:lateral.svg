@@ -22,7 +22,7 @@
        inkscape:collect="always"
        xlink:href="#pattern2961"
        id="pattern6054"
-       patternTransform="matrix(1.9542257,0,0,1.9542257,-565.1667,-1475.5821)" />
+       patternTransform="matrix(1.9542257,0,0,1.9542257,-631.74352,-1478.193)" />
     <pattern
        inkscape:stockid="Wavy"
        id="Wavy"
@@ -216,9 +216,9 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="949"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-height="997"
+     inkscape:window-x="1280"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -393,22 +393,18 @@
        id="rect2909"
        width="59.032627"
        height="27.780062"
-       x="513.56891"
-       y="287.9017" />
+       x="446.9921"
+       y="285.29083" />
     <text
        xml:space="preserve"
        style="font-size:23.13386726px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="509.12711"
-       y="337.73767"
+       x="442.55029"
+       y="335.1268"
        id="text2911"><tspan
          sodipodi:role="line"
-         id="tspan2913"
-         x="509.12711"
-         y="337.73767">LIDAR laser </tspan><tspan
-         sodipodi:role="line"
-         x="509.12711"
-         y="366.65503"
-         id="tspan2919">scanner location</tspan></text>
+         x="442.55029"
+         y="335.1268"
+         id="tspan2919">Laser scanner location</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:27.85991669px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
