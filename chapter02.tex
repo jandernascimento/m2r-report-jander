@@ -1,0 +1,22 @@
+
+There have been several proposals for classification methods, all on behalf of scene understading. Due to the variety of sensors and applicability, the techniques must be adapted accordingly, since there is no existance of a silver bullet. 
+
+The work over this theme copes with classification by establishing some ground-rules, the constraints in which the method relies on to work.
+
+\section{Sensor diferenciation}
+
+\subsection{Stereo-visio camera}
+
+In the Henning Lategahn and Bernd Kitt work \cite{DBLP:conf/ivs/LategahnGHKE11}, they proposed a classification method using stereo vision. Their work was evaluated theoretically by simulation and pratically by running the method in real footage from a moving vehicle.
+
+One of the test cases had shown the capability of classification between the static and dynamic environment. In some situations the observation time had to be longer in order to perform correctly the classification. One of the reasons for that is the Sequential Probability Ratio Test (SPRT) performed in the samples.
+
+Although the goal is the same in their and our work - classification - our method uses only LIDAR to perform such classification.
+
+\section{Other LIDAR aproaches}
+
+In the work \cite{4650636}, they use the Iterative Closest Point (ICP) \cite{10.1109/34.121791} to establish the displacement of the objects. 
+
+This is differentiated in our method, first of all, we do not cluster to establish the boundaries of an object, this is not concerned by our application. For this reason we use grid based representation without clustering the objects, this was chosen due to it is parallelization and consequently it is speed.
+
+We replaced the ICP algorithm by IMU measurements. The IMU measurements provide a approximate displacement of the vehicle, and based on that information we can calculate the displacement of the static objects in the scene.  
