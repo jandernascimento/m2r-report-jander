@@ -1,109 +1,172 @@
-\section{Algorithm}
+\section{Implementation}
 
-In this section we are going to diplay all very same formulas seen in previous sections but as algorithms, which complements the understanding of previous sections.
+In this section we give algorithms of some important functions of our work that will complement the understanding of previous chapter.
 
-\subsection{General method}
+\subsection{Main method}
+Although the actual implementation has been done in $C++$ using object oriented concepts (different classes) however for the sake of simplicity implementation in this document is only based on functions and some local and global variables that need be passed to these functions.
 
-In the Algorithm \ref{al:general}, we provide an overview of the framework created for detecting moving parts.
+The algorithm \ref{al:general} implements the main function that has the controling loop and calls appropriate functions to realize the complete motion detection logic.
 
-\begin{lstlisting}[title={Algorithm},mathescape=true,label=al:general,caption={General framework algorithm for motion detection}]
-//keeps the occupancy grid for t and t-1, for that reasor 2 position in one of the dimentions
+%In the Algorithm \ref{al:general}, we provide an overview of the framework created for detecting moving parts.
+
+\begin{lstlisting}[title={Algorithm},mathescape=true,label=al:general,caption={Main algorithm for motion detection}]
+//Global Variables
+//Some data structures
+//  Structure to keep motion data given by MTi-G motion sensor installed on the vehicle
 struct MotionData { $timestamp$, $velocity_x$, $velocity_y$, $quaternion \{q0,q1,q2,q3\}$ }
-struct u_t { $speed$, $angular$_$speed$, $dt$ }
-$OG_t$[N]
-$OC_t$[N] $OC_{t-1}$[N]
-$FC_t$[N] $FC_{t-1}$[N]
-$MotionData_t$ $MotionData_{t-1}$
+//  Structure for processed motion data (considered as control data)
+struct U { $speed$, $angular$_$speed$, $dt$ }
+//  Structuer for pose
+struct Pose { $x$, $y$, $\theta$}
+//  Structure for cell in grid
+struct Cell { $row$, $col$ }
+//Total cells of the occupancy Grid
+N //of type int
+//New Occupancy Grid given by the laser fusion module
+$OG_t$[N] //of type float
+//Occupancy Grid for last time step (t-1)
+$OG_{t-1}$[N] //of type float
+//Arrays to keep count of occupied counts for each cell
+//  Occupied Counts for current data at time t
+$OC_t$[N] //of type int
+//  Accumulated counts until time t-1
+$OC_{t-1}$[N]  //of type int
+//Arrays to keep count of free counts for each cell
+//  Free Counts for current data at time t
+$FC_t$[N]  //of type int
+//  Accumulated counts until time t-1
+$FC_{t-1}$[N] //of type int
+//Variables to keep current and last motion data
+$MotionData_t$  //of type MotionData
+$MotionData_{t-1}$  //of type MotionData
+//Processed motion data
+$u_t$ //of type U
+//Results array
+$MotionGrid$[N] //of type float
 
+//Main controlling method
 DetectMotion() 
-
+	//Initialize global variables
+	InitGlobalVars () (*@\label{ln:InitGlobalVars}@*)
+	//Main loop
 	while not quit do 
-		$OG_t$ = ReadAndFuseLaserData() //write about it
-		$MotionData_t$ = ReadMotionData()
-		$u_t$=FindMovement($MotionData_t$,$MotionData_{t-1}$)
-		InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
-		UpdateCounterArraysFromPrevious($u_t$)
+		//Get occupancy grid from current laser data, Fusion module prepares this grid
+		$OG_t$ = ReadAndFuseLaserData() (*@\label{ln:ReadAndFuseLaserData}@*)
+		//Get new raw motion data from the sensor (from Hugr store)
+		$MotionData_t$ = ReadMotionData() (*@\label{ln:ReadMotionData}@*)
+		//Calculate control data (motion) from current and last raw motion data
+		$u_t$=FindMovement()
+		//Initialize counter arrays from new data
+		InitCounterArraysForNewData()
+		//Upate counter arrays from accumulated counts until time step t-1
+		UpdateCounterArrays($u_t$)
+		//Calculate final motion grid
+		CalculateMotionGrid()
+		//at this point $MotionGrid$ has the results
+		//Save updated values for next step
+		$OG_{t-1}$=$OG_t$
 		$MotionData_{t-1}$=$MotionData_t $
 		$OC_{t-1}$=$OC_t$
 		$FC_{t-1}$=$FC_t$
-		DataMotion($OG_t$)
-
-FindMovement($MotionData_t$,$MotionData_{t-1}$)
-	//explained in next sections
-
-InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
-	//explained in next sections
-
-UpdateCounterArraysFromPrevious()
-	//explained in next sections
 	
 \end{lstlisting}
+This is the outline of the main function to detect motion from laser data. The function\\ $InitGlobalVars()$ at line number \ref{ln:InitGlobalVars} initializes the global variables with logical values. The function  $ReadAndFuseLaserData()$ at line \ref{ln:ReadAndFuseLaserData} has been implemented by another member of the team and is based on the technique published in \cite{ADARVE-2012-671211}. $ReadMotionData()$ function at line \ref{ln:ReadMotionData} simply reads raw motion data from the sensor (actually from the middleware Hugre store). Rest of the functions are outlined below.
 
-The elements from the Algorithm \ref{al:general} are defined in the high level of abstraction. In the next sections we are going to explain the calls made in this code.
+%The elements from the Algorithm \ref{al:general} are defined in the high level of abstraction. In the next sections we are going to explain the calls made in this code.
 
-All variables declared out of the function scope are considered as global variables, but for better understanding of the dependencies among the functions, the input data are going to be sent by parameter in some situations.
+%All variables declared out of the function scope are considered as global variables, but for better understanding of the dependencies among the functions, the input data are going to be sent by parameter in some situations.
 
 \subsection{Finding the movement}
-
+The listing in algorithm \ref{al:movement} gives the logic of method $FindMovement()$ used to calculate $u_t$.
 \begin{lstlisting}[label=al:movement,mathescape=true,caption={Find the movement of the vehicle}]
-FindMovement($MotionData_t$,$MotionData_{t-1}$)
-	//velocity vector from horizontal and vertical speed	
-	velX=$MotionData.velocity_x$
-	velY=$MotionData.velocity_y$
-	$u_t.speed$=sqrt(velX*velX+velY*velY)
+FindMovement()
+	//local variables
+	$velX, velY$ //of type float
+	$yaw, yaw2$ //of type float
+	$Q$ //of type quaternion
+	//velocity vector from horizontal and vertical speed components
+	$velX=MotionData_t.velocity_x$
+	$velY=MotionData_t.velocity_y$
+	$u_t.speed=$sqrt$(velX*velX+velY*velY)$
 	
 	//quaternion to euler angles conversion	
-	Q=$MotionData_t.quaternion$
-	yaw=atan2(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))	
+	$Q=MotionData_t.quaternion$
+	$yaw=$atan2$(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))$	
 
-	Q=MotionData_{t-1}.quaternion
-	yaw2=atan2(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))	
+	$Q=MotionData_{t-1}.quaternion$
+	$yaw2=$atan2$(2(Q.q0*Q.q3+Q.q1*Q.q2),1-2(Q.q2*Q.q2+Q.q3*Q.q3))$	
 	
-	$u_t$.dt=$MotionData_t.timestamp$-$MotionData_{t-1}.timestamp$
+	$u_t.dt=MotionData_t.timestamp-MotionData_{t-1}.timestamp$
 	
-	$u_t$.angular_speed=(yaw2-yaw)/$u_t.dt$
+	$u_t.angular$_$speed=(yaw2-yaw)/u_t.dt$
 	
 	return $u_t$
 \end{lstlisting}
 
-This algorithm is used to calculate the $u_t$, mathematically explained previous sections, $u_t$ 
+%This algorithm is used to calculate the $u_t$, mathematically explained previous sections, $u_t$ 
 
-\subsection{Initializing Grid}
+\subsection{Initializing Grid from new data}
 
 \begin{lstlisting}[label=al:initializeGrid,mathescape=true,caption={Initialization of the grid}]
-InitCounterArraysForNewData($OG_t$,$FC_t$,$OC_t$)
-		for i=0 to N-1 do
-		if OG[i] > 0.5 then 
-			OccupiedCounter[i]=1
-			FreeCounter[i]=0
-		else if OG[i] < 0.5
-			OccupiedCounter[i]=0
-			FreeCounter[i]=1
+InitCounterArraysForNewData()
+	for $i=0$ to $N-1$ do
+		if $OG_t[i] > 0.5$ then 
+			$OC_t[i]=1$
+			$FC_t[i]=0$
+		else if $OG_t[i] < 0.5$ then
+		
+			$OC_t[i]=0$
+			$FC_t[i]=1$
 		else
-			OccupiedCounter[i]=0
-			FreeCounter[i]=0
+			$OC_t[i]=0$
+			$FC_t[i]=0$
 \end{lstlisting}
 
-At this point, we initialize the counters (occupied and free) based on the informations available in the current Occupancy Grid $OG_t$.
+This listing \ref{al:initializeGrid} initializes the counters (occupied and free) based on the information available in the current Occupancy Grid $OG_t$.
 
 \subsection{Updating Counter arrays}
 
 \begin{lstlisting}[label=al:updatecounter,mathescape=true,caption={Update counter arrays}]
-UpdateCounterArraysFromPrevious()
-	newPose=FindPoseOfNewGrid($u_t$)
-	repose=FindInversePose(newPose)
-	for i=0 to N-1 do
-		$P_i$=PoseOfCell_i in $OG_{t-1}$
-		$P_j$=CompoundPose(repose,$P_i$)
-		$cell_j$=CellFromPose()
+UpdateCounterArrays()
+	//local variables
+	$newPose, invPose$ //of type Pose
+	$P_i, P_j$ //of type Pose
+	$cell_i, cell_j$ //of type Cell
+	$i, j$ //of type int
+	//Find pose of new grid $OG_t$ w.r.t old grid $OG_{t-1}$
+	$newPose$=FindPoseOfNewGrid($u_t$)
+	//Find inversepose, i.e pose of $OG_{t-1}$ w.r.t $OG_t$
+	$invPose$=FindInversePose($newPose$)
+	//Loop on all cells in grid $OG_{t-1}$ to find their position in grid $OG_t$
+	//These transformations essentially map a cell $i$ in grid $OG_{t-1}$ to a cell $j$ in $OG_t$
+	for $i=0$ to $N-1$ do
+		//ith cell in grid $OG_{t-1}$
+		$cell_i$ = CellFromIndex($i$)
+		//pose of cell in grid: x,y coordinates of the center of the cell
+		$P_i$=PoseOfCell($cell_i$)
+		//pose of cell $i$ of grid $OG_{t-1}$ in grid $OG_t$
+		$P_j$=CompoundPose($invPose$,$P_i$)
+		//cell where point $P_j$ lies in the grid
+		$cell_j$=CellFromPose($P_j$)
 		If $cell_j$ is not visible in $OG_t$ then
 			continue
-		$O_t$[$cell_j$]+=$O_{t-1}[cell_j]$
-		$F_t$[$cell_j$]+=$F_{t-1}[cell_j]$
+		$j$ = IndexFromCell($cell_j$)
+		$OC_t[j]+=OC_{t-1}[i]$
+		$FC_t[j]+=FC_{t-1}[i]$
+\end{lstlisting}
+The listing \ref{al:updatecounter} explaines how to map a cell from $OG_{t-1}$ to $OG_t$ and update the counter arrays. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
+The function $FindPoseOfNewGrid()$ simply implemments the Equation~\ref{eq:circularmotion}. $CompoundPose()$ and \\$FindInversePose()$ functions implement the equation \ref{eq:composepose} and \ref{eq:invpose}  respectively. $CellFromPose()$ is mapped from Equation~\ref{eq:grid:cell:calculation} whereas $PoseOfCell()$ is exactly inverse of $CellFromPose()$. Functions $CellFromIndex()$ and $IndexFromCell()$ map 1D array to 2D array and vice versa respectively.
+
+\begin{lstlisting}[label=al:motiongrid,mathescape=true,caption={Calculate motion grid}]
+CalculateMotionGrid()
+	//loop on all grid cells and classify them as static or moving
+	for $i=0$ to $N-1$ do
+		$MotionGrid[i]=0$
+		if $OG_t[i] > 0.5$ and $FC_t[i] > 2*OC_t[i]$ then
+			$MotionGrid[i]=1$
 \end{lstlisting}
 
-In this function we integrate new data acquisition from the LIDAR to the current counters. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
-The functions $FindPoseOfNewGrid$ applies the Equation~\ref{eq:circularmotion}, \ref{eq:pose:compound}  and \ref{eq:pose:compound:inverse}. The function $CompoundPose$ comes from the Equation~\ref{eq:composepose}. $CellFromPose$ is mapped from Equation~\ref{eq:grid:cell:calculation}.
+Listing \ref{al:motiongrid} implements a simple decision function based on current vale of the cell and the two counter values to decide if it belongs to a moving object or not.
 
 \section{Experiment}
 
