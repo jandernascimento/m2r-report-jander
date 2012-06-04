@@ -30,7 +30,7 @@ Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check 
 
 Each LIDAR is capable of scanning in four layers, their relationship is shown  in the Figure~\ref{fig:demonstrator:lateral}, and every layers have its own horizontal Field of View (FoV). One example is given for the layer 1 in the Figure~\ref{fig:demonstrator:superior}.
 
-With four layers in total, the layers are arranged as planes with different angles but one common vetex, anchored at center of the LIDAR. The road is considered as the base for the angle formation. It is formed with an imaginary plane, parallel to the road surface, and the plane formed by the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
+With four layers in total, the layers are arranged as planes with different angles but one common vertex, anchored at center of the LIDAR. The road is considered as the base for the angle formation. It is formed with an imaginary plane, parallel to the road surface, and the plane formed by the layer. Those angles are depicted in the Figure~\ref{fig:demonstrator:lateral}.
 
 \begin{figure}[h]
    \centering
@@ -202,7 +202,7 @@ The details about the techniques adopted and the data processing were explained 
 
 The LIDAR is installed on a vehicle, the goal is to acquire measures while vehicle is moving. So it captures the surrounding and the data is processed by the \textbf{fusion module} resulting in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input for \textbf{motion detection module}.
 
-The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, by the LIDAR sensor perspective the entire scenario is moving and all subjects are changing their position, except for those who are following the same trajectory as the vehicle and at the same speed. 
+The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, from the LIDAR sensor perspective the entire scenario is moving and all objects are changing their position, except for those who are following the same trajectory as the vehicle and at the same speed. 
 
 The LIDAR can read informations from the environment with $25fps$. Although, we are able to achieve good qualitative results using a short amount of frames. 
 
@@ -227,30 +227,16 @@ This problem is solved by introducing the Inertial Measurement Unit(IMU) data. T
 
 From the IMU information we calculate two parameters: angular velocity and the linear velocity. 
 
-Angular velocity is obtained by finding the angle variation between the frames $f_t$ and $f_{t+1}$, according to the Equation~\ref{eq:angularvelocity}, $\Delta t$ represents the time variation between the frames.
+Angular velocity (Equation~\ref{eq:angular:velocity}) is obtained by finding the angle variation between two frames at time $t$ and $t_{t-1}$, $dt$ represents the difference between two time steps.
 
-\begin{equation}
-\label{eq:angularvelocity}
-\omega(f_t,f_{t+1}) = \frac{Yaw_{t+1}-Yaw_t}{\Delta t(f_t,f_{t+1})} 
-\end{equation} 
+The angular velocity is given in degrees, but the IMU gives us a quaternion for the angle of the vehicle. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it solves the gym ball lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward by see Equation~\ref{eq:quaternion:yaw}.
 
-The angular velocity is given in degrees, but the IMU gives us a quaternion for the angle of the vehicle. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it solves the gym ball lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward by the Equation~\ref{eq:quaternion}.
-
-\begin{equation}
-\label{eq:quaternion}
-Yaw=atan2(2(q_0 q_3+q_1 q_2),1-2(q_2^2+q_3^2))
-\end{equation}
-
-The angular velocity $\omega(f_t,f_{t+1})$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
+The angular velocity $\omega_t$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
 
 At this point, we have the information about the proper angle for the frame $f_t$, the next step is to calculate the displacement of the frame. The displacement is calculated based on the actual velocity of the vehicle at the time $t$. 
 
-The IMU keeps the velocity in two components, the horizontal $v_h$ and vertical $v_v$ velocities, and to obtain the actual velocity, we can apply the Equation~\ref{eq:velocity}, which extracts the velocity based on the two components.
+The IMU keeps the velocity in two components, the horizontal $v_h$ and vertical $v_v$ velocities, and to obtain the actual velocity, we can apply the Equation~\ref{eq:ch03:velocities}, which extracts the velocity based on the two component velocities.
 
-\begin{equation}
-\label{eq:velocity}
-v_t=\sqrt{v_h^2+h_v^2}
-\end{equation}
 
 \subsection{Motion detection}
 \label{ch03:motiondetection}
@@ -285,6 +271,7 @@ And if $\Delta t$ is the time difference between two data frames at time $t$ and
 at time $t$ is equal to the yaw rate given as:
 \begin{equation}
 \omega_t = \frac{Yaw_t-Yaw_{t-1}}{\Delta t}
+\label{eq:angular:velocity}
 \end{equation}
 
 At each time instant $t$ these $OG_t$ and $u_t$ are input to the algorithm that consists of 
@@ -305,14 +292,14 @@ FreeCount_t[i] = \begin{cases} 1, & \mbox{ if $OG_t[i] < 0.5$} \\
 
 \paragraph{Counts update from previous step} Suppose $FreeCount_{t-1}$ and  $OccupiedCount_{t-1}$ are the
 updated counter arrays at time $t-1$ and we want to update new counters $FreeCount_t$ and $OccupiedCount_t$
-from these old counts. Since vehicle has undergone a position change determined by $u_t=(\nu_t, \omega_t)$
-so there is no direct correspondence between cells of two occupancy grids $OG_t$ and $OG_{t-1}$ and we
+from these old counts. The vehicle has undergone a position change determined by $u_t=(\nu_t, \omega_t)$
+. There is no direct correspondence between cells of two occupancy grids $OG_t$ and $OG_{t-1}$. We
 must find transformations that map a cell in  $OG_{t-1}$ to a cell in $OG_{t}$ using $u_t$. This situation is
 shown in Figure \ref{fig:gridmove}, $OG_{t-1}$ has origin at $O_{t-1}$ and $OG_t$ has origin at $O_t$. To find this transformation suppose $O_{t-1}=(x_{t-1}, y_{t-1}, \theta_{t-1}) = (0,0,0)$ is the pose (position and orientation) of the occupancy grid at time instant $t-1$ (i.e in $OG_{t-1}$) and we want to find $O_t=(x_t, y_t, \theta_t)$, the pose of $OG_t$ with respect to $OG_{t-1}$ after it has undergone a motion of $u_t$. By taking $O_{t-1}=(0,0,0)$ in each iteration of the algorithm.
 
-We highlight the fact that we solve localization only for two consecutives frames and do not care about the global localization. 
+We highlight the fact that we solve localization only for two consecutive frames and do not care about the global localization. 
 
-Now if $\Delta t$ is the time difference between the instants $t$ and $t-1$ then using circular motion model the pose $O_t$ is given as:
+Now if $\Delta t$ is the time difference between the instants $t$ and $t-1$, then using a circular motion model the pose $O_t$ is given as:
 
 \begin{equation}
 \left[\begin{array}{c}x_t \\ y_t\\ \theta_t \end{array} \right] = 
@@ -329,7 +316,7 @@ Now if $\Delta t$ is the time difference between the instants $t$ and $t-1$ then
 \end{figure}
 
 An important thing is to notice that we are concerned with the localization of two consecutive frames only
-and need not solve the complete SLAM problem, making the technique very fast. Moreover, empirical observation suggests that the odometry error between two consective frames is less than 10 cm whereas the cell size assigned is $20cm \; x \; 20cm$ enabling us to assume that cell mapping (explained next) from grid at $t-1$ to grid at $t$ is exact.
+and need not solve the complete SLAM problem, making the technique very fast. Moreover, empirical observation suggests that the odometry error between two consecutive frames is less than 10 cm whereas the cell size assigned is $20cm \; x \; 20cm$ enabling us to assume that cell mapping (explained next) from grid at $t-1$ to grid at $t$ is exact.
 
 Mapping a cell of the grid $OG_{t-1}$ to $OG_t$ consist in bring $OG_{t-1}$ up to speed based in the MTi-G sensor unit information. Suppose point $P$ (shown in Figure \ref{fig:gridmove}) is the center of a cell in grid $OG_{t-1}$ and we want to find its corresponding cell in grid $OG_t$. We define following two pose manipulation operations. if $P_{ij}=[x_{ij}, y_{ij}, \theta_{ij}]^T$ is the pose of origin $j$ w.r.t origin $i$ and $P_{jk}=[x_{jk}, y_{jk}, \theta_{jk}]^T$ is the pose of origin $k$ w.r.t $j$ then the pose of $k$ w.r.t $i$ denoted as $P_{ik}=[x_{ik}, y_{ik}, \theta_{ik}]^T$ is given as:
 
