@@ -1,9 +1,19 @@
 
-There have been several proposals for classification methods, all on behalf of scene understading. Due to the variety of sensors and applicability, the techniques must be adapted accordingly, since there is no existance of a silver bullet. 
+There have been several proposals for classification methods, all on behalf of scene understading. Due to the variety of sensors and problem to takle, the techniques varies. The techniques are adapted accordingly.
 
 The work over this theme copes with classification by establishing some ground-rules, the constraints in which the method relies on to work.
 
-\section{Sensor diferenciation}
+\section{Grouping issues in robotics}
+
+One important step in the scene understanding is the environment map building and locate the ego-robot inside this map. This problem is known as SLAM \cite{Leonard2002Mobile}, which stands for Simultaneous Localization and  Mapping.
+
+SLAM is composed of several steps to reach its goal: landmark extraction, data association, state estimation, etc. Each of them can be solved using different techniques.
+
+SLAM tackles one specific scenario. SLAM assumes static environment constraint, in another words, any moving object in the same environment as the robot will interfere in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
+
+DATMO stands for Detection and Tracking of Moving Objects. When dealing with mobile robots in a dynamic environment we apply the DATMO process to obtain the moving objects from the environment.
+
+\section{Solutions for segmentation}
 
 \subsection{Stereo-visio camera}
 
