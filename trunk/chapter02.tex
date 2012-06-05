@@ -21,12 +21,16 @@ In the Henning Lategahn and Bernd Kitt work \cite{DBLP:conf/ivs/LategahnGHKE11},
 
 One of the test cases had shown the capability of classification between the static and dynamic environment. In some situations the observation time had to be longer in order to perform correctly the classification. One of the reasons for that is the Sequential Probability Ratio Test (SPRT) performed in the samples.
 
-Although the goal is the same in their and our work - classification - our method uses only LIDAR to perform such classification.
+Although the goal is the same in their and our work - classification - our method uses only LIDAR and IMU information to perform such classification.
 
-\section{Other LIDAR aproaches}
+\subsection{Single mono-vision camera}
+
+In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM..  ()
+
+\subsection{LIDAR aproaches}
 
 In the work \cite{4650636}, they use the Iterative Closest Point (ICP) \cite{10.1109/34.121791} to establish the displacement of the objects. 
 
-This is differentiated in our method, first of all, we do not cluster to establish the boundaries of an object, this is not concerned by our application. For this reason we use grid based representation without clustering the objects, this was chosen due to it is parallelization and consequently it is speed.
+This is difference in our method, first of all, we do not cluster to establish the boundaries of an object, this is not concerned by our application. For this reason we use grid based representation without clustering the objects, this was chosen due to it is parallelization and consequently it is speed.
 
 We replaced the ICP algorithm by IMU measurements. The IMU measurements provide a approximate displacement of the vehicle, and based on that information we can calculate the displacement of the static objects in the scene.  
