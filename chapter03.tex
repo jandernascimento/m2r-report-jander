@@ -229,7 +229,7 @@ From the IMU information we calculate two parameters: angular velocity and the l
 
 Angular velocity (Equation~\ref{eq:angular:velocity}) is obtained by finding the angle variation between two frames at time $t$ and $t_{t-1}$, $dt$ represents the difference between two time steps.
 
-The angular velocity is given in degrees, but the IMU gives us a quaternion for the angle of the vehicle. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it solves the gym ball lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward by see Equation~\ref{eq:quaternion:yaw}.
+The angular velocity is given in degrees, but the IMU gives us a quaternion for the angle of the vehicle. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
 
 The angular velocity $\omega_t$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
 
