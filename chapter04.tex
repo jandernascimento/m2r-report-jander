@@ -256,6 +256,76 @@ Data sets for this work have been captured for some urban and highway driving sc
 
 \subsection{Results}
 
+Our algorithm was tested in the XP platform. Different scenarios were collected to assess our method.
+
+In this section, we are going to present the results in a same fasion for different scenarios. In the Figure~\ref{fig:result:framework} we can see three regions in the image, individually each region will be dedicated to display the data in a specific format. We are going to nominated those regions as North, East and West part. 
+
+The \textbf{North} is located in the upper part of the image and will display a snapshot of the footage during a run in the XP platform, this image is the a non processed image, obtained directly from the vehicle's camera. \textbf{West} contains the occupancy grid image generated from the North image, and it is located on the left part of the image.
+
+On the \textbf{East} region, we present the resulting image from the \textit{Motion detection module}, which uses West part as input.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.60]{img/fig:result:framework}
+     \end{tabular}
+   \caption{Presentation of the tests in XP Platform}
+   \label{fig:result:framework}
+\end{figure}
+
+\subsubsection{Two vehicles at low speed}
+
+In this scenario, the XP platform is performing a soft curve to the right, while two other vehicles are approaching in the opposite direction. The distinction between those vehicles and the enviroment can easily be done on the East part, where the two vehicles are depicted more distinctively.
+
+One vehicle cannot be seen clearly on the North image due to the reflection on the windshield and the trees behind the vehicle which reduces the contrast between the car and the landscape background. Although it can be easily tracked from the East part.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.60]{img/fig:result:scenetwocars}
+     \end{tabular}
+   \caption{Opposite direction vehicles}
+   \label{fig:result:scenetwocars}
+\end{figure}
+
+\subsubsection{Vehicle in a roundabout}
+
+This scenario is shown in the Figure~\ref{fig:result:scenetwocarrondepoint}. A second vehicle is performing the roundabout, in the East image this vehicle. It can be detected by finding the most significant amount of agglomerated black dots. As we can see from the East part, at short distance we have some noisy, few black dots. But even with those noises we can distinguish a large object moving and a noise.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.60]{img/fig:result:scenetwocarrondepoint}
+     \end{tabular}
+   \caption{Car detected in the roundabout}
+   \label{fig:result:scenetwocarrondepoint}
+\end{figure}
+
+\subsubsection{Two vehicles at high speed}
+
+This footage was made on a motorway at a high speed. On motorways the movement followed by the car is very close to a beeline, due to this characteristic there is no much rotation in this scenario. This produces a better resulting images from our method, as we can see on the Figure~\ref{fig:result:scenetwocarshighway}.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.60]{img/fig:result:scenetwocarshighway}
+     \end{tabular}
+   \caption{Driving in a motorway}
+   \label{fig:result:scenetwocarshighway}
+\end{figure}
+
+\subsubsection{Completely static scene}
+
+This is the perfect scenario to verify how good our method can be in removing the static environment. In this scenario there is no other moving vehicle on the street, and the vehicle is performing a soft curve to the left Figure~\ref{fig:result:scenestatic}. We can see from the East part, some non dense black dots in the image, but nothing significant, which lead us to assume that there is no moving objects in the scene.
+
+\begin{figure}[H]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.60]{img/fig:result:scenestatic}
+     \end{tabular}
+   \caption{Driving in an empty road}
+   \label{fig:result:scenestatic}
+\end{figure}
 
 \section{Conclusion}
 
