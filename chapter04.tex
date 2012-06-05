@@ -168,28 +168,28 @@ CalculateMotionGrid()
 
 Listing \ref{al:motiongrid} implements a simple decision function based on current vale of the cell and the two counter values to decide if it belongs to a moving object or not.
 
-\section{Experiment}
+\section{Experiments And Results}
 
-In the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
+%In the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
 
-From mechanical physics we obtain the angular velocity and from the vehicle \emph{CAN bus} we obtain the data time stamp, and along with it the time variation, $\Delta t$.
+%From mechanical physics we obtain the angular velocity and from the vehicle \emph{CAN bus} we obtain the data time stamp, and along with it the time variation, $\Delta t$.
 
-Using transformational matrices we bring the car perspective \cite{iyengar1991autonomous} and the prediction to the same frame of reference.
+%Using transformational matrices we bring the car perspective \cite{iyengar1991autonomous} and the prediction to the same frame of reference.
 
-\section{Evaluation}
+%\section{Evaluation}
 
 %target: dynamic and static separation, reduce the number of frames required, no classification, no association; no tracking, no 
 
 \subsection{Testbed}
 \label{sec:testbed}
 
-\subsubsection*{Hardware}
+%\subsubsection*{Hardware}
+Experiments for this work have been done on data sets from a Lexus LS600h demonstrator vehicle equipped with a stereo vision camera (TYZX), two IBEO Lux Lidar scanners and a MTi-G XSens IMU+GPS sensor. Onboard processing unit is a 4 core Dell workstation with a NVidia GPU graphic card to do parallel processing. This hardware setup is shown in figures \ref{fig:Lexus} and \ref{fig:Lexus2}. Some details of our main sensors (Lidar and MTi-G) are given in last chapter.
+%For testing purposes, we have a Lexus LS600h equipped with a stereo vision (TYZX camera) positioned in the superior part of the windshield.
 
-For testing purposes, we have a Lexus LS600h equipped with a stereo vision (TYZX camera) positioned in the superior part of the windshield.
+%The vehicle has two IBEO Lux Lidar in the front side of the car, one in each corner of the bumper.
 
-The vehicle has two IBEO Lux Lidar in the front side of the car, one in each corner of the bumper.
-
-As IMU, the car is equipped with a Xsens IMU and a GPS for global positioning.
+%As IMU, the car is equipped with a Xsens IMU and a GPS for global positioning.
 
 \begin{figure}[h]
    \centering
@@ -203,9 +203,9 @@ As IMU, the car is equipped with a Xsens IMU and a GPS for global positioning.
    \label{fig:Lexus}
  \end{figure}
 
-As the test platform requires a powerfull computer to process the stereo images in realtime, the car is equipped with a Dell workstation with an NVidia graphic card.
+%As the test platform requires a powerfull computer to process the stereo images in realtime, the car is equipped with a Dell workstation with an NVidia graphic card.
 
-DeepSea TYZX stereo vision camera has a base line of 22 cm with 512x320 pixels of resolution and focal length of 410 pixels, this camera is provided with a library which can estimate the distance in cm of the objects captured by the camera, but in our tests we used the estimators developed at Inria\cite{PERROLLAZ-2010-493397}.
+%DeepSea TYZX stereo vision camera has a base line of 22 cm with 512x320 pixels of resolution and focal length of 410 pixels, this camera is provided with a library which can estimate the distance in cm of the objects captured by the camera, but in our tests we used the estimators developed at Inria\cite{PERROLLAZ-2010-493397}.
 %better references
 %http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6170895
 %http://hal.inria.fr/index.php?halsid=fa9c2loot97ptftt2n38f6lvr5&view_this_doc=hal-00671208&version=1
@@ -217,30 +217,30 @@ DeepSea TYZX stereo vision camera has a base line of 22 cm with 512x320 pixels o
        & \includegraphics[width=0.45\columnwidth]{img/testbed:trunc}
      \end{tabular}
    \caption{MTi-G XSens IMU unit \& Intel Xeon 3.4GHz linux box}
-   \label{fig:Lexus}
+   \label{fig:Lexus2}
  \end{figure}
 
-Each IBEO Lux Lidar is composed of four layers, each of them providing about 200 beams. The angular range of 100 degrees with angular resolution of 0.5 degrees. Each beam can reach until 200 m of distance measurement, with width of 40 m and maximum height of 2 m.
+%Each IBEO Lux Lidar is composed of four layers, each of them providing about 200 beams. The angular range of 100 degrees with angular resolution of 0.5 degrees. Each beam can reach until 200 m of distance measurement, with width of 40 m and maximum height of 2 m.
 
-MTi-G XSens minimum of 120Hz and maximum of 512Hz for data logging and angular resolution of 0.05 degrees, all specifications are valid when considering an homogenous eletromagnetic environment. Maximum altitude operation is 18 Km and maximum speed is 515 m/s.
+%MTi-G XSens minimum of 120Hz and maximum of 512Hz for data logging and angular resolution of 0.05 degrees, all specifications are valid when considering an homogenous eletromagnetic environment. Maximum altitude operation is 18 Km and maximum speed is 515 m/s.
 
 
 
-\subsubsection*{Software}
+\subsection{Middleware Software}
 
-The high end cars are composed of several internal networks, each of them responsible to handle the transmission of the informations that are captured in that network to other one which need to process that information. This type of network is known as Controller Area Network (CAN) and provides a cheap and reliable way to communicate with devices, so CAN bus have been replacing the regular point-to-point wiring interconnection among the components\cite{bosch91can}.
+The robotic cars are equipped with different types of communication layers which are responsible for information sharing between different components. A commonly used communication technique is known as Controller Area Network (CAN) that provides a cheap and reliable way to communicate with devices.%, so CAN bus have been replacing the regular point-to-point wiring interconnection among the components\cite{bosch91can}.
 
-Car manufacturers use platforms like YARP (Yet Another Robot Platform) URBI or ROS to publish the information gathered by those networks, frameworks like ROS, allow the car to push information collected by the CAN bus into a shared memory array which can be access by other applications, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
+Since data sharing is a critical part of a robotic system some standards have started to appear in this field. Like Data Distribution Service\cite{dds} is a set of specifications for data distribution in real-time systems, this specification is maintained by OMG Data Distribution SIG (DDSIG).
+
+DDS works in a publish-subscriber manner, where the subscriber acquire the data by subscribing to one or several  "topics", which is the name assigned for a data provider (the publisher itself). The goal is to promote the lose coupling and real-time data sharing between applications.
+
+Car manufacturers use platforms like YARP (Yet Another Robot Platform) URBI(?link) or ROS(?) to publish the information gathered from the sensors and processing modules, frameworks like ROS, allow the car to publish information  which can be accessed by other applications.%, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
+Our demonstrator vehicle uses HugrStore(link?) software middleware to share data between different hardware and software components.
 
 %For this project Robot Operating System(ROS) was adopted, ROS gives us the hability to save all information obtained during a run (driving the test platform) from all sensors, and replay it later in the laboratory, this by far allow to have a consistent test samples and a historical evolution of all scenarios gathered during the algorithm evolution, alowing the retro-performance benchmarking with other versions of the algorithm.
 
 \subsubsection*{HugrStore}
-
-Data Distribution Service\cite{dds} is a set of specifications for data distribution in real-time systems, this specification is maintained by OMG Data Distribution SIG (DDSIG).
-
-DDS works in a publish-subscriber manner, where the subscriber acquire the data by subscribing to one or several  "topics", which is the name assigned for a data provider (the publisher itself). The goal is to promote the lose coupling and real-time data sharing between applications.
-
-Now that we are aware of DDS specification, we can talk about HugrStore, which is the implementation chosed. Thus, hugr is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}.
+HugrStore is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}. So publisher wirtes a data about a topic in the shared memory that can be read by any subscriber to that topic.
 
 \begin{figure}[H]
    \centering
@@ -251,27 +251,12 @@ Now that we are aware of DDS specification, we can talk about HugrStore, which i
    \label{fig:dds:hugr}
 \end{figure}
 
-
-\subsubsection*{Assumptions}
-
-\textit{Goal: What we assume to make our algorithm work}
-
-\subsubsection*{Notation}
-
-\paragraph{Occupancy Grid visual representation}
-
-Representating the occupancy grid, implies in taking some precautions in the pattern used to represent each state, in this work the value $1$ represents occupied spaces and $0$ free spaces, although in the visual representation of the occupancy grid the $black$ dots represent occupied spaces and $white$ ones represent free spaces. In certain occasions, where the grid depicted is not binary, spaces where framework has absolutely no information about certain spaces (\textit{e.g.} due unreachability of the perception sensors in that sector), the color used is $gray$.
-
-\paragraph{Uncertain spatial relationship notation} In this document we are using the same notation as applied in the work \cite{Wang04a}. With:
-
-$\oplus$ compounding operation.
-
-$\ominus$ inverse operation.
+\subsubsection*{Data Sets}
+Data sets for this work have been captured for some urban and highway driving scenarios.
 
 \subsection{Results}
 
-\textit{Goal: What are our current results}
 
-\subsection{Conclusion}
+\section{Conclusion}
 
 \textit{Goal: Express what we can conclude from this work, talk about future work, may be}
