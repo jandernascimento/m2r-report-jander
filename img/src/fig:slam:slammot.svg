@@ -336,6 +336,27 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5495"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5520"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5545"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -345,15 +366,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2635923"
-     inkscape:cx="263.86107"
+     inkscape:cx="390.48419"
      inkscape:cy="602.81283"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="997"
-     inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-height="949"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -631,53 +652,6 @@
          id="tspan2857-7-4-4-9"
          x="383.36954"
          y="387.17352">x</tspan></text>
-    <rect
-       style="fill:#ffffff;fill-opacity:0.9848485;stroke:#000000;stroke-width:0.85544389;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3596-6-5-1"
-       width="115.63174"
-       height="26.956612"
-       x="208.88406"
-       y="461.95724" />
-    <text
-       xml:space="preserve"
-       style="font-size:14.75830173px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="249.26816"
-       y="480.80777"
-       id="text2984-0-6-8"><tspan
-         sodipodi:role="line"
-         id="tspan2986-5-7-7"
-         x="249.26816"
-         y="480.80777">SLAM</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:17.70787621px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="153.79622"
-       y="482.68152"
-       id="text2855-6-8"><tspan
-         sodipodi:role="line"
-         id="tspan2857-1-8"
-         x="153.79622"
-         y="482.68152">Z</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:17.70787621px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="368.94336"
-       y="460.51385"
-       id="text2855-2-0-8-4"><tspan
-         sodipodi:role="line"
-         id="tspan2857-7-4-3-2"
-         x="368.94336"
-         y="460.51385">O</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:17.70787621px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="366.24448"
-       y="511.95447"
-       id="text2855-2-0-2-0-7"><tspan
-         sodipodi:role="line"
-         id="tspan2857-7-4-4-4-6"
-         x="366.24448"
-         y="511.95447">S</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10.27280426px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"

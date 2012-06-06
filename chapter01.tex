@@ -115,9 +115,9 @@ Light Detection and Ranging (LIDAR) can be a good example of sensor with impreci
 
 Before talking about perception, it is necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization} and \textit{mapping}.
 
-Localization provides the coordinate of a point with respect to a static reference, this gives to this point a spatial positioning where an system actor (ego-robot) is using some reference which belongs statically to the environment.  
+Localization provides the coordinates of a point with respect to a static reference, this gives to this point a spatial positioning where a system actor (ego-robot) is using some reference which belongs statically to the environment.  
 
-Mapping, as general knowledge, gives us information about a place, this representation gives as nothing but the static objects position. This might be confusion at some point, but this static objects positioning is provided using as reference other statics objects, and this is the key for this understanding.
+Mapping, as general knowledge, gives us information about a place, this representation gives us nothing but the static objects position. This might be confusion at some point, but this static objects positioning is provided using as reference other statics objects, and this is the key for this understanding.
 
 By putting these two concepts together, we can go even further. Imagine the following situation: we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
 
@@ -178,6 +178,15 @@ Detection and Tracking of Moving Objects (DATMO) was initially studied by radar 
 Those objects in scene they must solve the data association problem. The former assumption is unrealistic in the vision of a robot, the perception sensor senses all objects, independently on their motion, so static and dynamic objects are included in the representation.
 
 As DATMO is a large process, some researchers chose to pick just a part of this process, which is "Moving Object Tracking" and solve it, without worry about the detection phase.
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=1.0]{img/fig:datmo:process}
+     \end{tabular}
+   \caption{DATMO process (adapted from \cite{Wang04a})}
+   \label{fig:datmo:process}
+ \end{figure}
 
 DATMO responsibility is to:
 
