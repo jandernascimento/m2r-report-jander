@@ -9,7 +9,7 @@ One important step in the scene understanding is the environment map building an
 
 SLAM is composed of several steps to reach its goal: landmark extraction, data association, state estimation, etc. Each of them can be solved using different techniques.
 
-SLAM tackles one specific scenario. SLAM assumes static environment constraint, in another words, any moving object in the same environment as the robot will interfere in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
+SLAM assumes static environment constraint, in another words, moving objects sharing the same environment with the robot will interfere negatively in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
 
 DATMO stands for Detection and Tracking of Moving Objects. When dealing with mobile robots in a dynamic environment we apply the DATMO process to obtain the moving objects from the environment.
 
@@ -21,11 +21,11 @@ In the Henning Lategahn and Bernd Kitt work \cite{DBLP:conf/ivs/LategahnGHKE11},
 
 One of the test cases had shown the capability of classification between the static and dynamic environment. In some situations the observation time had to be longer in order to perform correctly the classification. One of the reasons for that is the Sequential Probability Ratio Test (SPRT) performed in the samples.
 
-Although the goal is the same in their and our work - classification - our method uses only LIDAR and IMU information to perform such classification.
+Although the goal is the same in their and our work - classification - our method uses only LIDAR and IMU information to perform such classification instead of stereo-vision.
 
 \subsection{Single mono-vision camera}
 
-In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM.. 
+In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM process (SLAM applied with no IMU data, and a mono-vision camera), this method uses feature detector algorithms, named Shadow Filter, to provided those anchors and use them to perform the SLAM.
 
 \subsection{LIDAR aproaches}
 
