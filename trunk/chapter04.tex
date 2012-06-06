@@ -256,11 +256,11 @@ Data sets for this work have been captured for some urban and highway driving sc
 
 \subsection{Results}
 
-Our algorithm was tested in the XP platform. Different scenarios were collected to assess our method.
+Our algorithm was tested in the experimental platform. Different scenarios were collected to assess our method.
 
 In this section, we are going to present the results in a same fasion for different scenarios. In the Figure~\ref{fig:result:framework} we can see three regions in the image, individually each region will be dedicated to display the data in a specific format. We are going to nominate those regions as North, East and West part. 
 
-The \textbf{North} is located in the upper part of the image and will display a snapshot of the footage during a run in the XP platform, this image is a non processed image, obtained directly from the vehicle's camera. \textbf{West} contains the occupancy grid image generated from the North image, and it is located on the left part of the image.
+The \textbf{North} is located in the upper part of the image and will display a snapshot of the footage during a run in the experimental platform, this image is a non processed image, obtained directly from the vehicle's camera. \textbf{West} contains the occupancy grid image generated from the North image, and it is located on the left part of the image.
 
 On the \textbf{East} region, we present the resulting image from the \textit{Motion detection module}, which uses West part as input.
 
@@ -269,13 +269,13 @@ On the \textbf{East} region, we present the resulting image from the \textit{Mot
      \begin{tabular}{lr}
        \includegraphics[scale=0.60]{img/fig:result:framework}
      \end{tabular}
-   \caption{Presentation of the tests in XP Platform}
+   \caption{Presentation of the tests in experimental platform}
    \label{fig:result:framework}
 \end{figure}
 
 \subsubsection{Two vehicles at low speed}
 
-In this scenario, the XP platform is performing a soft curve to the right, while two other vehicles are approaching in the opposite direction. The distinction between those vehicles and the enviroment can easily be done on the East part, where the two vehicles are depicted more distinctively.
+In this scenario, the experimental platform is performing a soft curve to the right, while two other vehicles are approaching in the opposite direction. The distinction between those vehicles and the enviroment can easily be done on the East part, where the two vehicles are depicted more distinctively.
 
 One vehicle cannot be seen clearly on the North image due to the reflection on the windshield and the trees behind the vehicle which reduces the contrast between the car and the landscape background. Although it can be easily tracked from the East part. We see that these moving vehicles have been detected successfully, the rectangle segmenting the cars have been drawn manually.
 
