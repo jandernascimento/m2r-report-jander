@@ -12,7 +12,7 @@ Driving support system may also provide support in a less passive manner as well
 
 \begin{itemize}
 \item change how the car respond to the drivers commands for assisting a manoeuver
-\item change how the car behaves
+\item change how the car behaves, with partial or fully automatic command
 \end{itemize}
 
 This field has gained several adepts. Automotive industry and researchers have studied it throughout the years.
@@ -21,13 +21,13 @@ Thus, driving support systems and its applications are becoming a popular tool. 
 
 One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems is coping with task of making the car a safer transportation system, among others tasks (Figure~\ref{fig:sensor:target}).
 
-Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects which the human is capable of track simultaneously. 
+Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects which the human is capable of track simultaneously. In this study this limite was associated with information channel capacity theorem (Shannon's theorem). 
 
-Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrouding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk. Besides, several factors can affect this behaviour, like fatigue, cognitive capacity or simply bad decisions.
+Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrouding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk. Besides, several factors can affect its behaviour like fatigue, cognitive capacity or simply bad decisions.
 
 %Although, cognition is not an absolute number it varies according to several parameters, like mental health, type of sensing mechanism (visual, auditory, tactile), amount of information transmitted, etc. 
 
-The action of driving did not change since its creation but several mechanisms to support the driver have been included in the vehicle. All to provide a better and safer experience for the driver\cite{riener2010sensor}.
+The action of driving did not change since its creation but several mechanisms to support the driver have been included in the vehicle. All to provide a comfortable and safer experience for the driver\cite{riener2010sensor}.
 
 A more modern approach of driving support system has appeared: Advanced Driver Assistance Systems (ADAS). 
 
@@ -37,7 +37,7 @@ ADAS relies in computerized systems to process informations provided by the car 
 
 The goal of this work is to tackle a very common issue in safety application (object classification) and \textbf{not} develop an application.
 
-This will be done by providing a theorerical framework to classify the environment in a high level manner, separating static and dynamic objects \textit{a priori}.
+This will be done by providing a theorerical framework to classify the environment in a high level manner, separating static and dynamic objects with the information acquired from the sensors.
 
 \begin{figure}[h]
 \centering
@@ -50,9 +50,9 @@ This will be done by providing a theorerical framework to classify the environme
 
 Advanced Driver Assistance Systems rely on the perception. An ADAS works somehow similar to the human cognition, it requires a mean to perceive the environment before dispatch any action. 
 
-There are different ways of perceiving the environment, usually we observe specific features, like: lighting, appearance, etc. Those features are observed through a sensor.
+There are different ways of perceiving the environment, usually we observe specific features, like: lighting, appearance, shapes, etc. Those features are observed through a sensor.
 
-Every feature requires a mechanism to convert physical characteristics into electronic signal that can be read by other equipments. The peripherals responsible for that is called \textbf{sensors}, which will be discussed in more details in the Section \ref{sec:sensors}.
+Every feature requires a mechanism to process the information and convert the physical characteristics into electronic signal. The peripherals responsible for this process are called \textbf{sensors}, which will be discussed in more details in the Section \ref{sec:sensors}.
 
 %% reviewed until here
 
@@ -82,11 +82,11 @@ Thus, a sensor is responsible for the data acquisition (electric interpretation 
 
 \subsubsection{Classification}
 
-There are virtually sensors for all kinds of properties (Figure~\ref{fig:sensors}) that we want to observe. In sometimes literatures those properties can be called \textbf{measurands}\cite{riener2010sensor}. 
+There are virtually sensors for all kinds of properties (Figure~\ref{fig:sensors}) that we want to observe. In some literatures those properties can be called \textbf{measurands}\cite{riener2010sensor}. 
 
 There exists two sets of classifications for sensors, they can be Proprioceptive/Exteroceptive with respect to the type of measurands and \cite{iyengar1991autonomous} they are classified in the manner how the measurands are obtained, which can be in a passive or active manner. Active sensors emit energy to the environment so the measurand can be collected, a passive sensor is capable of observing the measurand without emit any type of energy in the environment.
 
-\textit{Proprioceptive} evaluate the ego-robot properties, giving informations about some \textbf{measurand} of the robot. Motor speed, payload, robot joint angles, battery voltage are some examples.  Inertial Measurement Unit (IMU) is a \textit{proprioceptive} sensor that observes the orientation, velocity and gravitational forces of the robot, it is a very common type of sensor and largely applied in robotics and in aviation.
+\textit{Proprioceptive} evaluate the ego-robot properties, giving informations about some \textbf{measurand} of the robot itself. Motor speed, payload, robot joint angles, battery voltage are some examples.  Inertial Measurement Unit (IMU) is a \textit{proprioceptive} sensor that observes the orientation, velocity and gravitational forces of the robot, it is a very common type of sensor and largely applied in robotics and in aviation.
 
 \textit{Exteroceptive} gives information about the environment in which the robot is located. Thus, they extract useful environmental features. Light intensity, sound amplitude are some examples of \textit{exteroceptive} sensor.
 
@@ -113,13 +113,15 @@ Light Detection and Ranging (LIDAR) can be a good example of sensor with impreci
 
 \section{Perception}
 
-Before talking about perception, it is necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization} and \textit{mapping}.
+Before talking about perception, it is necessary to comprehend few concepts. Those concepts will frequently appear during this work: \textit{localization}, \textit{mapping} and \textit{tracking}.
 
-Localization provides the coordinates of a point with respect to a static reference, this gives to this point a spatial positioning where a system actor (ego-robot) is using some reference which belongs statically to the environment.  
+Localization provides the coordinates of a point with respect to a another point, known as frame reference. If this frame of reference is the earth, for instance, we call it global frame of reference. In robotics, depending on the application of the robot we can have different frames of reference. We can use a building as frame of reference, by indicating the position of the robot inside a specific building. The robot's position may be given in a global reference of frame, meaning that wherever the robot is located in the earth globe, we can provide a coordinate to represent its position. 
 
-Mapping, as general knowledge, gives us information about a place, this representation gives us nothing but the static objects position. This might be confusion at some point, but this static objects positioning is provided using as reference other statics objects, and this is the key for this understanding.
+The result of mapping, as general knowledge, gives us information about a region. It represents the action of recording the disposition of the static objects of a region. This representation can be used later for exploration purpose. In a geological map the static objects are rivers, montains, canyons, etc. 
 
-By putting these two concepts together, we can go even further. Imagine the following situation: we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
+Localization and Mapping are really important tools for a robot, but they insuficient in case of existing moving objects sharing the same environment with the robot. This is due to the risk of collition between the moving objects and the robot, for this reason its necessary to detect (be aware of the existance of such object) and track (know its motion model) the object.
+
+By putting these concepts together, imagine the following situation: we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
 
 For the exact same reason we need constantly to know the location of the moving object in the very same map, this is called \textit{tracking of moving objects} or even just \textit{tracking} \cite{Wang04a}.
 
@@ -164,12 +166,6 @@ Suppose we send a command to the robot to move one centimeter ahead, how do we e
 
 Every time we actuate in the robot without checking/knowing the real position, the uncertainty on localization grows, and the number of possible new positions that can be assumed by the robot increases exponentially.
 
-Formalization of such dependency can be done through \textit{Bayes rule}. Bayes rule defines the \textit{posteriori} probability distribution over a set $X$, normally represented as $p(A | B)$, which can be read as probability of $A$ knowing $B$.
-
-\begin{equation}
-\label{jpd:discrete}
-P(x_t,M | z_{0:t}, u_{1:t})
-\end{equation}
 
 \subsection{DATMO}
 
@@ -256,8 +252,6 @@ This technique is frequently used in RADAR-like sensors, it depicts the point of
 
 This representation uses only range measurements (\textit{e.g.} sonar, laser, etc.), this kind of representation is very convenient due to its simplicity. 
 
-Although, building a spatial coherent map from multiple readings is much more complex. As the robot moves in the space, its location is always subject of uncertainties this brings us one big issue, how assembly all the informations captured by the robot if we do not know exactly what was the robot's pose and position? 
-
 A research conducted by university of North York\cite{Lu:1997:GCR:591441.591464} focused their studies in the this issue. The fundamental problem was to obtain a local map from multiple reading, in such way that the resulting map was accurate. Those readings were done by a ego-vehicle able to move in the scenario. The scenario perceived by the robot can be seen in the Figure \ref{fig:mapping:direct:result}.
 
 Those readings were performed by a single robot and its position was calculated based in informations provided by the IMU.
@@ -295,7 +289,7 @@ This imprecise representation may generate false interpretation of the environme
 \subsubsection{Grid-based}
 \label{ch02:gridbased}
 
-Occupancy Grid is largely used, it is built and based on a multidimensional field that maintains the occupancy state information in a cell \cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
+Occupancy Grid is based on a multidimensional field that maintains the occupancy state information in a cell \cite{Elfes:1989:UOG:68491.68495}. Those cells are built in a regular size, and the number of cells which compose the grid is algorithm dependent.
 
 By changing the size of the cells we can give more or less precision for the representation changing the resolution of the grid, which is reduce or increasing the size of the cell.
 
@@ -359,7 +353,7 @@ The scene understanding usually implicates in distinguish different types of obj
 
 \textbf{Risk Assessment} is a term adopted in several fields, to indicate the mitigation of the risks involved in the target activity. 
 
-Before describe Risk Assessment and its relation with ADAS, we first, must to understand what risk means.
+Before describe Risk Assessment and its relation with ADAS we first must understand what risk means. And above all how we are going to apply this concept in this report. 
 
 \textbf{Risk} is anything that can affect (negatively or positively) a subject \cite{mulcahy2011pmp}. By positive meaning that if such things happen to be true: something good may happen to the subject, or negative meaning if another given thing happens to be true, the subject may suffer negative consequences. It is a common practice to track just the negative risks, that is why positive risk looks so unfamiliar for most of the readers. 
 
