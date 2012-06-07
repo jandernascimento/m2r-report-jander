@@ -5961,7 +5961,7 @@
          sodipodi:role="line"
          id="tspan9441-0"
          x="287.32071"
-         y="-113.75313">t+1</tspan></text>
+         y="-113.75313">t</tspan></text>
     <rect
        style="opacity:0.7400722;fill:#ffffff;fill-opacity:0.98484850000000002;stroke:#ffffff;stroke-width:2.51203609000000005;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.51203605999999979, 7.53610817000000033;stroke-dashoffset:0"
        id="rect11794"
@@ -11358,7 +11358,7 @@
          sodipodi:role="line"
          id="tspan9441"
          x="738.75818"
-         y="200.35115">t</tspan></text>
+         y="200.35115">t-1</tspan></text>
     <path
        style="opacity:0.74007221000000001;fill:url(#Polkadots-large);fill-opacity:1.0;stroke:#ffffff;stroke-width:1.12151766000000008;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.12151759000000006, 3.36455275000000009;stroke-dashoffset:0"
        d="m 260.6371,200.14414 0,455.4375 342.4375,-202.09375 -149.53125,-253.34375 -192.90625,0 z"
@@ -11515,7 +11515,7 @@
          sodipodi:role="line"
          id="tspan9441-8"
          x="1670.4818"
-         y="135.45325">t</tspan></text>
+         y="135.45325">t-1</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:47.35737991px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
@@ -11525,7 +11525,7 @@
          sodipodi:role="line"
          id="tspan9441-0-8"
          x="1373.4733"
-         y="-101.25024">t+1</tspan></text>
+         y="-101.25024">t</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Lend)"
        d="m 1408.2137,335.06983 c -3.2518,99.90787 41.9299,144.46313 137.1294,131.85521 l 0,0"
@@ -11553,7 +11553,7 @@
            y="467.58542"
            x="1099.6208"
            id="tspan9441-0-8-8"
-           sodipodi:role="line">static object L at time t</tspan></text>
+           sodipodi:role="line">static object L at time t-1</tspan></text>
     </g>
     <g
        id="g8616"
@@ -11577,7 +11577,7 @@
            y="1029.2886"
            x="1318.5005"
            id="tspan9441-0-8-8-4"
-           sodipodi:role="line">static object L at time t+1</tspan></text>
+           sodipodi:role="line">static object L at time t</tspan></text>
     </g>
   </g>
 </svg>
