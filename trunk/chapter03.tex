@@ -2,22 +2,25 @@
 
 \section{Introduction}
 
-The main goal of this research is to distinguish all dynamic objects present in the scene. The scene is observed from a camera installed in a vehicle, so called testbed.
+The main goal of this research is to distinguish dynamic parts of the scene from the static parts. The scene is observed from two laser scanners installed in the front bumper of a demonstrator vehicle, so called testbed. This distinction between static and dynamic parts is to be made both when vehicle is static and when it is moving.
 
 This setup brings one big issue: non-static sensor. Thus, \textit{apriori} all the objects are moving from the sensors perspective, even the static objects, due to the motion performed by the vehicle.
 
-The distinction between static and dynamic are considering the subjects in a global reference frame, so the goal is to be able to classify the dynamic parts in the scene using the world as reference frame. By finding the dynamic parts $O_{dynamic}$ we can perfectly obtain the static $O_{static}$ ones as well, by subtracting the dynamic one from the scene $S$.
+This distinction between static and dynamic is to be made by considering the subjects in a global reference frame, so the goal is to be able to classify the dynamic parts in the scene using the world as reference frame. By finding the dynamic parts $O_{dynamic}$ we can easily obtain the static $O_{static}$ ones as well, by subtracting the dynamic one from the scene $S$.
 
 \begin{equation}
 S=O_{static}+O_{dynamic}
 \end{equation}
 
+So in this chapter we will explain the technique that we have developed to find moving parts of the environment only, but first some words on experimental platform used for this work.
+
 \section{Experimental Platform configuration} %configuration of the lasers, diagram
 \label{sec:demonstrator}
-
+In this section we give details of the configurations and specifications of our main sensors (laser scanners and motion sensor) used for this work. Some pictures of the demonstrator vehicle and the hardware installed on it are given in next chapter.
+ 
 \subsection{LIDAR laser scanners}
 
-Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for the specification) installed on the front bumper (Figure~\ref{fig:demonstrator:birdeye}).
+Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for images) installed on the front bumper (Figure~\ref{fig:demonstrator:birdeye}).
 
 \begin{figure}[h]
    \centering
@@ -54,7 +57,7 @@ The first layer (layer 1) has a horizontal FoV that varies from $+35^\circ$ to $
 beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
 \end{equation}
 
-From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $200m$ maximum (More details about the specification in Section~\ref{sec:testbed}).
+From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $150m$ maximum, however in this work we take the effective range as 60 meters only because after this distance the points are too sparse. The scan frequency of these lidars in the installed configuration is $25Hz$.
 
 \begin{figure}[h]
    \centering
@@ -82,7 +85,7 @@ From every individual beam is possible to obtain the \textit{impact point}, mean
 \label{tab:beam:interception}
 \end{table}
 
-The multiple sensors usage in the demonstrator car makes of it a complex system, due to the number of data gathered, overlapped information and possible conflicted data (Figure~\ref{fig:demonstrator:superior:overlap}). Thus, all sensor information must be carried in a consistent manner and this is accomplished by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
+The multiple sensors usage in the demonstrator car makes it a complex system, due to the number of data gathered, overlapped information and possible conflicted data (Figure~\ref{fig:demonstrator:superior:overlap}). Thus, all sensor information must be carried in a consistent manner and this is accomplished by fusing the sensor information, more details about how this is done in the Section~\ref{sec:sensor:fusion}.
 
 \begin{figure}[h]
    \centering
@@ -97,7 +100,7 @@ In the Figure~\ref{fig:demonstrator:superior:overlap} we depict the overlapping 
 
 \subsection{MTi-G XSens}
 
-As we are about to see in the next Sections, the algorithm developed in this document uses two main data as input: the LIDAR data (explained previously) and MTi-G sensor data.
+As we are about to see in the next Sections, the algorithm developed in this document uses data from two main sensorst: the LIDARs (explained previously) and MTi-G sensor (motion sensor).
 
 \begin{figure}[H]
    \centering
@@ -112,7 +115,7 @@ MTi-G unit (Figure~\ref{fig:xsens:mtig}) is a combination of an Inertial Measure
 
 One example is that the GPS can use the other sensor to estimate the position, this is useful in case of a short-period communication outages, giving the global position estimation even without GPS signal. 
 
-From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizontal $v_x$ velocity and the $Yaw$ angle of the car \cite{etkin2005dynamics}. 
+From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizontal $v_x$ velocity and the direction information given by this sensor in the form of quaternions, we can calculate yaw rate from these information.% angle of the car \cite{etkin2005dynamics}. 
 
 \section{Sensor pre-processing} %fusion module
 \label{sec:sensor:fusion}
@@ -121,9 +124,9 @@ From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizo
 
 \subsection{Purpose}
 
-The demonstrator car is composed with two LIDAR laser scanner sensors, as we saw in the Section~\ref{sec:sensor:fusion}. Each of the LIDAR laser scanner is composed of few layers and each layer contains several beams. Those beams are spread in a given horizontal FoV. The horizontal FoV is layer dependent, varying according to the layer.
+As mentioned in previous section the demonstrator car is equipped with two laser scanners and each laser scanner has four scanning layers where each layer contains several beams. Those beams are spread in a given horizontal FoV. The horizontal FoV is layer dependent, varying according to the layer.
 
-In the Figure~\ref{fig:motion:framework}, we have represented the general framework modules for detecting the moving parts. Our algorithm core is contained in the motion detection module, which will be explored later. The LIDARs provide several information with different specifications (different ranges and FoV), thus we use a fusion module to gather the information provided by all of the LIDAR in a single consistent manner.
+In the Figure~\ref{fig:motion:framework}, we have presented the general framework for sensor data processing and detecting the moving parts. Our algorithm is contained in the motion detection module, which will be explored later. The LIDARs provide several information with different specifications (different ranges and FoV), thus we use a fusion module to gather the information provided by all of the LIDAR in a single consistent manner.
 
 \begin{figure}[H]
    \centering
@@ -134,9 +137,9 @@ In the Figure~\ref{fig:motion:framework}, we have represented the general framew
    \label{fig:motion:framework}
 \end{figure}
 
-This data must be gathered together, but how give a unique representation for all information provided by the sensors in one single visualization? Recall that there are overlapping scanner reading, which means that there may exist conflicting readings due to the sensor failure, or a bad environment condition.
+Data from eight layers of two laser scanners must be combined together to give a unique representation for all information provided by the sensors in one single visualization. However, due to  overlapping scanner reading, meaning that there may exist conflicting readings, or a bad environment condition, makes this data fusion difficult.
 
-Solving that issue implies in data fusion. \textit{Linear Opinion Pools} was used successfully by an INRIA team member to make data fusion, detailed information about this technique is explained in the document \cite{ADARVE-2012-671211}. The output of such fusing technique is an Occupancy Grid, which is used by our algorithm.
+This data combining has been solved by using \textit{Linear Opinion Pools} technique  by one of our team member to make data fusion. We summarize this fusion process in next section however detailed information about this technique can be found in the paper \cite{ADARVE-2012-671211}. The output of this fusion technique is an Occupancy Grid, which is used by our algorithm as input.
 
 \subsection{LIDARs layers fusion}
 
@@ -155,37 +158,37 @@ The idea is to shut-down those sensors that do not give relevant information to 
 Where $\alpha = \left[ \sum \limits^m_{i=1} w_i(C) \right]^{-1}$ is a normalization factor for the weights.  Equation \eqref{linealOpinionPoolEQ} is used to generate
 2D-occupancy grids. For each sensor $Y_i$ we must define $P(C | Y_i)$, the probability of a cell being occupied given the sensor information. Complete derivations for these quantities are provided in \cite{ADARVE-2012-671211}. The output of this fusion module is an occupancy grid. %write about occupancy grid
 
-Note that the method assumes independence among cells. This assumption is very strong, although it is necessary so the computation of the Equation~\eqref{linealOpinionPoolEQ} be efficient, by computing each cell value in parallel. %add section about performance
+Note that the method assumes independence among cells. This assumption is very strong, although it is necessary so the computation of the Equation~\eqref{linealOpinionPoolEQ} be efficient, by computing each cell value in parallel using GPU computing provided by the graphics card.
 
-\subsubsection{Justifying the performance}
-
-The independence among the cells is the main responsible for the high level of parallelism in the algorithm. The performance can be assured by \textit{Amidahls law}.
-
-\textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm \cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really accomplished in parallel, of course this is an simplistic view, but gives an idea.
-
-In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequential part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multi-core processor).
-
-\begin{equation}
-\label{eq:amidahls}
-T_p=T_{seq}+{T_{par} \over p}
-\end{equation}
-
-As in our case the cells are completely independent, the gaining in parallelization is maximum since the term $T_{seq}$ is zero (the sequential code is inexistent), and the processing time is divided among the workers.
-
-\section{The algorithm}
+%\subsubsection{Justifying the performance}
+%
+%The independence among the cells is the main responsible for the high level of parallelism in the algorithm. The performance can be assured by \textit{Amidahls law}.
+%
+%\textit{Amidahls law} is a diminishing return law. It states that the gaining in performance (speedup) is not necessarily in the same magnitude as the number of new workers added for the execution of the algorithm \cite{Amdahl:1967:VSP:1465482.1465560}. This is pretty much saying that one adult female can have one children in 9 months but two adult female cannot have one children in 4.5 months, it always depends if the task can be really accomplished in parallel, of course this is an simplistic view, but gives an idea.
+%
+%In the Equation~\ref{eq:amidahls}, Amidahls describes the time to execute an algorithm in parallel ($T_p$). Its execution time depends on the time required by sequential part of the algorithm ($T_{seq}$, part which can not be parallel) along with the time for part of the algorithm that can be parallel($T_{par}$) divided by the number of workers ($p$, \textit{e.g.} number of cores in a multi-core processor).
+%
+%\begin{equation}
+%\label{eq:amidahls}
+%T_p=T_{seq}+{T_{par} \over p}
+%\end{equation}
+%
+%As in our case the cells are completely independent, the gaining in parallelization is maximum since the term $T_{seq}$ is zero (the sequential code is inexistent), and the processing time is divided among the workers.
+%
+\section{Motion Detection Algorithm}
 %motion detection
 
 \subsection{Principle} 
 
-\textit{Frame} is a snapshot of the current environment representation, it is used as one of the inputs for the algorithm developed in this work.
+Let us call the current raw input data from laser scanners as \textit{Frame}, it is used as one of the inputs for the algorithm developed in this work.
 
-But before jump on explanations on how the frames are going to be used, we need to describe how those frames are obtained and how do they mimic the environment.
+Before jumping to the  details of how the frames are going to be used, we need to describe how those frames are obtained and how do they mimic the environment.
 
-In the Section~\ref{sec:demonstrator}, we saw that our testbed is composed by two scanners, each of them containing several layers. Every layer has a certain number of beams, which are distributed in the horizontal FoV within a regular angle interval. 
+In the Section~\ref{sec:demonstrator}, we saw that our testbed is equipped with two laser scanners, each of them containing multiple layers. Each layer has a certain number of beams, which are distributed in the horizontal FoV with fixed resolution. 
 
-So, before having a frame that can be used by our algorithm, it is required to perform the fusion of the layers from the LIDAR, which is done by the \textbf{fusion module}. 
+So, before having a frame that can be used by our algorithm, it is required to perform the fusion of the layers from the LIDARs, which is done by the \textbf{fusion module}. 
 
-The details about the techniques adopted and the data processing were explained in the Section~\ref{sec:sensor:fusion}. From here on, we are going to proceed with explanation of our methods, which is identified as \textbf{motion detection module}. This module is located at the end of the processing chain, as exhibit in the Figure~\ref{fig:motion:framework}. 
+The details about the techniques used for data processing were explained in the Section~\ref{sec:sensor:fusion}. From here on, we are going to proceed with explanation of our method, which is identified as \textbf{motion detection module}. This module is located at the end of the processing chain, as shown in the Figure~\ref{fig:motion:framework}. 
 
 \begin{figure}[h]
    \centering
@@ -200,13 +203,15 @@ The details about the techniques adopted and the data processing were explained 
 
 \subsection{Non-static sensor issue}
 
-The LIDAR is installed on a vehicle, the goal is to acquire measures while vehicle is moving. So it captures the surrounding and the data is processed by the \textbf{fusion module} resulting in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input for \textbf{motion detection module}.
+Since the LIDARs are installed on a vehicle, the goal is to acquire measurements while vehicle is moving. So it captures data frames that are processed by the \textbf{fusion module} and producing in Occupancy Grid $OG_t$. This process is repeated for each frame obtained. This is required to transform the data into the proper input for \textbf{motion detection module}.
 
-The position of the LIDAR gives us the fully dynamic scenario impression. Meaning that, from the LIDAR sensor perspective the entire scenario is moving and all objects are changing their position, except for those who are following the same trajectory as the vehicle and at the same speed. 
+The position of the LIDARs on the demonstrator gives us the fully dynamic scenario impression. Meaning that, from the LIDAR sensor perspective the entire scenario is moving and all objects are changing their position, except for those who are following the same trajectory as the vehicle and at the same speed. 
 
-The LIDAR can read informations from the environment with $25fps$. Although, we are able to achieve good qualitative results using a short amount of frames. 
+We will consider two frames, a frame at time $t-1$ containing processed and updated information until time $t-1$ and current frame at time $t$ containing new data from the fusion module.
 
-Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in exploratory examples.
+%The LIDARs can read data from the environment with $25fps$. Although, we are able to achieve good qualitative results using a short amount of frames. 
+
+%Due to the good qualitative results obtained by using the two frames approach, we will demonstrate all formulas by considering such configuration - only two frames for the calculation. But we may reference other frames in exploratory examples.
 
 % & \includegraphics[width=0.3\columnwidth]{img/fig:motion:algorithm:nonstatic:02}
 
@@ -215,28 +220,32 @@ Due to the good qualitative results obtained by using the two frames approach, w
      \begin{tabular}{lr}
        \includegraphics[width=0.35\columnwidth]{img/fig:motion:algorithm:nonstatic:01}
      \end{tabular}
-   \caption{frames $f_t$ and $f_{t+1}$ with the intersection area}
+   \caption{frames $f_{t-1}$ and $f_{t}$ with the intersection area}
    \label{fig:motion:algorithm:nonstatic:01}
  \end{figure}
 
 The method developed in this document initially requires a static sensor, this constraint assumes that there is an exact correspondence between the cells among frames. Such constraint is not true in our application since the goal is to have it running in a moving vehicle, as an ADAS application. 
 
-To better understand this issue take a look at the example: assume our vehicle is driving along a street and makes a left turn, we capture two frames, one while the car was driving straight $f_t$, and the second frame  after the car initiate the left turn $f_{t+1}$. We observe an a static object in the frame $f_t$ (\textit{e.g.} telephone pole in the sidewalk) that was located at $d_t$ meters from the car, and in the frame $f_{t+1}$ this very same object will be at $d_t-\Delta d(f_t,f_{t+1})$ and will be slightly moved to the right side (due to the left turn). The function $\Delta d$ returns the distance traveled by the car between the two frames. This behavior can be seen in the Figure~\ref{fig:motion:algorithm:nonstatic:01}, and as we can see, we can extract informations only from overlapping areas between two frames(Figure~\ref{fig:motion:algorithm:nonstatic:01} dotted area in the left image), but since this analysis is done in very small time variation, we have a great portion of overlapping area.
+To better understand this issue take a look at the example: assume our vehicle is driving along a street and makes a left turn, we capture two frames, one while the car was driving straight $f_{t-1}$, and the second frame  after the car initiate the left turn $f_{t}$. We observe a static object in the frame $f_{t-1}$ (\textit{e.g.} telephone pole in the sidewalk) that was located at $d_{t-1}$ meters from the car, and in the frame $f_{t}$ this very same object will be at $d_t-\Delta d(f_{t-1},f_{t})$ and will be slightly moved to the right side (in the grid a time $t$, due to the left turn). The function $\Delta d$ returns the distance traveled by the car between the two frames. This behavior can be seen in the Figure~\ref{fig:motion:algorithm:nonstatic:01}, and as we can see, we can extract information only from overlapping areas between two frames(Figure~\ref{fig:motion:algorithm:nonstatic:01} dotted area in the left image), but since this analysis is done in very small time variation, we, usually, have a great portion of overlapping area.
 
-This problem is solved by introducing the Inertial Measurement Unit(IMU) data. The IMU provides information about the inertial behavior of the unit. Although not all information generated by the IMU are needed, the ones used are speed $s$, yaw angle, vertical $v_v$ and horizontal $v_h$ velocity. Those informations are used to apply the necessary transformation to the $f_t$ making its cells match the cells $f_{t+1}$. Thus finding the correspondence between cells of $f_t$ and $f_{t+1}$.
+This problem is solved by introducing the Inertial Measurement Unit(IMU) data. The IMU provides information about the inertial behavior of the vehicle. Although not all information generated by the IMU are needed, the ones used are speed $s$, yaw angle, vertical $v_y$ and horizontal $v_x$ velocity components. Those information are used to apply the necessary transformations to the $f_{t-1}$ making its cells match the cells $f_{t}$. Thus finding the correspondence between cells of $f_{t-1}$ and $f_{t}$.
 
 From the IMU information we calculate two parameters: angular velocity and the linear velocity. 
 
 Angular velocity (Equation~\ref{eq:angular:velocity}) is obtained by finding the angle variation between two frames at time $t$ and $t_{t-1}$, $dt$ represents the difference between two time steps.
 
-The angular velocity is given in degrees, but the IMU gives us a quaternion for the angle of the vehicle. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
+The angular velocity is given in radians/second, but the IMU gives us a quaternion for the direction of the vehicle at time $t$. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it also solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
 
-The angular velocity $\omega_t$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
+The quaternions at two time steps give the direction of the vehicle in radians that we can use along with the time difference $dt$ to calcualte the angular velocity $\omega_t$.
 
-At this point, we have the information about the proper angle for the frame $f_t$, the next step is to calculate the displacement of the frame. The displacement is calculated based on the actual velocity of the vehicle at the time $t$. 
+The angular velocity and translational velocty (calculated from the two components) are used to find the displacement undrgone by the vehicle from time $t-1$ to $t$.
+%The angular velocity $\omega_t$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
 
-The IMU keeps the velocity in two components, the horizontal $v_h$ and vertical $v_v$ velocities, and to obtain the actual velocity, we can apply the Equation~\ref{eq:ch03:velocities}, which extracts the velocity based on the two component velocities.
+%At this point, we have the information about the proper angle for the frame $f_t$, the next step is to calculate the displacement of the frame. The displacement is calculated based on the actual velocity of the vehicle at the time $t$. 
 
+%The IMU keeps the velocity in two components, the horizontal $v_h$ and vertical $v_v$ velocities, and to obtain the actual velocity, we can apply the Equation~\ref{eq:ch03:velocities}, which extracts the velocity based on the two component velocities.
+
+Next we give formalization of the complete method.
 
 \subsection{Motion detection}
 \label{ch03:motiondetection}
@@ -390,6 +399,7 @@ MotionGrid_t[i] = \begin{cases} 1, & \mbox{$OG_t[i] > 0.5$ and} \\ & \mbox {$Fre
 \end{equation}
 After this process, the $MotionGrid_t$ becomes a binary grid, where it has 1's assigned to the cells which belongs to moving parts, and 0's otherwise.
 
+This completes formalization of the motion detection module and $MotionGrid_t$ has the results. A 1 in a cell means that it belongs to a moving object whereas a 0 means that it is either static or empty.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -397,6 +407,7 @@ After this process, the $MotionGrid_t$ becomes a binary grid, where it has 1's a
 %\subsection{Solution}
 
 
-%\section{summary}
+\section{summary}
+In this chapter we have formaly detailed the position of our module in the overall system architecture and have detailed the technique that we have developed. We have explained how the inputs from sensors and fusion module are used to make inferences about the static and dynamic parts of the environment. In next chapter we will give implementation detials of the techniques developed in this chapter along with experimental results.
 
 %summary
