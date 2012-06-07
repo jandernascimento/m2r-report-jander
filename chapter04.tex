@@ -2,6 +2,8 @@
 
 In this section we give algorithms of some important functions of our work that will complement the understanding of previous chapter.
 
+The experiments will be present along with their qualitative results.
+
 \subsection{Main method}
 Although the actual implementation has been done in $C++$ using object oriented concepts (different classes) however for the sake of simplicity implementation in this document is only based on functions and some local and global variables that need be passed to these functions.
 
@@ -168,7 +170,7 @@ CalculateMotionGrid()
 
 Listing \ref{al:motiongrid} implements a simple decision function based on current vale of the cell and the two counter values to decide if it belongs to a moving object or not.
 
-\section{Experiments And Results}
+\section{Experiments and results}
 
 %In the experimentation phases, we modeled the algorithm to compute ahead of the time by using the bicycle model and extrapolating the pose by using the current vehicle measurements, like stearing angles. But this measurement had shown a lot of variation during a run, and the extrapolated model gets out to date very quickly.
 
@@ -184,7 +186,7 @@ Listing \ref{al:motiongrid} implements a simple decision function based on curre
 \label{sec:testbed}
 
 %\subsubsection*{Hardware}
-Experiments for this work have been done on data sets from a Lexus LS600h demonstrator vehicle equipped with a stereo vision camera (TYZX), two IBEO Lux Lidar scanners and a MTi-G XSens IMU+GPS sensor. Onboard processing unit is a 4 core Dell workstation with a NVidia GPU graphic card to do parallel processing. This hardware setup is shown in figures \ref{fig:Lexus} and \ref{fig:Lexus2}. Some details of our main sensors (Lidar and MTi-G) are given in last chapter.
+Experiments were conducted on data set obtained from a Lexus LS600h demonstrator vehicle equipped with a stereo vision camera (TYZX), two IBEO LUX LIDAR and a MTi-G XSens unit. Onboard processing unit is a 4 core Dell workstation with a NVidia GPU graphic card to perform parallel processing. Some details of our main sensors (Lidar and MTi-G) are given in last chapter.
 %For testing purposes, we have a Lexus LS600h equipped with a stereo vision (TYZX camera) positioned in the superior part of the windshield.
 
 %The vehicle has two IBEO Lux Lidar in the front side of the car, one in each corner of the bumper.
@@ -226,7 +228,7 @@ Experiments for this work have been done on data sets from a Lexus LS600h demons
 
 
 
-\subsection{Middleware Software}
+\subsection{Middleware application}
 
 The robotic cars are equipped with different types of communication layers which are responsible for information sharing between different components. A commonly used communication technique is known as Controller Area Network (CAN) that provides a cheap and reliable way to communicate with devices.%, so CAN bus have been replacing the regular point-to-point wiring interconnection among the components\cite{bosch91can}.
 
@@ -239,7 +241,7 @@ Our demonstrator vehicle uses HugrStore \cite{hugr} software middleware to share
 
 %For this project Robot Operating System(ROS) was adopted, ROS gives us the hability to save all information obtained during a run (driving the test platform) from all sensors, and replay it later in the laboratory, this by far allow to have a consistent test samples and a historical evolution of all scenarios gathered during the algorithm evolution, alowing the retro-performance benchmarking with other versions of the algorithm.
 
-\subsubsection*{HugrStore}
+\subsubsection{HugrStore}
 HugrStore is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}. So publisher writes a data in a topic. This topic is in a shared memory area that can be read by any subscriber of that topic.
 
 \begin{figure}[H]
