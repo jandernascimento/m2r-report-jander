@@ -5,7 +5,7 @@ In this section we give algorithms of some important functions of our work that 
 \subsection{Main method}
 Although the actual implementation has been done in $C++$ using object oriented concepts (different classes) however for the sake of simplicity implementation in this document is only based on functions and some local and global variables that need be passed to these functions.
 
-The algorithm \ref{al:general} implements the main function that has the controling loop and calls appropriate functions to realize the complete motion detection logic.
+The algorithm \ref{al:general} implements the main function that has the controlling loop and calls appropriate functions to realize the complete motion detection logic.
 
 %In the Algorithm \ref{al:general}, we provide an overview of the framework created for detecting moving parts.
 
@@ -70,7 +70,7 @@ DetectMotion()
 		$FC_{t-1}$=$FC_t$
 	
 \end{lstlisting}
-This is the outline of the main function to detect motion from laser data. The function\\ $InitGlobalVars()$ at line number \ref{ln:InitGlobalVars} initializes the global variables with logical values. The function  $ReadAndFuseLaserData()$ at line \ref{ln:ReadAndFuseLaserData} has been implemented by another member of the team and is based on the technique published in \cite{ADARVE-2012-671211}. $ReadMotionData()$ function at line \ref{ln:ReadMotionData} simply reads raw motion data from the sensor (actually from the middleware Hugre store). Rest of the functions are outlined below.
+This is the outline of the main function to detect motion from laser data. The function\\ $InitGlobalVars()$ at line number \ref{ln:InitGlobalVars} initializes the global variables with logical values. The function  $ReadAndFuseLaserData()$ at line \ref{ln:ReadAndFuseLaserData} has been implemented by another member of the team and is based on the technique published in \cite{ADARVE-2012-671211}. $ReadMotionData()$ function at line \ref{ln:ReadMotionData} simply reads raw motion data from the sensor (actually from the middleware Hugr store). Rest of the functions are outlined below.
 
 %The elements from the Algorithm \ref{al:general} are defined in the high level of abstraction. In the next sections we are going to explain the calls made in this code.
 
@@ -155,7 +155,7 @@ UpdateCounterArrays()
 		$FC_t[j]+=FC_{t-1}[i]$
 \end{lstlisting}
 The listing \ref{al:updatecounter} explaines how to map a cell from $OG_{t-1}$ to $OG_t$ and update the counter arrays. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
-The function $FindPoseOfNewGrid()$ simply implemments the Equation~\ref{eq:circularmotion}. $CompoundPose()$ and \\$FindInversePose()$ functions implement the equation \ref{eq:composepose} and \ref{eq:invpose}  respectively. $CellFromPose()$ is mapped from Equation~\ref{eq:grid:cell:calculation} whereas $PoseOfCell()$ is exactly inverse of $CellFromPose()$. Functions $CellFromIndex()$ and $IndexFromCell()$ map 1D array to 2D array and vice versa respectively.
+The function $FindPoseOfNewGrid()$ simply implements the Equation~\ref{eq:circularmotion}. $CompoundPose()$ and \\$FindInversePose()$ functions implement the equation \ref{eq:composepose} and \ref{eq:invpose}  respectively. $CellFromPose()$ is mapped from Equation~\ref{eq:grid:cell:calculation} whereas $PoseOfCell()$ is exactly inverse of $CellFromPose()$. Functions $CellFromIndex()$ and $IndexFromCell()$ map 1D array to 2D array and vice versa respectively.
 
 \begin{lstlisting}[label=al:motiongrid,mathescape=true,caption={Calculate motion grid}]
 CalculateMotionGrid()
@@ -240,7 +240,7 @@ Our demonstrator vehicle uses HugrStore(link?) software middleware to share data
 %For this project Robot Operating System(ROS) was adopted, ROS gives us the hability to save all information obtained during a run (driving the test platform) from all sensors, and replay it later in the laboratory, this by far allow to have a consistent test samples and a historical evolution of all scenarios gathered during the algorithm evolution, alowing the retro-performance benchmarking with other versions of the algorithm.
 
 \subsubsection*{HugrStore}
-HugrStore is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}. So publisher wirtes a data about a topic in the shared memory that can be read by any subscriber to that topic.
+HugrStore is a middleware that allows sharing information among applications using a shared memory segment, in a publisher-subscriber manner. Hugr is DDS compliant. The communication model is represented in the Figure \ref{fig:dds:hugr}. So publisher writes a data in a topic. This topic is in a shared memory area that can be read by any subscriber of that topic.
 
 \begin{figure}[H]
    \centering
@@ -258,7 +258,7 @@ Data sets for this work have been captured for some urban and highway driving sc
 
 Our algorithm was tested in the experimental platform. Different scenarios were collected to assess our method.
 
-In this section, we are going to present the results in a same fasion for different scenarios. In the Figure~\ref{fig:result:framework} we can see three regions in the image, individually each region will be dedicated to display the data in a specific format. We are going to nominate those regions as North, East and West part. 
+In this section, we are going to present the results in a same fashion for different scenarios. In the Figure~\ref{fig:result:framework} we can see three regions in the image, individually each region will be dedicated to display the data in a specific format. We are going to nominate those regions as North, East and West part. 
 
 The \textbf{North} is located in the upper part of the image and will display a snapshot of the footage during a run in the experimental platform, this image is a non processed image, obtained directly from the vehicle's camera. \textbf{West} contains the occupancy grid image generated from the North image, and it is located on the left part of the image.
 
@@ -275,7 +275,7 @@ On the \textbf{East} region, we present the resulting image from the \textit{Mot
 
 \subsubsection{Two vehicles at low speed}
 
-In this scenario, the experimental platform is performing a soft curve to the right, while two other vehicles are approaching in the opposite direction. The distinction between those vehicles and the enviroment can easily be done on the East part, where the two vehicles are depicted more distinctively.
+In this scenario, the experimental platform is performing a soft curve to the right, while two other vehicles are approaching in the opposite direction. The distinction between those vehicles and the environment can easily be done on the East part, where the two vehicles are depicted more distinctively.
 
 One vehicle cannot be seen clearly on the North image due to the reflection on the windshield and the trees behind the vehicle which reduces the contrast between the car and the landscape background. Although it can be easily tracked from the East part. We see that these moving vehicles have been detected successfully, the rectangle segmenting the cars have been drawn manually.
 
@@ -331,4 +331,4 @@ This is the perfect scenario to verify how good our method can be in removing th
 In this chapter we have given implementation details of motion detection modules with detailed algorithms of important functions. We have also presented some results of our work for real data obtained from demonstrator vehicle. We have seen that this technique works good especially when vehicle is moving on a straight road, relatively more false alarms appear when vehicle is turning. But because it is just low level classification of static and dynamic parts we believe that a high level module that will finally segment the objects and track them will be easily able to remove these false positives.
 
 \section{Future Work}
-Since this work has been carried out with an objective of using with Bayesian Occupancy Filter (BOF), so we plan to use the generated motion grid as an input to the BOF framework providing a priori information for moving parts. This will change the BOF behavior in the sense that instead of making an inference on velocities for all cells we will restrict this inference only for those regions detected as moving by our module. This restriction will not only improve the quality of resutls when later used by the tracking module but will also reduce the processing time for BOF.
+Since this work has been carried out with an objective of using with Bayesian Occupancy Filter (BOF), so we plan to use the generated motion grid as an input to the BOF framework providing a priori information for moving parts. This will change the BOF behavior in the sense that instead of making an inference on velocities for all cells we will restrict this inference only for those regions detected as moving by our module. This restriction will not only improve the quality of results when later used by the tracking module but will also reduce the processing time for BOF.
