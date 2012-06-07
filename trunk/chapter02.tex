@@ -1,7 +1,13 @@
 
-There have been several proposals toward a good classifcation methods, all on behalf of scene understading. Due to the variety of sensors and problem to takle the techniques can vary. Thus, techniques may have to be adapted according to the issue and the situation that the method is applied.
+In this section we are going to introduce the current state of the research conducted in the robotics perception. Some of the works presented in this section follow similar goals as ours, but due to different applicability and/or constraints, it was necessary to develop the new method presented in this work to fill up our needs.
 
-The work over this theme copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the enviroment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous} \cite{DBLP:conf/iros/LidorisWB08} are some examples of researches conducted with the intent to separate the dynamic and static enviroments.
+In the presentation of 3rd parties work, we are going to introduce their solution without present the technical the details. Discuss about their results and why their method was not suitable for our application.
+
+\section{Tackling the problem}
+
+There have been several proposals toward a good classification methods, all on behalf of scene understanding. Due to the variety of sensors and problem to tackle the techniques can vary. Thus, techniques may have to be adapted according to the issue and the situation that the method is applied.
+
+The work over this theme copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the environment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous} \cite{DBLP:conf/iros/LidorisWB08} are some examples of researches conducted with the intent to separate the dynamic and static environments.
 
 \section{Grouping processes in robotics}
 
@@ -41,6 +47,6 @@ In the work \cite{4650636}, they were able to classify the objects in the scene 
 
 %In our   was used to establish the displacement of the objects in the scene. 
 
-In our method, we use as input an occupancy grid, in which the scan aligment is not needed, since the occupancy grid gives us a fusioned view of the laser scanner reading. And the clustering could be done in the occupancy grid, but would not be coherent with our final goal of knowing the dynamic and static parts of the environment.
+In our method, we use as input an occupancy grid, in which the scan alignment is not needed, since the occupancy grid gives us a fusion view of the laser scanner reading. Besides, the clustering could be done in the occupancy grid, but would not be coherent with our final goal of knowing the dynamic and static parts of the environment.
 
 

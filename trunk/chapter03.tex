@@ -1,8 +1,10 @@
-%not in details put in introduction
+In section we are going to present the sensors installed in the demonstrator vehicle. The layout and technical characteristics of the laser scanners will be presented when relevant to the preprocessing phase understanding. This preprocessing formats the data according to the input type required by our method.
+
+After all, we are going to give the motivation for the work developed and a detailed explanation of the motion detection process established by this work.
 
 \section{Introduction}
 
-The main goal of this research is to distinguish dynamic parts of the scene from the static parts. The scene is observed from two laser scanners installed in the front bumper of a demonstrator vehicle, so called testbed. This distinction between static and dynamic parts is to be made both when vehicle is static and when it is moving.
+The main goal of this research is to distinguish dynamic parts of the scene from the static parts. The scene is observed from two laser scanners installed in the front bumper of a demonstrator vehicle. This distinction between static and dynamic parts is to be made both when vehicle is static and when it is moving.
 
 This setup brings one big issue: non-static sensor. Thus, \textit{apriori} all the objects are moving from the sensors perspective, even the static objects, due to the motion performed by the vehicle.
 
@@ -17,10 +19,14 @@ So in this chapter we will explain the technique that we have developed to find 
 \section{Experimental Platform configuration} %configuration of the lasers, diagram
 \label{sec:demonstrator}
 In this section we give details of the configurations and specifications of our main sensors (laser scanners and motion sensor) used for this work. Some pictures of the demonstrator vehicle and the hardware installed on it are given in next chapter.
- 
-\subsection{LIDAR laser scanners}
 
-Our testbed is a Toyota Lexus car equipped with two LIDAR lasers scanner (Check Section~\ref{sec:testbed} for images) installed on the front bumper (Figure~\ref{fig:demonstrator:birdeye}).
+\subsection{General setup}
+ 
+The vehicle is equipped with 2 laser scanners, 1 stereo-vision camera, and a sophisticated inertial measurements unit, later refereed as MTi-G XSens.
+ 
+\subsection{Laser scanners}
+
+Our experimental platform is a vehicle equipped also with two lasers scanner, which may be also referred  as LIDARs, check Section~\ref{sec:testbed} for images. Those sensors are installed on the front bumper Figure~\ref{fig:demonstrator:birdeye}.
 
 \begin{figure}[h]
    \centering
@@ -57,7 +63,7 @@ The first layer (layer 1) has a horizontal FoV that varies from $+35^\circ$ to $
 beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
 \end{equation}
 
-From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $150m$ maximum, however in this work we take the effective range as 60 meters only because after this distance the points are too sparse. The scan frequency of these lidars in the installed configuration is $25Hz$.
+From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $150m$ maximum, however in this work we take the effective range as 60 meters only because after this distance the points are too sparse. The scan frequency of these LIDARs in the installed configuration is $25Hz$.
 
 \begin{figure}[h]
    \centering
@@ -98,9 +104,9 @@ The multiple sensors usage in the demonstrator car makes it a complex system, du
 
 In the Figure~\ref{fig:demonstrator:superior:overlap} we depict the overlapping area when we consider the two LIDARs installed in our testbed.
 
-\subsection{MTi-G XSens}
+\subsection{Inertial measurement unit}
 
-As we are about to see in the next Sections, the algorithm developed in this document uses data from two main sensorst: the LIDARs (explained previously) and MTi-G sensor (motion sensor).
+As we are about to see in the next sections, the algorithm developed in this document uses data from two main sensors: the laser scanners (explained previously) and a sofisticated Inertial Measurement Unit (MTi-G) sensor.
 
 \begin{figure}[H]
    \centering
@@ -117,7 +123,7 @@ One example is that the GPS can use the other sensor to estimate the position, t
 
 From this sensor unit our algorithm utilizes the vertical $v_y$ velocity, horizontal $v_x$ velocity and the direction information given by this sensor in the form of quaternions, we can calculate yaw rate from these information.% angle of the car \cite{etkin2005dynamics}. 
 
-\section{Sensor pre-processing} %fusion module
+\section{Data preprocessing} %fusion module
 \label{sec:sensor:fusion}
 
 % in the last subsection, output form (occupancy grid), digrams; explains that this is our input
@@ -141,15 +147,14 @@ Data from eight layers of two laser scanners must be combined together to give a
 
 This data combining has been solved by using \textit{Linear Opinion Pools} technique  by one of our team member to make data fusion. We summarize this fusion process in next section however detailed information about this technique can be found in the paper \cite{ADARVE-2012-671211}. The output of this fusion technique is an Occupancy Grid, which is used by our algorithm as input.
 
-\subsection{LIDARs layers fusion}
+\subsection{Data fusion}
 
-\subsubsection{Sensor fusion from the multiple lidar layers}
 Each of the  two LIDAR sensors installed on the vehicle provides us 4 layers of impact points. Each layer is used to compute an occupancy grid using the classical approach described in \cite{Thrun05}. In order to retrieve a single grid for representation of the environment, the data from all these layers are merged using the approach described in \cite{ADARVE-2012-671211}. This approach fuses the sensory information by using Linear Opinion Pools \cite{DeGroot1974}. It has the advantage of reducing the errors generated by conflicting information from the multiple layers.
 
 The principle is to generate a posterior distribution over the occupancy of a cell $C$ of the grid given the opinion of $m$ sensors $\left\{ Y_1 \dots Y_m \right\}$.
 Each sensor gives two quantities: its estimation for the occupancy of the cell $P(C | Y_i)$ and the confidence weight $w_i(C)$.
 
-The idea is to shut-down those sensors that do not give relevant information to the process by assigning a low weight to them. The fusion of all sensory information will be as follows:
+The idea is to shutdown those sensors that do not give relevant information to the process by assigning a low weight to them. The fusion of all sensory information will be as follows:
 
 \begin{equation}
 \label{linealOpinionPoolEQ}
@@ -175,7 +180,7 @@ Note that the method assumes independence among cells. This assumption is very s
 %
 %As in our case the cells are completely independent, the gaining in parallelization is maximum since the term $T_{seq}$ is zero (the sequential code is inexistent), and the processing time is divided among the workers.
 %
-\section{Motion Detection Algorithm}
+\section{Motion detection algorithm}
 %motion detection
 
 \subsection{Principle} 
@@ -234,11 +239,11 @@ From the IMU information we calculate two parameters: angular velocity and the l
 
 Angular velocity (Equation~\ref{eq:angular:velocity}) is obtained by finding the angle variation between two frames at time $t$ and $t_{t-1}$, $dt$ represents the difference between two time steps.
 
-The angular velocity is given in radians/second, but the IMU gives us a quaternion for the direction of the vehicle at time $t$. The quaternion is the most common way to represent angles in 3d world, due to the fast calculations and it also solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
+The angular velocity is given in radians/second, but the IMU gives us a quaternion for the direction of the vehicle at time $t$. The quaternion is the most common way to represent angles in 3D world, due to the fast calculations and it also solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
 
-The quaternions at two time steps give the direction of the vehicle in radians that we can use along with the time difference $dt$ to calcualte the angular velocity $\omega_t$.
+The quaternions at two time steps give the direction of the vehicle in radians that we can use along with the time difference $dt$ to calculate the angular velocity $\omega_t$.
 
-The angular velocity and translational velocty (calculated from the two components) are used to find the displacement undrgone by the vehicle from time $t-1$ to $t$.
+The angular velocity and translational velocity (calculated from the two components) are used to find the displacement undergone by the vehicle from time $t-1$ to $t$.
 %The angular velocity $\omega_t$ is used to adjust the angle of $f_t$, put this value aside, before apply this transformation to the frame $f_t$ we have to calculate the displacement of the grid.
 
 %At this point, we have the information about the proper angle for the frame $f_t$, the next step is to calculate the displacement of the frame. The displacement is calculated based on the actual velocity of the vehicle at the time $t$. 
@@ -407,7 +412,7 @@ This completes formalization of the motion detection module and $MotionGrid_t$ h
 %\subsection{Solution}
 
 
-\section{summary}
-In this chapter we have formaly detailed the position of our module in the overall system architecture and have detailed the technique that we have developed. We have explained how the inputs from sensors and fusion module are used to make inferences about the static and dynamic parts of the environment. In next chapter we will give implementation detials of the techniques developed in this chapter along with experimental results.
+\section{Summary of the chapter}
+In this chapter we have formally detailed the position of our module in the overall system architecture and have detailed the technique that we have developed. We have explained how the inputs from sensors and fusion module are used to make inferences about the static and dynamic parts of the environment. In next chapter we will give implementation details of the techniques developed in this chapter along with experimental results.
 
 %summary
