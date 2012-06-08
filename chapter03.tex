@@ -50,7 +50,9 @@ With four layers in total, the layers are arranged as planes with different angl
    \label{fig:demonstrator:lateral}
 \end{figure}
 
-A single layer sweeps the environment in a limited horizontal FoV. In the Table~\ref{tab:beam:interception} we can have the layers and their specific FoV. The LIDAR, used in our tests, have the $0.5^{\circ}$ resolution, meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
+A single layer sweeps the environment in a limited horizontal FoV. In the Table~\ref{tab:beam:interception} we have the layers and their specific FoV of each layer for a single LIDAR. 
+
+The LIDAR, used in our tests, have the $0.5^{\circ}$ resolution, meaning that every layer is capable of collecting samples at $0.5^{\circ}$ of angular distance in between. 
 
 To calculate the number of beams available in a layer $\ell$ we apply the Equation~\ref{eq:totalbeams}, where the functions $min$ and $max$ are the minimum and maximum angles that can be reached by the layer $\ell$, and the function $resolution$ gives the resolution of the LIDAR $\rho$, this is a specification provided by the manufacturer. 
 
@@ -139,7 +141,7 @@ In the Figure~\ref{fig:motion:framework}, we have presented the general framewor
      \begin{tabular}{lr}
        \includegraphics[scale=0.30]{img/fig:motion:framework}
      \end{tabular}
-   \caption{General framework for detection of moving parts}
+   \caption{A general framework for detection of moving parts}
    \label{fig:motion:framework}
 \end{figure}
 
