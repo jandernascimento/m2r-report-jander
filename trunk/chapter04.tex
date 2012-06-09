@@ -107,7 +107,7 @@ FindMovement()
 
 %This algorithm is used to calculate the $u_t$, mathematically explained previous sections, $u_t$ 
 
-\subsection{Initializing Grid from new data}
+\subsection{Initializing grid from new data}
 
 \begin{lstlisting}[label=al:initializeGrid,mathescape=true,caption={Initialization of the grid}]
 InitCounterArraysForNewData()
@@ -328,9 +328,3 @@ This is the perfect scenario to verify how good our method can be in removing th
    \caption{Driving in an empty road}
    \label{fig:result:scenestatic}
 \end{figure}
-
-\section{Conclusion}
-In this chapter we have given implementation details of motion detection modules with detailed algorithms of important functions. We have also presented some results of our work for real data obtained from demonstrator vehicle. We have seen that this technique works good especially when vehicle is moving on a straight road, relatively more false alarms appear when vehicle is turning. But because it is just low level classification of static and dynamic parts we believe that a high level module that will finally segment the objects and track them will be easily able to remove these false positives.
-
-\section{Future Work}
-Since this work has been carried out with an objective of using with Bayesian Occupancy Filter (BOF), so we plan to use the generated motion grid as an input to the BOF framework providing a priori information for moving parts. This will change the BOF behavior in the sense that instead of making an inference on velocities for all cells we will restrict this inference only for those regions detected as moving by our module. This restriction will not only improve the quality of results when later used by the tracking module but will also reduce the processing time for BOF.
