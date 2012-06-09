@@ -108,7 +108,7 @@ In the Figure~\ref{fig:demonstrator:superior:overlap} we depict the overlapping 
 
 \subsection{Inertial measurement unit}
 
-As we are about to see in the next sections, the algorithm developed in this document uses data from two main sensors: the laser scanners (explained previously) and a sofisticated Inertial Measurement Unit (MTi-G) sensor.
+As we are about to see in the next sections, the algorithm developed in this document uses data from two main sensors: the laser scanners (explained previously) and a sophisticated Inertial Measurement Unit (MTi-G) sensor.
 
 \begin{figure}[H]
    \centering
@@ -241,7 +241,7 @@ From the IMU information we calculate two parameters: angular velocity and the l
 
 Angular velocity (Equation~\ref{eq:angular:velocity}) is obtained by finding the angle variation between two frames at time $t$ and $t_{t-1}$, $dt$ represents the difference between two time steps.
 
-The angular velocity is given in radians/second, but the IMU gives us a quaternion for the direction of the vehicle at time $t$. The quaternion is the most common way to represent angles in 3D world, due to the fast calculations and it also solves the gimbal lock problem, which is common for euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
+The angular velocity is given in radians/second, but the IMU gives us a quaternion for the direction of the vehicle at time $t$. The quaternion is the most common way to represent angles in 3D world, due to the fast calculations and it also solves the gimbal lock problem, which is common for Euler angles. Converting the value from quaternion to Euler angles is straightforward as we can see in the Equation~\ref{eq:quaternion:yaw}.
 
 The quaternions at two time steps give the direction of the vehicle in radians that we can use along with the time difference $dt$ to calculate the angular velocity $\omega_t$.
 
