@@ -156,7 +156,7 @@ UpdateCounterArrays()
 		$OC_t[j]+=OC_{t-1}[i]$
 		$FC_t[j]+=FC_{t-1}[i]$
 \end{lstlisting}
-The listing \ref{al:updatecounter} explaines how to map a cell from $OG_{t-1}$ to $OG_t$ and update the counter arrays. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
+The listing \ref{al:updatecounter} explains how to map a cell from $OG_{t-1}$ to $OG_t$ and update the counter arrays. Some of the functions will not be detailed, specifically those in which the translation between mathematical and algorithms perspective do not change considerably.
 The function $FindPoseOfNewGrid()$ simply implements the Equation~\ref{eq:circularmotion}. $CompoundPose()$ and \\$FindInversePose()$ functions implement the equation \ref{eq:composepose} and \ref{eq:invpose}  respectively. $CellFromPose()$ is mapped from Equation~\ref{eq:grid:cell:calculation} whereas $PoseOfCell()$ is exactly inverse of $CellFromPose()$. Functions $CellFromIndex()$ and $IndexFromCell()$ map 1D array to 2D array and vice versa respectively.
 
 \begin{lstlisting}[label=al:motiongrid,mathescape=true,caption={Calculate motion grid}]
@@ -232,12 +232,12 @@ Experiments were conducted on data set obtained from a Lexus LS600h demonstrator
 
 The robotic cars are equipped with different types of communication layers which are responsible for information sharing between different components. A commonly used communication technique is known as Controller Area Network (CAN) that provides a cheap and reliable way to communicate with devices.%, so CAN bus have been replacing the regular point-to-point wiring interconnection among the components\cite{bosch91can}.
 
-Since data sharing is a critical part of a robotic system some standards have started to appear in this field. Like Data Distribution Service\cite{dds} is a set of specifications for data distribution in real-time systems, this specification is maintained by OMG Data Distribution SIG (DDSIG).
+Since data sharing is a critical part of a robotic system some standards have started to appear in this field. Like Data Distribution Service \cite{dds} is a set of specifications for data distribution in real-time systems, this specification is maintained by OMG Data Distribution SIG (DDSIG).
 
 DDS works in a publish-subscriber manner, where the subscriber acquire the data by subscribing to one or several  "topics", which is the name assigned for a data provider (the publisher itself). The goal is to promote the lose coupling and real-time data sharing between applications.
 
-Car manufacturers use platforms like YARP (Yet Another Robot Platform),  URBI \cite{urbi} or Robot Operating System(ROS) \cite{ros} to publish the information gathered from the sensors and processing modules, frameworks like ROS, allow the car to publish information  which can be accessed by other applications.%, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
-Our demonstrator vehicle uses HugrStore \cite{hugr} software middleware to share data between different hardware and software components.
+Car manufacturers use platforms like YARP (Yet Another Robot Platform), URBI \cite{urbi} or Robot Operating System(ROS) \cite{ros} to publish the information gathered from the sensors and processing modules, frameworks like ROS, allow the car to publish information  which can be accessed by other applications.%, the intent for most of those frameworks is to give longevity\cite{Fitzpatrick:2008:TLR:1327539.1327705} for the robot application that uses it by providing a platform that can evolve in cooperation manner with other projects.
+Our demonstrator vehicle uses HugrStore \cite{hugr} application middleware to share data between different hardware and software components.
 
 %For this project Robot Operating System(ROS) was adopted, ROS gives us the hability to save all information obtained during a run (driving the test platform) from all sensors, and replay it later in the laboratory, this by far allow to have a consistent test samples and a historical evolution of all scenarios gathered during the algorithm evolution, alowing the retro-performance benchmarking with other versions of the algorithm.
 
