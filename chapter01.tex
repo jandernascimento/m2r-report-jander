@@ -66,7 +66,7 @@ This scheme is as important to robotics as they are for human being. In order to
 \begin{figure}[h]
    \centering
      \begin{tabular}{lr}
-       \includegraphics[scale=0.45]{img/fig:sensors:role}
+       \includegraphics[scale=0.45]{img/fig:sensors:roles}
      \end{tabular}
    \caption{A general architecture of a system attached to sensors}
    \label{fig:sensors:role}
@@ -319,7 +319,16 @@ DATMO main responsibility is to:
 \item Associate data with correspondent objects;
 \end{itemize}
 
-Researches considered SLAM and DATMO as two independent and different problems that should be solved separately. \textit{Wang} was the first researcher to put in evidence the similarities between both problems and propose simultaneous processing of those tasks\cite{Wang03onlinesimultaneous}.
+Researchers considered SLAM and DATMO as two independent and different problems that should be solved separately. \textit{Wang} was the first researcher to put in evidence the similarities between both problems and propose simultaneous processing of those tasks\cite{Wang03onlinesimultaneous}. The SLAM and DATMO mutual cooperation is depicted in the Figure~\ref{fig:datmoslam:loop}.
+
+\begin{figure}[h]
+   \centering
+     \begin{tabular}{lr}
+       \includegraphics[scale=0.5]{img/fig:datmoslam:loop}
+     \end{tabular}
+   \caption{SLAM and DATMO: Mutual benefit (adapted from \cite{VU-2009-454238})}
+   \label{fig:datmoslam:loop}
+ \end{figure}
 
 As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiments showed that solving simultaneously the SLAM with DATMO increased dramatically the performance of the algorithm comparing them with the results as individual solutions (performance was verified in crowded urban environment). In the other hand, the process gets much more complex and computational expensive. In the figure \ref{fig:slammot} we can see the input-process-output schema for the SLAMMOT process.
 
@@ -338,13 +347,13 @@ Nowadays, the challenging in DATMO is to turn it into a reliable process in a hi
 
 \textbf{Scenario 1}: in a simpler scenario we can have a robot that moves in an environment, where all objects in its surroundings are static. The robot is the only element present in the environment that is moving.
 
-In this case, the static environment is everything that the robot can perceive. So the robot should use these information to build a map of the navigable path.
+In this case, the static environment is everything that the robot can perceive. So the robot should use these information to build a map of the navigable path (SLAM).
 
 \textbf{Scenario 2}: suppose the robot is moving in an overly crowded environment, with different type of objects (cars, pedestrian, trucks, bicycle, motorbikes, etc.), static and moving objects are mixed. Which object to use as static objects (\textit{e.g.} to build the map) and which to use as dynamic (\textit{e.g.} to calculate the risk of collision)? 
 
 In the \textbf{Scenario 2}, it is much more complicated to obtain any information from the environment.
 
-This leads us to one conclusion: it is hard to do risk analysis when you do not know the objects of the scene. In addiction, it is hard to find the motion model of a specific object in the scene(behavior analysis).
+This leads us to one conclusion: it is hard to do risk analysis when you do not know the objects of the scene. In addiction, it is intrinsically hard to find the motion model of a specific object in the scene(behavior analysis).
 
 Thus, as a stepping stone we can perform the dynamic and static environment classification. This solves part of the problem, by classifying the environment in two categories. This will help to:
 

@@ -72,7 +72,7 @@ Although we have the same goal, we applied different constraints and acceptance 
 
 \subsection{Mono-vision camera}
 
-In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM process (SLAM applied with no IMU data, and mono-vision camera), this method uses feature detector algorithms, named Shadow Filter, to provided anchors in the image. Those anchors established during while the robot is moving, they work as dynamic landmarks. The algorithms make use of them to solve the SLAM.
+In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM process (SLAM applied with no IMU data, and mono-vision camera), this method uses feature detector algorithms, named Shadow Filter, to provided anchors in the image. Those anchors are established while the robot is moving, they work as landmarks. The algorithms make use of them to solve the SLAM.
 
 Their method uses as input the initial position of the camera information and a mono-vision camera as sensor to perceive the environment. This configuration is not reliable for to solve our problem due to the number of assumptions and filters applied to the mono-vision camera to obtain the feature.
 
