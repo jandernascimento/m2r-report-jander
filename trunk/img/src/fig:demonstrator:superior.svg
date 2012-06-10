@@ -804,6 +804,13 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5910"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -812,15 +819,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.92195639"
-     inkscape:cx="74.932277"
-     inkscape:cy="882.57909"
+     inkscape:zoom="0.65192162"
+     inkscape:cx="15.295009"
+     inkscape:cy="739.82843"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="997"
-     inkscape:window-x="1280"
+     inkscape:window-width="1002"
+     inkscape:window-height="555"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
@@ -933,13 +940,13 @@
        y="455.56903"
        id="text2911"><tspan
          sodipodi:role="line"
-         id="tspan2913"
          x="533.56567"
-         y="455.56903">LIDAR laser </tspan><tspan
+         y="455.56903"
+         id="tspan2919">laser scanner </tspan><tspan
          sodipodi:role="line"
          x="533.56567"
-         y="478.25616"
-         id="tspan2919">scanner location</tspan></text>
+         y="478.25613"
+         id="tspan5953">location</tspan></text>
     <path
        style="fill:#e6e6e6;fill-opacity:1;stroke:none"
        d="M 218.65304,-69.491988 C 154.03543,-44.428465 106.58149,4.4293215 84.436262,60.799212 l 0.186111,-0.03867 C 84.514831,61.0354 84.4128,61.31197 84.306122,61.587094 L 310.41422,214.17894 482.00914,2.1518069 C 481.84425,1.903682 481.68395,1.6510237 481.51791,1.4038282 l -0.22655,0.020835 C 428.73114,-76.771439 319.55078,-108.62764 218.65304,-69.491988 z"
@@ -977,7 +984,7 @@
        sodipodi:nodetypes="cc" />
     <g
        id="g11325"
-       transform="translate(79.284819,-97.151822)">
+       transform="translate(347.19337,69.88428)">
       <g
          transform="translate(121.93516,-374.00359)"
          id="g2959-8">
@@ -1045,7 +1052,7 @@
        sodipodi:nodetypes="cc" />
     <g
        id="g7005-1"
-       transform="matrix(1.1069577,-0.42936058,0.42936058,1.1069577,-110.54994,190.60147)">
+       transform="matrix(2.6166465,-1.0149302,1.0149302,2.6166465,-687.92966,153.53888)">
       <rect
          y="146.64644"
          x="324.03906"
@@ -1064,22 +1071,26 @@
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
          sodipodi:type="arc" />
     </g>
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.35619309999999998;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect4628-2-7"
-       width="5.2299957"
-       height="4.5860872"
-       x="369.35217"
-       y="209.3976" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="path7003-0-1"
-       sodipodi:cx="277.67041"
-       sodipodi:cy="206.9453"
-       sodipodi:rx="0.94906878"
-       sodipodi:ry="0.94906878"
-       d="m 278.61948,206.9453 a 0.94906878,0.94906878 0 1 1 -1.89814,0 0.94906878,0.94906878 0 1 1 1.89814,0 z"
-       transform="matrix(1.1873103,0,0,1.1873103,42.286225,-34.017648)" />
+    <g
+       id="g7005-1-7"
+       transform="matrix(2.8061486,0.04951963,-0.04951963,2.8061486,-532.68684,-224.1847)">
+      <rect
+         y="146.64644"
+         x="324.03906"
+         height="3.8625853"
+         width="4.4049106"
+         id="rect4628-2-6"
+         style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         transform="translate(48.571109,-58.367567)"
+         d="m 278.61948,206.9453 c 0,0.52415 -0.42491,0.94907 -0.94907,0.94907 -0.52416,0 -0.94907,-0.42492 -0.94907,-0.94907 0,-0.52416 0.42491,-0.94907 0.94907,-0.94907 0.52416,0 0.94907,0.42491 0.94907,0.94907 z"
+         sodipodi:ry="0.94906878"
+         sodipodi:rx="0.94906878"
+         sodipodi:cy="206.9453"
+         sodipodi:cx="277.67041"
+         id="path7003-0-9"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+    </g>
   </g>
 </svg>
