@@ -868,18 +868,18 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49929678"
-     inkscape:cx="360.92655"
-     inkscape:cy="643.01089"
+     inkscape:cx="325.87726"
+     inkscape:cy="562.89822"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-grids="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1280"
-     inkscape:window-height="949"
+     inkscape:window-width="1002"
+     inkscape:window-height="555"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -918,12 +918,12 @@
     <text
        xml:space="preserve"
        style="font-size:26.65089035px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="501.92456"
+       x="493.92456"
        y="319.58936"
        id="text3804"><tspan
          sodipodi:role="line"
          id="tspan3806"
-         x="501.92456"
+         x="493.92456"
          y="319.58936">Risk assessment</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 12;stroke-dashoffset:0"
@@ -1113,23 +1113,23 @@
     <text
        xml:space="preserve"
        style="font-size:26.65089035px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="501.92456"
+       x="498.76544"
        y="452.02808"
        id="text3804-7"><tspan
          sodipodi:role="line"
          id="tspan3806-2"
-         x="501.92456"
+         x="498.76544"
          y="452.02808">Perception layer</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:26.65089035px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="502.78342"
-       y="587.04987"
+       x="413.71164"
+       y="591.05548"
        id="text3804-7-3"><tspan
          sodipodi:role="line"
          id="tspan3806-2-6"
-         x="502.78342"
-         y="587.04987">Sensor layer</tspan></text>
+         x="413.71164"
+         y="591.05548">Sensor/hardware layer</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

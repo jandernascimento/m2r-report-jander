@@ -208,6 +208,13 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6151"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -217,17 +224,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.60666665"
-     inkscape:cx="433.25829"
+     inkscape:cx="474.55684"
      inkscape:cy="759.72541"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g6228"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1280"
-     inkscape:window-height="949"
+     inkscape:window-width="1002"
+     inkscape:window-height="555"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -275,38 +282,34 @@
          x="180.2323"
          y="308.33621">module</tspan></text>
     <g
-       id="g6335"
-       transform="translate(-174.07238,-227.08435)">
+       id="g6228"
+       transform="translate(-17.89011,-21.428572)">
       <rect
-         y="469.17056"
-         x="521.90662"
-         height="106.9167"
-         width="274.26877"
+         y="403.4158"
+         x="270.15283"
+         height="64.477295"
+         width="231.82938"
          id="rect4484-3"
-         style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:1.46044707" />
+         style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:1.04270756" />
       <text
          sodipodi:linespacing="125%"
          id="text4486-9"
-         y="499.12671"
-         x="658.45013"
+         y="433.58081"
+         x="385.47665"
          style="font-size:21.41884613px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
          xml:space="preserve"><tspan
-           id="tspan4529"
-           y="499.12671"
-           x="658.45013"
-           sodipodi:role="line">Transformations</tspan><tspan
-           y="525.90027"
-           x="658.45013"
-           sodipodi:role="line"
-           id="tspan6282">and</tspan><tspan
-           y="552.67383"
-           x="658.45013"
-           sodipodi:role="line"
-           id="tspan6284">Counter update module</tspan></text>
+           id="tspan6202"
+           y="433.58081"
+           x="385.47665"
+           sodipodi:role="line">Grid transformation</tspan><tspan
+           id="tspan6206"
+           y="460.35437"
+           x="385.47665"
+           sodipodi:role="line">module</tspan></text>
     </g>
     <g
        id="g4619"
-       transform="translate(23.57761,-29.670329)">
+       transform="translate(252.6985,-8.241757)">
       <rect
          y="17.887831"
          x="78.987183"
@@ -340,29 +343,25 @@
          y="118.26739"
          id="tspan4588">Motion detection module</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
-       d="m 285.04863,287.52812 56.12485,0"
-       id="path4592-0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
-       d="m 173.07767,55.980301 0,175.401559"
+       style="fill:none;stroke:#000000;stroke-width:3.15390252999999987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 402.20003,77.735824 0,288.794046"
        id="path4650" />
     <text
        xml:space="preserve"
-       style="font-size:15.69461441px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="180.83"
-       y="86.362411"
+       style="font-size:15.69461441px;font-style:normal;font-weight:normal;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="393.46738"
+       y="92.955826"
        id="text4673"><tspan
          sodipodi:role="line"
-         x="180.83"
-         y="86.362411"
+         x="393.46738"
+         y="92.955826"
          id="tspan4702">IMU +GPS+barometer</tspan><tspan
          sodipodi:role="line"
-         x="180.83"
-         y="105.98068"
+         x="393.46738"
+         y="112.5741"
          id="tspan4646">data</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
        d="m 888.2182,291.42426 49.41355,0"
        id="path4704" />
     <text
@@ -386,7 +385,7 @@
          y="275.24554"
          id="tspan4702-9-0">{Occupancy Grid}</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
        d="m -10.155444,292.64981 72.855555,0"
        id="path4592-2" />
     <text
@@ -399,66 +398,92 @@
          x="-6.2640233"
          y="313.27878"
          id="tspan4702-9-0-6-3">t</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-2)"
-       d="m -4.7860144,382.51084 321.7668944,0 0,-64.62008 23.74663,0"
-       id="path5779" />
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
        x="-15.726933"
-       y="405.41159"
+       y="437.41159"
        id="text4673-9-5-1-4-8"><tspan
          sodipodi:role="line"
          x="-15.726933"
-         y="405.41159"
+         y="437.41159"
          id="tspan4702-9-0-6-3-4">t-1</tspan></text>
     <g
-       id="g4599-5"
-       transform="translate(683.69105,-39.842574)">
-      <g
-         id="g6324">
-        <rect
-           style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:1.09884501"
-           id="rect4484-5"
-           width="197.70335"
-           height="83.967087"
-           x="1.4156841"
-           y="291.93387" />
-        <text
-           xml:space="preserve"
-           style="font-size:21.41884613px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-           x="99.216286"
-           y="328.51562"
-           id="text4486-6"
-           sodipodi:linespacing="125%"><tspan
-             id="tspan6278-4"
-             sodipodi:role="line"
-             x="102.62573"
-             y="328.51562">Motion grid </tspan><tspan
-             id="tspan6322"
-             sodipodi:role="line"
-             x="99.216286"
-             y="355.28918">module</tspan></text>
-      </g>
+       id="g6223">
+      <rect
+         y="252.01677"
+         x="685.03223"
+         height="62.68755"
+         width="197.85239"
+         id="rect4484-5"
+         style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:0.94980878" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4486-6"
+         y="288.67307"
+         x="782.90735"
+         style="font-size:21.41884613px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="288.67307"
+           x="782.90735"
+           sodipodi:role="line"
+           id="tspan6322">Decision module</tspan></text>
     </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
-       d="m 628.00968,285.92445 40.30103,0"
-       id="path4592-0-3" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.61453915;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-4)"
-       d="m 14.850435,290.80843 0,-105.46397 759.614685,0 0,46.14049"
-       id="path4116" />
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
        x="-110.69607"
-       y="370.84995"
+       y="402.84995"
        id="text4673-9-5-6"><tspan
          sodipodi:role="line"
          x="-110.69607"
-         y="370.84995"
+         y="402.84995"
          id="tspan4702-9-0-1">{Counters}</tspan></text>
+    <g
+       id="g6217"
+       transform="translate(-115.38462,-6.5934068)">
+      <rect
+         y="383.832"
+         x="658.7829"
+         height="72.774643"
+         width="184.08276"
+         id="rect4484-3-5"
+         style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:0.98712343" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4486-9-7"
+         y="414.02481"
+         x="749.40918"
+         style="font-size:21.41884613px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="414.02481"
+           x="752.8186"
+           sodipodi:role="line"
+           id="tspan6284-0">Counter update </tspan><tspan
+           id="tspan6200"
+           y="440.79837"
+           x="749.40918"
+           sodipodi:role="line">module</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m -14.835165,412.80173 255.494515,0"
+       id="path6238" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 286.81319,290.8237 41.2088,0 0,72.52747"
+       id="path6240" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.58400011;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 488.15386,411.85667 51.09891,0"
+       id="path6244" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 637.91211,366.64788 0,-85.71428 26.37362,0"
+       id="path6246" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 26.373627,290.8237 0,-97.25275 364.285723,0 0,-14.83517 23.07693,0 0,14.83517 375.82418,0 0,44.5055"
+       id="path7434" />
   </g>
 </svg>
