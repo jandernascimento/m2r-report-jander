@@ -78,11 +78,19 @@ This method was tested in a non-crowded environment and has shown its applicabil
 
 \subsubsection{LIDAR approach}
 
-In the work \cite{4650636}, they were able to classify the objects in the scene by a larger chain of processes to solve some issues with the data acquired. This method relies on several steps to correct/fuse the laser data readings, among these processes there is scan segmentation(Euler distance), scan alignment(Iterative Closest Point \cite{10.1109/34.121791}) before performing the motion detection itself. 
+\paragraph*{Dung}
 
-%In our   was used to establish the displacement of the objects in the scene. 
+Dung \cite{DBLP:journals/inffus/VuBA11} proposed a solution for solving the SLAM with DATMO in outdoor environment. This approach used an additional sensor to provide a more reliable and accurate model, in this case the short-range radar was chosen. ICP was used to reduce the odometry error, several alternatives of such method were tested. Including scan matching, that were not satisfactory. Thus the maximum likelihood estimation was adopted in his work. 
+
+Due to the number of methods applied to correct the odometry error and others elevate the optimality of the results, this method would be costly for our goals. Besides, our goal is not to solve the SLAM and DATMO problems, instead just give the dynamic regions of a scene.
+
+\paragraph*{Katz}
+
+In the work \cite{4650636}, they were able to classify the objects in the scene by a larger chain of processes to solve some issues with the data acquired. This method relies on several steps to correct/fuse the laser data readings, among these processes there is scan segmentation(Euler distance), scan alignment(Iterative Closest Point \cite{10.1109/34.121791}) before performing the motion detection itself. 
 
 In our method, we use as input an occupancy grid, %in which the scan alignment is not needed, since the occupancy grid 
 that gives us a fused view of the laser scanner data. Besides, the clustering could be done in the occupancy grid, but would not be coherent with our final goal of knowing the dynamic and static parts of the environment.
 
+%\paragraph*{Haehnel}
 
+%In Haehnel work \cite{Haehnel03mapbuilding}, an Expectation Maximization algorithm was used to find the measurements that belongging to a dynamic object in the scene. They 
