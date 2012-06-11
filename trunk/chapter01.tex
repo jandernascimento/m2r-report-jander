@@ -17,7 +17,7 @@ Driving support system may also provide support in a less passive manner as well
 
 This field has gained several adepts. Automotive industry and researchers are studying it thoroughly these days.
 
-Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed their laws to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance.
+Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed their laws to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance \footnote{http://www.estadao.com.br/noticias/impresso,freio-abs-passa-a-ser-obrigatorio,351726,0.htm}.
 
 One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems is coping with task of making the car a safer transportation system, among others tasks (Figure~\ref{fig:sensor:target}).
 
@@ -310,13 +310,14 @@ As DATMO is process that encapsulates only moving objects observations. Being on
    \label{fig:datmo:process}
  \end{figure}
 
-DATMO main responsibility is to:
+Wang \cite{Wang03onlinesimultaneous} defined the DATMO tasks as:
 
 \begin{itemize}
-\item Detect and initialize new objects;
-\item Remove objects that went out of the scene;
-\item Moving object motion modeling;
-\item Associate data with correspondent objects;
+\item Detect and initializa new objects;
+\item Motion modeling;
+\item Data association;
+\item Merge coalescent objects;
+\item Remove the objects that moved outside of the FoV of the sensor;
 \end{itemize}
 
 Researchers considered SLAM and DATMO as two independent and different problems that should be solved separately. \textit{Wang} was the first researcher to put in evidence the similarities between both problems and propose simultaneous processing of those tasks\cite{Wang03onlinesimultaneous}. The SLAM and DATMO mutual cooperation is depicted in the Figure~\ref{fig:datmoslam:loop}.
