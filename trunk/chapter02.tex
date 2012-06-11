@@ -38,52 +38,51 @@ Since this is a master internship work so during this time we will only be devel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In this section we are going to introduce the current state of the research conducted in the robotics perception, specifically for classification between static and dynamic objects/parts. Some of the methods presented in this section follow similar goals as ours, but due to different applicability and/or constraints it was necessary to develop the new method presented in this document to fill up our needs.
 
-To present 3rd parties work, we are going to follow a same guide. First introduce their real goal, then the solution without the intrinsic technical the details. For the closure a discussion about their results and why their method was not suitable for our application.
+To present 3rd parties work, we are going to follow a same guide. First introduce their real goal, then the solution without the intrinsic technical details. For the closure a discussion about their results and why their method was not suitable for our application.
 
-\section{Tackling the problem}
+\subsection{Tackling the problem}
 
-There have been several proposals toward a good classification methods, all on behalf of scene understanding. Due to the variety of sensors and problem to tackle the techniques can vary. Thus, techniques may have to be adapted according to the issue and the situation that the method is applied.
+There have been several proposals towards a good classification method, all on behalf of scene understanding. Due to the variety of sensors and problem to tackle the techniques can vary. Thus, techniques may have to be adapted according to the issue and the situation that the method is applied.
 
-The work over this theme copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the environment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous} \cite{DBLP:conf/iros/LidorisWB08} are some examples of researches conducted with the intent to separate the dynamic and static environments.
+The work over this theme copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the environment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous} \cite{DBLP:conf/iros/LidorisWB08} are some examples of research conducted with the intent to separate the dynamic and static environments.
 
-\section{Grouping processes in robotics}
+\subsection{Grouping processes in robotics}
 
 One important step in the scene understanding is the environment map building and the localization of the ego-robot inside this map. This problem is known as SLAM \cite{Leonard2002Mobile, qadeerthesis}, which stands for Simultaneous Localization and  Mapping.
 
 SLAM is composed of several steps to achieve its goals: landmark extraction, data association, state estimation are some examples. Each of them can be solved using different techniques.
 
-SLAM assumes static environment constraint, in another words, assumes that there are no moving objects in the same environment as the robot. Moving objects would interfere negatively in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
+SLAM assumes static environment constraint, in other words, it assumes that there are no moving objects in the same environment as the robot. Moving objects would interfere negatively in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
 
 DATMO stands for Detection and Tracking of Moving Objects. When dealing with mobile robots in a dynamic environment we apply the DATMO process to obtain the moving objects from the environment.
 
 Several researchers have been dedicated to solve the SLAM problem in dynamic environments, sometimes called SLAMIDE\cite{bibbyrss07}. Other alternatives like solving SLAM with DATMO\cite{Wang02simultaneouslocalization} emerged as well.
 
-\section{Approaches for motion detection}
+\subsection{Approaches for motion detection}
 
-\subsection{Stereo-vision camera}
+\subsubsection{Stereo-vision camera}
 
-In the Henning Lategahn and Bernd Kitt work \cite{DBLP:conf/ivs/LategahnGHKE11}, they proposed a method to separate the static and dynamic environment using stereo-vision camera. Their method uses a probabilistic approach of classification. Due to the probabilistic technique that was choose, this approach is not well suited for our purpose, which is to distinguish those two groups using the minimum amount of time.
+In the Henning Lategahn and Bernd Kitt work \cite{DBLP:conf/ivs/LategahnGHKE11}, they proposed a method to separate the static and dynamic environment using stereo-vision camera. Their method uses a probabilistic approach of classification. %Due to the probabilistic technique that was choose, this approach is not well suited for our purpose, which is to distinguish those two groups using the minimum amount of time.
 
 Their work was evaluated theoretically and concretely. The theoretical test done by simulation and the final test done in a real footage from a moving vehicle.
 
 The results were promising, although in some situations the correct separation was given only after processing 19 samples of the environment. 
 
-Although we have the same goal, we applied different constraints and acceptance conditions for the application. 
+Although we have the same goal, we applied different constraints and acceptance conditions for the application using different sensor. 
 
-\subsection{Mono-vision camera}
+\subsubsection{Mono-vision camera}
 
-In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM process (SLAM applied with no IMU data, and mono-vision camera), this method uses feature detector algorithms, named Shadow Filter, to provided anchors in the image. Those anchors are established while the robot is moving, they work as landmarks. The algorithms make use of them to solve the SLAM.
-
-Their method uses as input the initial position of the camera information and a mono-vision camera as sensor to perceive the environment. This configuration is not reliable for to solve our problem due to the number of assumptions and filters applied to the mono-vision camera to obtain the feature.
+In the work developed by Migliore et al. \cite{Migliore_2009_ICRA} is a MONOSLAM process (SLAM applied with no IMU data, and mono-vision camera), this method uses feature detector algorithms, named Shadow Filter, to provided anchors in the image. Those anchors are established while the robot is moving, they work as landmarks. The algorithms make use of them to solve the SLAM. Their method uses as input the initial position of the camera information and a mono-vision camera as sensor to perceive the environment. %This configuration is not reliable for to solve our problem due to the number of assumptions and filters applied to the mono-vision camera to obtain the feature.
 
 This method was tested in a non-crowded environment and has shown its applicability, but due to bad performance with small displacements is not suited for the ADAS system, which acquire several frames in one second, in which the displacement is fairly small. Beyond that, our approach is focused in laser scanner as sensor to perceive the environment.
 
-\subsection{LIDAR approach}
+\subsubsection{LIDAR approach}
 
-In the work \cite{4650636}, they were able to classify the objects in the scene by a larger chain of processes to solve some issues with the data acquired. This method the relies on several steps to correct/fuse the laser data readings, among these processes there is scan segmentation(Euler distance), scan alignment(Iterative Closest Point \cite{10.1109/34.121791}) before perform the motion detection itself. 
+In the work \cite{4650636}, they were able to classify the objects in the scene by a larger chain of processes to solve some issues with the data acquired. This method relies on several steps to correct/fuse the laser data readings, among these processes there is scan segmentation(Euler distance), scan alignment(Iterative Closest Point \cite{10.1109/34.121791}) before performing the motion detection itself. 
 
 %In our   was used to establish the displacement of the objects in the scene. 
 
-In our method, we use as input an occupancy grid, in which the scan alignment is not needed, since the occupancy grid gives us a fusion view of the laser scanner reading. Besides, the clustering could be done in the occupancy grid, but would not be coherent with our final goal of knowing the dynamic and static parts of the environment.
+In our method, we use as input an occupancy grid, %in which the scan alignment is not needed, since the occupancy grid 
+that gives us a fused view of the laser scanner data. Besides, the clustering could be done in the occupancy grid, but would not be coherent with our final goal of knowing the dynamic and static parts of the environment.
 
 
