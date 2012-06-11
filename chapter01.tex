@@ -295,11 +295,11 @@ Every time we actuate in the robot without checking/knowing the real position, t
 
 \subsection{DATMO}
 
-Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems researchers \cite{qadeerthesis}. In RADAR technology only moving objects are visible, unless the RADAR itself is moving. This provides a simple classification, by assuming that those objects detected by the RADAR are moving objects. The same does not happen with laser scanners. 
+Detection and Tracking of Moving Objects (DATMO) was initially studied by radar tracking systems researchers \cite{qadeerthesis}. In RADAR technology only moving objects are visible, unless the RADAR itself is moving. This provides a simple classification, by assuming that all objects detected by the RADAR are moving objects. The same does not happen with laser scanners. 
 
 In laser scanners all objects are visible independently on their state, so static and dynamic objects are included in the representation. Thus, it is a responsibility of a higher level process to classify those objects, in any kind of grouping types: static x dynamic, cars x motorcycles, cars x people, etc.
 
-As DATMO is process that encapsulates only moving objects observations. Being on charge of detecting and tracking those objects. It is a generic process definition and not a technique. Thus, several researchers have been proposing techniques to solve it throughout the years.
+DATMO is process that encapsulates only moving objects observations. It is on charge of DATMO to detect and track those objects. It is a generic process definition and not a technique. Thus, several researchers have been proposing techniques to solve it throughout the years.
 
 \begin{figure}[h]
    \centering
@@ -331,7 +331,7 @@ Researchers considered SLAM and DATMO as two independent and different problems 
    \label{fig:datmoslam:loop}
  \end{figure}
 
-As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiments showed that solving simultaneously the SLAM with DATMO increased dramatically the performance of the algorithm comparing them with the results as individual solutions (performance was verified in crowded urban environment). In the other hand, the process gets much more complex and computational expensive. In the figure \ref{fig:slammot} we can see the input-process-output schema for the SLAMMOT process.
+As result, the SLAMMOT term was coined and a derivation of the SLAM formula with DATMO was created to simplify the process of tracking. The experiments showed that solving simultaneously the SLAM with DATMO increased the quality of the algorithm results comparing them with their results as individual processes. In the other hand, the process gets much more complex and computational expensive. In the figure \ref{fig:slammot} we can see the input-process-output schema for the SLAMMOT process.
 
 \begin{figure}[h]
    \centering
