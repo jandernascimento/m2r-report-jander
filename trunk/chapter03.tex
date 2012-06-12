@@ -1,4 +1,4 @@
-In section we are going to present the sensors installed in the demonstrator vehicle. The layout and technical characteristics of the laser scanners will be presented when relevant to the preprocessing phase understanding. This preprocessing formats the data according to the input type required by our method.
+In this chapter we are going to present the sensors installed in the demonstrator vehicle. The layout and technical characteristics of the laser scanners will be presented when relevant to the preprocessing phase understanding. This preprocessing formats the data according to the input type required by our method.
 
 After all, we are going to give the motivation for the work developed and a detailed explanation of the motion detection process established by this work.
 
@@ -22,7 +22,7 @@ In this section we give details of the configurations and specifications of our 
 
 \subsection{General setup}
  
-The vehicle is equipped with 2 laser scanners, 1 stereo-vision camera, and a sophisticated inertial measurements unit, later refereed as MTi-G XSens.
+As we are about to see in the next sections, the algorithm developed in this document uses data from two main sensors: the laser scanners and a sophisticated Inertial Measurement Unit (MTi-G) sensor. Those sensors are available in the test vehicle.
  
 \subsection{Laser scanners}
 
@@ -65,7 +65,7 @@ The first layer (layer 1) has a horizontal FoV that varies from $+35^\circ$ to $
 beams_{total}(\ell)=\frac{|max(\ell)-min(\ell)|}{resolution(\rho)}
 \end{equation}
 
-From every individual beam is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $150m$ maximum, however in this work we take the effective range as 60 meters only because after this distance the points are too sparse. The scan frequency of these LIDARs in the installed configuration is $25Hz$.
+From every individual beam it is possible to obtain the \textit{impact point}, meaning the distance between the LIDAR laser scanner and the first object to intercept the laser beam, limited to $150m$ maximum, however in this work we take the effective range as 60 meters only because after this distance the points are too sparse. The scan frequency of these LIDARs in the installed configuration is $25Hz$.
 
 \begin{figure}[h]
    \centering
@@ -107,8 +107,6 @@ The multiple sensors usage in the demonstrator car makes it a complex system, du
 In the Figure~\ref{fig:demonstrator:superior:overlap} we depict the overlapping area when we consider the two LIDARs installed in our testbed.
 
 \subsection{Inertial measurement unit}
-
-As we are about to see in the next sections, the algorithm developed in this document uses data from two main sensors: the laser scanners (explained previously) and a sophisticated Inertial Measurement Unit (MTi-G) sensor.
 
 \begin{figure}[H]
    \centering

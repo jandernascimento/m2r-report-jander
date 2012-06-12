@@ -8,20 +8,20 @@ In this document we are mainly concerned about driving assistance systems. Such 
 \item tactile alerts (also known as haptics\cite{riener2010sensor})
 \end{itemize}
 
-Driving support system may also provide support in a less passive manner as well:
+Driving support systems may also provide support in a less passive manner as well:
 
 \begin{itemize}
-\item change how the car respond to the drivers commands for assisting a maneuver
+\item change how the car responds to the drivers commands for assisting a maneuver
 \item change how the car behaves, with partial or fully automatic command
 \end{itemize}
 
 This field has gained several adepts. Automotive industry and researchers are studying it thoroughly these days.
 
-Thus, driving support systems and its applications are becoming a popular tool. To exemplify such change, some countries changed their laws to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance \footnote{http://www.estadao.com.br/noticias/impresso,freio-abs-passa-a-ser-obrigatorio,351726,0.htm}.
+Thus, driving support systems and their applications are becoming a popular tool. To exemplify such change, some countries changed their laws to make mandatory that all new cars manufactured have a given support system installed as a minimum equipment, ABS(Anti-lock break systems)  for instance \footnote{http://www.estadao.com.br/noticias/impresso,freio-abs-passa-a-ser-obrigatorio,351726,0.htm}.
 
-One of the reasons for such change is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems are coping with task of making the car a safer transportation system, among others tasks (Figure~\ref{fig:sensor:target}).
+One of the reasons for such changes is the increasing number of incidents involving vehicles. \textbf{Risk of incidents} is growing as the population of cars grows, and there is no signal in changing those numbers in next years, so driving support systems are coping with task of making the car a safer transportation system, among others tasks (Figure~\ref{fig:sensor:target}).
 
-Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects which the human is capable of track simultaneously. This study establishes the limit of the human vision by associating it with the information channel capacity theorem (Shannon's theorem). 
+Those incidents may be related with the cognitive capacity limitation of the human being. With the goal of quantify this capacity, a research conducted in 2008 studied the human cognitive limitation for visual sensing mechanism \cite{LautarutisV}. This report established the limit number of objects which the human is capable of tracking simultaneously. This study establishes the limit of the human vision by associating it with the information channel capacity theorem (Shannon's theorem). 
 
 Although this seems to be distant from our goal (safety), this research underlies the limitation of human driving skills. With it we can conclude that above certain number of surrounding vehicles, we may start to ignore the risk of collision with some vehicles that still may represent a risk. Besides, several factors can affect its behavior like fatigue, cognitive capacity or simply bad decisions.
 
@@ -35,7 +35,7 @@ ADAS relies in computerized systems to process informations provided by the car 
 
 ADAS is split in different research branches, each of them with its own applications and goals. Among those different branches (Figure \ref{fig:sensor:target}), our work will concentrate in supporting applications situated in \textbf{safety} branch. 
 
-The goal of this work is to tackle a very common issue in safety application (object classification) and \textbf{not} develop an application.
+The goal of this work is to tackle a very common issue in safety application (object classification) and \textbf{not} to develop an application.
 
 This will be done by providing a theoretical framework to classify the environment in a high level manner, separating static and dynamic parts with the information acquired from the sensors.
 
@@ -48,9 +48,9 @@ This will be done by providing a theoretical framework to classify the environme
 	\label{fig:sensor:target}
 \end{figure}
 
-Advanced Driver Assistance Systems rely on the perception. An ADAS works somehow similar to the human cognition, it requires a mean to perceive the environment before dispatching any action. 
+Advanced Driver Assistance Systems rely on perception. An ADAS works somehow similar to the human cognition, it requires a mean to perceive the environment before dispatching any action. 
 
-There are different ways of perceiving the environment, usually we observe specific features, like: lighting, appearance, shapes, etc. Every feature requires a mechanism to process the information and convert the physical characteristics into electronic signal. The peripherals responsible for this process are called sensors, which will be discussed in more details in the Section \ref{sec:sensors}.
+There are different ways of perceiving the environment, usually we observe specific features, like: lighting, appearance, shapes, etc. Every feature requires a mechanism to process the information and convert the physical characteristics into electronic signal. The peripherals responsible for this process are called sensors, which will be discussed in more details in the next section.
 
 %% reviewed until here
 
@@ -61,7 +61,7 @@ There are different ways of perceiving the environment, usually we observe speci
 
 Sensing is the input for numerous biological systems (\textit{e.g.} nervous system, digestive system), enabling such systems to respond properly to the information provided by such sensors(eye, skin, etc.). 
 
-This scheme is as important to robotics as they are for human being. In order to interact with the environment, a robot needs first to perceive it. This is done by capturing specific features, or at least some of them. The features observed depends on the application needs.
+This scheme is as important to mobile robotics as they are for human being. In order to interact with the environment, a robot needs first to perceive it. This is done by capturing specific features, or at least some of them. The features observed depends on the application needs.
 
 \begin{figure}[h]
    \centering
@@ -76,21 +76,21 @@ Sensors are the means by which complex systems acquire information about the env
 
 The sensors are normally incapable to respond to external stimulus without a system to process the data provided by it, and act. The system reacts to the sensor stimulus through other means.
 
-Thus, a sensor is responsible for the data acquisition (electric interpretation of a physical stimulus). This data is directed to a perception layer which is allocated in an upper layer, which is responsible for the understanding of the environment and the objects located in it. 
+Thus, a sensor is responsible for the data acquisition (electric interpretation of a physical stimulus). This data is directed to a perception layer which is allocated in an upper layer, which is responsible for the understanding of the environment and detecting the objects located in it. 
 
-In the \textit{risk assessment layer} is where the decisions are taken, this turns it into the main layer for the actual result of the safety application.
+The \textit{risk assessment layer} is where the decisions are taken, this turns it into the main layer for the actual result of the safety application.
 
 \subsubsection{Sensor types}
 
 There are virtually sensors for all kinds of properties (Figure~\ref{fig:sensors}) that we want to observe. In some literatures those properties can be called \textbf{measurands}\cite{riener2010sensor}. 
 
-There exists two sets of classifications for sensors, they can be Proprioceptive/Exteroceptive with respect to the type of measurands \cite{iyengar1991autonomous} and they are classified in the manner how the measurands are obtained, which can be in a passive or active \cite{Hebert_2000_3595} manner. Active sensors emit energy to the environment so the measurand can be collected, a passive sensor is capable of observing the measurand without emitting any type of energy to the environment.
+There exists two sets of classifications for sensors, they can be Proprioceptive/Exteroceptive with respect to the type of measurands \cite{iyengar1991autonomous} and they are classified in the manner of how the measurands are obtained, which can be in a passive or active \cite{Hebert_2000_3595} manner. Active sensors emit energy to the environment so the measurand can be collected, a passive sensor is capable of observing the measurand without emitting any type of energy to the environment.
 
 Active and passive types refer to the electronic means in which the measurand is obtained. A second sensor type is defined according to the target subject of the measurand, they can be proprioceptive and exteroceptive.
 
-\textit{Proprioceptive} evaluate the ego-robot properties, giving informations about some \textbf{measurand} of the robot itself. Motor speed, payload, robot joint angles, battery voltage are some examples.  Inertial Measurement Unit (IMU) is a \textit{proprioceptive} sensor that observes the orientation, velocity and gravitational forces of the robot, it is a very common type of sensor and largely applied in robotics and in aviation.
+A \textit{Proprioceptive} sensor evaluates the ego-robot properties, giving informations about some \textbf{measurand} of the robot itself. Motor speed, payload, robot joint angles, battery voltage are some examples.  Inertial Measurement Unit (IMU) is a \textit{proprioceptive} sensor that observes the orientation, velocity and gravitational forces of the robot, it is a very common type of sensor and largely applied in robotics and in aviation.
 
-\textit{Exteroceptive} gives information about the environment in which the robot is located. Thus, they extract useful environmental features. Laser and ultrasonic sensors are some examples of \textit{exteroceptive}.
+An \textit{Exteroceptive} gives information about the environment in which the robot is located. Thus, they extract useful environmental features. Camera and microphone are some examples of \textit{exteroceptive} sensor.
 
 \begin{figure}[h]
    \centering
@@ -124,7 +124,7 @@ Before describe Risk Assessment and its relation with ADAS we first must underst
 
 Some literature use another terms to indicate negative risk, like hazard or threat. In this document we are going to apply the term \textit{risk} mainly. It will gain the negative risk meaning.
 
-\textit{Risk assessment} is the action of studying what variations can cause risk the subject, the origin of the cause can be \textbf{direct} or \textbf{indirect}.
+Risk assessment is the action of studying what variations can cause risk the subject, the origin of the cause can be \textbf{direct} or \textbf{indirect}.
 
 A didactic example to illustrate the \textbf{direct} and \textbf{indirect} situations: imagine you bought a very good amount of shares from Apple Inc\copyright. But you forgot that its products are manufactured in an Asian country. Suddenly this Asian country government announces that it is forbidden to export any kind of product to western countries. 
 
@@ -146,15 +146,15 @@ All those terms are largely applied in robotics and they correspond to actions t
 
 \textbf{Localization} provides the coordinates of a point with respect to a another point, known as frame reference. If this frame of reference is the earth, for instance, we call it global frame of reference. In robotics, depending on the application of the robot we can have different frames of reference. We can use a building as frame of reference, by indicating the position of the robot with respect to this building (having a point of the building as the origin). The robot's position may be given in a global reference of frame, meaning that wherever the robot is located in the earth globe, we can provide a coordinate to represent its position. 
 
-The result of \textbf{mapping}, as tacit knowledge, is a processing that gives us information about a region, a limited area. Allowing to give a more concrete definition by being the action of recording the disposition of the static objects of a region. The data recorded can be used later in the future as a fundamental information for exploration purpose. In a geological map for instance the static objects are rivers, mountains, canyons, etc. 
+The result of \textbf{mapping}, as tacit knowledge, is a processing that gives us information about a region, a limited area. Allowing to give a more concrete definition by being the action of recording the disposition of the static objects of a region. The data recorded, called map, can be used later in the future as a fundamental information for exploration purpose. In a geological map for instance the static objects are rivers, mountains, canyons, etc. 
 
-\textbf{Localization and Mapping} are really important tools for a robot, due to their importance and mutual relation, the term SLAM was coined to represent those two tasks (more details in next chapter). Although they solve part of the problem, this process is insufficient in case of existing moving objects sharing the same environment with the robot. This is due to the risk of collision between the moving objects and the robot, for this reason its necessary to detect (be aware of the existence of such object) and track (know its motion model) the object.
+\textbf{Localization and Mapping} are really important tools for a robot, due to their importance and mutual relation, the term SLAM was coined to represent those two tasks done simultaneously (more details in next chapter). Although they solve part of the problem, this process is insufficient in case of existing moving objects sharing the same environment with the robot. This is due to the risk of collision between the moving objects and the robot, for this reason its necessary to detect (be aware of the existence of such object) and track (know its motion model) the object.
 
 An easy way to understand the importance of mapping and localization, imagine the following situation: we have a map in our hands (provided by the environment \textit{mapping}) and we know exactly where we are in this map (by \textit{localization}), what would be the result of moving in this environment blind folded? Not good.
 
-\textbf{Detection} is the action of recognize a given object in the scene, can be anything that is relevant for the scene understanding. The \textbf{tracking} consist in follow the subsequent poses assumed by the detected object during a certain amount of time. The term \textit{tracking} is usually applied with the full meaning of \textit{tracking of moving objects}\cite{Wang04a} or even \textit{moving object tracking}, but those terms can be used in alternating manner in this document with exactly the same meaning.
+\textbf{Detection} is the action of evaluate the existance an object in the scene, can be anything that is relevant for the scene understanding. The \textbf{tracking} consist in follow the subsequent poses assumed by the detected object during a certain amount of time. The term \textit{tracking} is usually applied with the full meaning of \textit{tracking of moving objects}\cite{Wang04a} or even \textit{moving object tracking}, but those terms can be used in alternating manner in this document with exactly the same meaning.
 
-\paragraph{The perception process} The general environment perception, represented in the Figure \ref{fig:perception:cycle}, requires at least two inputs: the perception measurements $Z$ which are usually provided by exteroceptive sensors like laser scanners, and the vehicle motion measurements $U$ that are obtained from proprioceptive sensors, like for instance an inertial measurement unit.
+\paragraph{The perception process} is a general environment perception scheme is represented in the Figure \ref{fig:perception:cycle}, it requires at least two inputs: the perception measurements $Z$ which are usually provided by exteroceptive sensors like laser scanners, and the vehicle motion measurements $U$ that are obtained from proprioceptive sensors, like for instance an inertial measurement unit.
 
 \begin{figure}[h]
    \centering
@@ -252,8 +252,6 @@ At the same time the Occupancy Grid, also known as \textit{certainty grids}, is 
 
 Occupancy grid can be used as well to represent 3D environments, as was demonstrated in a small submersible craft, that looks for old battleships in the bottom of the ocean\cite{DBLP:journals/aim/Moravec88}.
 
-One variation of the occupancy filter - The Bayesian Occupancy Filter(BOF) \cite{coue:inria-00182004} - contains the velocity and the probability distribution in Bayesian framework.
-
 Representing continuous space when dealing with the uncertainty of an action of a mobile robot is extremely demanding in terms of resource usage, either in terms of processing power or memory allocation.
 
 Thus, targeting to amortize the computational requirement for the uncertainty in the displacement of a robot, discretization models are used, Occupancy Grid\cite{Elfes:1989:UOG:68491.68495} is one of the former models proposed to tackle this issue.
@@ -349,8 +347,8 @@ The scene understanding usually implicates in distinguishing different elements 
 
 \section{Problem addressed}
 
-In this chapter we have seen the concepts required to understand the applicability of the problem addressed in this document. We introduced the most common approaches and terminologies adopted in the robotics field. 
+In this chapter we have seen the concepts required to understand the applicability of the problem addressed in this document. We introduced the most common approaches and terminologies adopted in the mobile robotics field. 
 
-In this document we will detail our approach to perform a fast and high level classification. Classifying dynamic parts in an image by using the minimum amount of video frames. The details of our methods will be explained in next sections.
+In this document we will detail our approach to perform a fast and high level classification. Classifying dynamic parts in an image by using the minimum amount of sensor readings. The details of our methods will be explained in next sections.
 
 %multimodels, importance sampling, prior map knowledge
