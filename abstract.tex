@@ -1,10 +1,18 @@
+\renewcommand{\abstracttextfont}{\normalfont}
+\abstractintoc
+\begin{abstract} 
+\selectlanguage{english}% french si rapport en franais
 Scene understanding is a fundamental process in robotics, specifically to detecting and tracking moving objects. Several techniques have been applied with the intent to better classify the objects in the scene with more quality and/or better performance. Among other methods developed to model the environment, the occupancy grid is used by many as one of the important tools, gathering precision and performance in the representation. The algorithm proposed by this document extracts the dynamic objects from the environment with the smallest possible number of samples using occupancy grid mapping, resulting in a lightweight real-time application. The main focus is to apply it, in the future, for  Advanced Driving Assistence Systems(ADAS) in the context of Bayesian Occupancy Filter (BOF). Qualitative results obtained from real data show that the technique developed can be applied successfully for detecting moving parts in real time %Throughout this document we will show some issues imposed by the usage of our algorithm in ADAS, and solution for those problems. Qualitative results of the algorithm implementation in a Lexus LS600h car for the real road application will be shown, followed by a discussion about the advantages and limitations of the method.
 
-%\end{abstract}
-%\abstractintoc
-%\renewcommand\abstractname{R\'esum\'e}
-%\begin{abstract} \selectlanguage{french}
-%Texte 
-%\end{abstract}
-%\selectlanguage{english}% french si rapport en franais
+\end{abstract}
+\abstractintoc
+\renewcommand\abstractname{R\'esum\'e}
+\begin{abstract} 
+\selectlanguage{french}
+L'analyse et l'interpr\'etation de sc\`enes dynamiques est une t\^ache fondamentale pour la robotique mobile. En particulier, la d\'etection des objets mobiles est essentielle à l'estimation du risque de 
+collisions pour un v\'ehicule intelligent.
+Parmi les m\'ethodes de repr\'esentation de l'environnement d'un robot, la grille d'occupation locale est populaire car elle permet une description pr\'ecise et efficace. Cependant, elle inclut g\'en\'eralement les parties statiques de l'environnement (b\^atiments, murs,\dots). Diverses m\'ethodes ont \'et\'e propos\'ees pour s\'eparer la partie dynamique de l'environnement de sa partie statique, g\'en\'eralement fond\'ees sur une cartographie globale de l'environnement. Cela suppose une estimation complexe de nombreuses variables. Dans ce document, nous proposons une m\'ethode permettant de r\'ealiser une telle segmentation en utilisant le plus petit nombre possible d'observations, dans le cadre des grilles d'occupation. L'algorithme propos\'e fonctionne en temps r\'eel, tout en fournissant des r\'esultats prometteurs sur des donn\'ees routi\`eres r\'eelles. L'objectif \`a plus long t\`erme est d'appliquer cette m\'ethode dans le cadre du Filtre d'Occupation Bay\'esien, pour le d\'eveloppement de futures syst\`emes d'aide \`a la conduite. 
+\end{abstract}
+
+
 

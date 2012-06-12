@@ -1,10 +1,10 @@
 
 \section{Problem statement}
-In this section we provide the context in which this current work has been performed. Our objective in this work is to develop a fast technique to classify current laser data into static and dynamic parts. This work will be used in the framework of Bayesian Occupancy Filter (BOF)\cite{coue:inria-00182004, mekhnacha:inria-00336356} to accomplish some reduction in processing time. Inorder to understand the relevance of this work we first need to understand how BOF works. In the following we first summarize the working of BOF framework and then state the context of the problem addressed in this work.
+In this section we provide the context in which this current work has been performed. Our objective in this work is to develop a fast technique to classify current laser data into static and dynamic parts. This work will be used in the framework of Bayesian Occupancy Filter (BOF)\cite{coue:inria-00182004, mekhnacha:inria-00336356} to improve the results. In order to understand the relevance of this work we first need to understand how BOF works. In the following we first summarize the working of BOF framework and then state the context of the problem addressed in this work.
 \subsection{Bayesian Occupancy Filter (BOF)}
 In this section we summarize the working of BOF detailed in \cite{mekhnacha:inria-00336356}. The Bayesian Occupancy Filter (BOF) is represented as a two dimensional planar grid based decomposition of the environment. Each cell of the grid contains two probability distributions. A probability distribution on the occupancy of the cell, and the probability distribution on the velocity of the cell occupancy.
 
-Given a set of input sensor readings, the BOF algorithm allows to update the occupancy/velocity estimates of each grid cell. Since BOF is a filtering technique so it, essentially, is based on prediction and estimation (updating) steps as shown in figure \ref{fig:bf}. The key idea of the model is to represent the 2D space using a regular grid. Given this space discretization and assuming that objects do not overlap, the velocity of a given cell $c$ at a time $t$ is directly linked to the identity of its antecedent cell $A^c$ from which the content of cell $c$ moved between $t-1$ and $t$. In other words, we can define the velocity of a given cell by providing the index of its antecedent (previous position).
+Given a set of input sensor readings, the BOF algorithm allows to update the occupancy/velocity estimates of each grid cell. Since BOF is a filtering technique, it is based on prediction and estimation (updating) steps as shown in figure \ref{fig:bf}. The key idea of the model is to represent the 2D space using a regular grid. Given this space discretization and assuming that objects do not overlap, the velocity of a given cell $c$ at a time $t$ is directly linked to the identity of its antecedent cell $A^c$ from which the content of cell $c$ moved between $t-1$ and $t$. In other words, we can define the velocity of a given cell by providing the index of its antecedent (previous position).
 
 \begin{figure}[H]
    \centering
@@ -29,8 +29,8 @@ It is important to note that velocity estimates are done without any motion sens
 \end{enumerate}
 These two limitations have some consequences, objects moving with velocities beyond this range will not be detected. This range cannot be taken large otherwise discretization will result in long array of velocity values that must be processed for each cell during BOF cycle, increasing processing time. Similarly neighborhood size can also create a limitation. A small neighborhood size mean fast calculations but cells moving more than that size, during $t-1$ to $t$, will not be detected. Whereas a big neighborhood size means more processing time, since calculations will be done for each cell in the neighborhood. This leads us to the following hypothesis.
 
-\subsection{Report Hypothesis}
-Given the above limitations we hypothesize that if vehicle motion information are available then we can use them to do a fast distinction between static and dynamic parts of the environment. This distinction can help us restrict the search and calculations in the BOF framework to only those regions where motion has been detected. Since, normally most of the part of the environment is static so this will allow us to decrease the calculation time greatly and will allow us to have increased velocity range and bigger neighborhood size around the moving parts. These improvements will result in better results.
+\subsection{Main hypothesises}
+Given the above limitations we make the hypothesises that if vehicle motion information are available then we can use them to do a fast distinction between static and dynamic parts of the environment. This distinction can help us restrict the search and calculations in the BOF framework to only those regions where motion has been detected. Since, normally most of the part of the environment is static so this will allow us to decrease the calculation time greatly and will allow us to have increased velocity range and bigger neighborhood size around the moving parts. These improvements will result in better results.
 
 Since this is a master internship work so during this time we will only be developing technique to do a fast distinction between static and dynamic parts of the environment. However its integration with BOF framework will be left as future work.
 
@@ -44,17 +44,17 @@ To present 3rd parties work, we are going to follow a same guide. First introduc
 
 There have been several proposals towards a good classification method, all on behalf of scene understanding. Due to the variety of sensors and problem to tackle the techniques can vary. Thus, techniques may have to be adapted according to the issue and the situation that the method is applied.
 
-The work over this theme copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the environment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous,DBLP:conf/iros/LidorisWB08} are some examples of research conducted with the intent to separate the dynamic and static environments.
+The work over this topic copes with task of understanding the environment by knowing the objects that are present. For that reason, being able to distinguish the objects in the environment is important. Depending on the granularity of the distinction performed by the method authors can name it differently, like: separation, segmentation, classification, identification, etc. \cite{Wolf04onlinesimultaneous,DBLP:conf/iros/LidorisWB08} are some examples of research conducted with the intent to separate the dynamic and static environments.
 
 \subsection{Grouping processes in robotics}
 
-One important step in the scene understanding is the environment map building and the localization of the ego-robot inside this map. This problem is known as SLAM \cite{Leonard2002Mobile, qadeerthesis}, which stands for Simultaneous Localization and  Mapping.
+One important step in the scene understanding is the environment map building and the localization of the ego-robot inside this map. This problem is known as SLAM \cite{Leonard2002Mobile, qadeerthesis}.
 
 SLAM is composed of several steps to achieve its goals: landmark extraction, data association, state estimation are some examples. Each of them can be solved using different techniques.
 
 SLAM assumes static environment constraint, in other words, it assumes that there are no moving objects in the same environment as the robot. Moving objects would interfere negatively in the mapping process. For this reason, there is another process called DATMO to deal with the dynamism of the environment.
 
-DATMO stands for Detection and Tracking of Moving Objects. When dealing with mobile robots in a dynamic environment we apply the DATMO process to obtain the moving objects from the environment.
+When dealing with mobile robots in a dynamic environment we apply the DATMO process to obtain the moving objects from the environment.
 
 Several researchers have been dedicated to solve the SLAM problem in dynamic environments, sometimes called SLAMIDE\cite{bibbyrss07}. Other alternatives like solving SLAM with DATMO\cite{Wang02simultaneouslocalization} emerged as well.
 
