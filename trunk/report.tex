@@ -18,6 +18,7 @@
 \usepackage{verbatim} 
 \usepackage{listings} 
 \usepackage{color}
+%\usepackage{fancyhdr}
  
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -57,9 +58,12 @@
 \headstyles{komalike}
 \nouppercaseheads
 \chapterstyle{dash}
+
+%\fancypagestyle{plain}
+
 \makeevenhead{headings}{\sffamily\thepage}{}{\sffamily\leftmark} 
 \makeoddhead{headings}{\sffamily\rightmark}{}{\sffamily\thepage}
-\makeoddfoot{plain}{}{}{} % Pages chapitre. 
+%\makeoddfoot{plain}{}{}{} % Pages chapitre. 
 \makeheadrule{headings}{\textwidth}{\normalrulethickness}
 %\renewcommand{\leftmark}{\thechapter ---}
 \renewcommand{\chaptername}{\relax}
