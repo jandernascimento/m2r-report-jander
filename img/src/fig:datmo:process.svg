@@ -53,7 +53,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.71173215"
-     inkscape:cx="625.65388"
+     inkscape:cx="601.06598"
      inkscape:cy="526.18109"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -80,7 +80,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#ffffff;fill-opacity:0.98484850000000002;stroke:#000000;stroke-width:2.584;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:0.98484850000000002;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3596-6-5-1"
        width="115.63174"
        height="26.956612"
@@ -149,13 +149,13 @@
     <text
        xml:space="preserve"
        style="font-size:10.27280426px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="122.68015"
-       y="552.76801"
+       x="188.71623"
+       y="555.57806"
        id="text5460-4-0-48"><tspan
          sodipodi:role="line"
          id="tspan5462-9-7-8"
-         x="122.68015"
-         y="552.76801">{Perception measurements}</tspan></text>
+         x="188.71623"
+         y="555.57806">{Perception measurements}</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 279.30718,532.6387 50.50762,0"
