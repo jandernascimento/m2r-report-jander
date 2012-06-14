@@ -84,7 +84,7 @@
 \subsection{Sensors}
 
 	\begin{frame}
-		\frametitle{Overview}
+		\frametitle{Sensor overview}
 	
 		\begin{block}{Canonical definition}
 			Translate physical \textit{stimuli} in electronic information
@@ -112,10 +112,10 @@
 	
 	\begin{frame}
 		\frametitle{subject's localization}
-		What we are observing is a property of the moving robot?
+		What we are observing belongs to the moving robot?
 		\begin{itemize}
-		\item proprioceptive
-		\item exteroceptive
+		\item Yes! proprioceptive
+		\item No! exteroceptive
 		\end{itemize}
 		\begin{figure}[h]
 			\center
@@ -143,7 +143,7 @@
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{What can we say about them?}
+		\frametitle{What can we said about them?}
 			
 		\begin{itemize}
 			\item Imprecision
@@ -156,7 +156,7 @@
 \section{Perception process}
 
 	\begin{frame}
-		\frametitle{Overview}
+		\frametitle{Perception overview}
 		\begin{block}{Definition}
 			The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
 		\end{block}	
@@ -289,15 +289,6 @@
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Context dependability}
-		 
-		\begin{block}{In which context}
-			Driving assistance systems
-		\end{block}
-		 
-	\end{frame}	
-
-	\begin{frame}
 		\frametitle{Solution overview}
 		\begin{figure}[h]
 			\center
@@ -318,7 +309,154 @@
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Pros and Cons}
+		\frametitle{Solution overview}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.27]{../img/fig:motion:framework:motionmodule}
+		 \end{figure}
+		
+	\end{frame}		
+	
+
+\subsection{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments}
+
+	\begin{frame}
+		\frametitle{Platform}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.8]{../img/testbed:car}
+		  \end{figure}		
+		
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.7]{../img/testbed:trunc}
+		  \end{figure}
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.26]{../img/testbed:ibeo}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns} 			
+		 
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle{Use cases}
+		4 use cases were chosen to assess our algorithm:
+		\begin{itemize}
+		\item Two vehicles, low speed
+		\item Two vehicles, at high speed
+		\item Vehicle on a roundabout
+		\item Complete static scenario
+		\end{itemize}						
+	\end{frame}
+
+\section{Results}
+
+	\begin{frame}
+		\frametitle{Run time}
+
+		\begin{alertblock}{Performance}
+			Run in approximately 3.0ms in a 2.67Mhz processor
+		\end{alertblock}		
+		
+		\begin{exampleblock}{Bright side}
+			Still place for optimization
+		\end{exampleblock}				
+		
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle{Two vehicles, low speed}
+		%image
+		\begin{exampleblock}{Positive}
+		\begin{itemize}
+		\item Visibility
+		\end{itemize}
+		\end{exampleblock}
+						
+		\begin{alertblock}{Negative}
+		\begin{itemize}
+		\item False positive (Bottom-right side)
+		\end{itemize}
+		\end{alertblock}					
+
+		\begin{block}{Reason?}
+		Bad rotation velocity data (IMU)
+		\end{block}
+		
+	\end{frame}
+	\begin{frame}
+		\frametitle{Two vehicles, at high speed}
+		%image
+		\begin{exampleblock}{Positive}
+		\begin{itemize}
+		\item Good results at high speed (when its most needed)
+		\end{itemize}
+		\end{exampleblock}
+						
+		\begin{alertblock}{Negative}
+		\begin{itemize}
+		\item False positive (Middle part of the image)
+		\end{itemize}
+		\end{alertblock}					
+
+		\begin{block}{Reason?}
+		Bad rotation velocity data (IMU)
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Vehicle on a roundabout}
+		%image
+		\begin{exampleblock}{Positive}
+		\begin{itemize}
+		\item Very dense pixels
+		\end{itemize}
+		\end{exampleblock}
+						
+		\begin{alertblock}{Negative}
+		\begin{itemize}
+		\item False positive 
+		\end{itemize}
+		\end{alertblock}					
+
+		\begin{block}{Reason?}
+		Bad rotation velocity data (IMU)
+		\end{block}			
+	\end{frame}
+	\begin{frame}
+		\frametitle{Complete static scenario}
+		%image
+		\begin{exampleblock}{Positive}
+		\begin{itemize}
+		\item Only few sparse pixels
+		\end{itemize}
+		\end{exampleblock}
+						
+		\begin{alertblock}{Negative}
+		\begin{itemize}
+		\item False positive
+		\end{itemize}
+		\end{alertblock}					
+
+		\begin{block}{Reason?}
+		Bad rotation velocity data (IMU)
+		\end{block}			
+		
+	\end{frame}			
+
+	\begin{frame}
+		\frametitle{Conclusion - Pros and Cons}
 		
 		\begin{block}{Pros}
 			\begin{itemize}
@@ -329,18 +467,12 @@
 		
 		\begin{block}{Cons}
 			\begin{itemize}
-			\item Need to be filtered afterall to reduce the noise
-			\item Directly affect by the quality of the data from the IMU
+			\item Need to be filtered after all to reduce the noise
+			\item Sensible to IMU data precision
 			\end{itemize}
 		\end{block}
 		
 	\end{frame}
-
-\subsection{algorithm}
-
-\section{Experiments}
-
-\section{Results}
 
 \begin{thebibliography}{9}
 
