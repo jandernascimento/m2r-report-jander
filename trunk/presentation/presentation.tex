@@ -217,7 +217,7 @@
 			\end{block}
 			
 			\begin{quotation}
-				Providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
+				... providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
 			\end{quotation}			
 			
 			\begin{figure}[h]
@@ -234,7 +234,7 @@
 				Detection and Tracking of Moving Objects
 			\end{block}
 			\begin{quotation}
-				being aware of dynamic entities around, tracking them, and knowing their future position\cite{DBLP:journals/inffus/VuBA11}
+				... being aware of dynamic entities around, tracking them, and knowing their future position \cite{DBLP:journals/inffus/VuBA11}
 			\end{quotation}				
 			\begin{figure}[h]
 				\center
@@ -441,82 +441,119 @@
 
 	\begin{frame}
 		\frametitle{Two vehicles, low speed}
-		%image
-		\begin{exampleblock}{Positive}
-		\begin{itemize}
-		\item Visibility
-		\end{itemize}
-		\end{exampleblock}
-						
-		\begin{alertblock}{Negative}
-		\begin{itemize}
-		\item False positive (Bottom-right side)
-		\end{itemize}
-		\end{alertblock}					
-
-		\begin{block}{Reason?}
-		Bad rotation velocity data (IMU)
-		\end{block}
 		
+		\begin{columns}[t]
+			\begin{column}[t]{5cm}
+				\begin{exampleblock}{Positive}
+				\begin{itemize}
+				\item Visibility
+				\end{itemize}
+				\end{exampleblock}
+								
+				\begin{alertblock}{Negative}
+				\begin{itemize}
+				\item False positive (Bottom-right side)
+				\end{itemize}
+				\end{alertblock}					
+				
+				\begin{block}{Reason?}
+				Bad rotation velocity data (IMU)
+				\end{block}
+			\end{column}
+			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenetwocars}
+				\end{figure}
+			\end{column}
+		\end{columns}		
+
 	\end{frame}
 	\begin{frame}
 		\frametitle{Two vehicles, at high speed}
-		%image
-		\begin{exampleblock}{Positive}
-		\begin{itemize}
-		\item Good results at high speed (when its most needed)
-		\end{itemize}
-		\end{exampleblock}
-						
-		\begin{alertblock}{Negative}
-		\begin{itemize}
-		\item False positive (Middle part of the image)
-		\end{itemize}
-		\end{alertblock}					
+		\begin{columns}[t]
+			\begin{column}[t]{5cm}
+				\begin{exampleblock}{Positive}
+				\begin{itemize}
+				\item Good results at high speed (when its most needed)
+				\end{itemize}
+				\end{exampleblock}
+								
+				\begin{alertblock}{Negative}
+				\begin{itemize}
+				\item False positive (Middle part of the image)
+				\end{itemize}
+				\end{alertblock}					
+		
+				\begin{block}{Reason?}
+				Bad rotation velocity data (IMU)
+				\end{block}		
+			\end{column}
+			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarshighway}
+				\end{figure}
+			\end{column}
+		\end{columns}		
 
-		\begin{block}{Reason?}
-		Bad rotation velocity data (IMU)
-		\end{block}		
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{Vehicle on a roundabout}
-		%image
-		\begin{exampleblock}{Positive}
-		\begin{itemize}
-		\item Very dense pixels
-		\end{itemize}
-		\end{exampleblock}
-						
-		\begin{alertblock}{Negative}
-		\begin{itemize}
-		\item False positive 
-		\end{itemize}
-		\end{alertblock}					
-
-		\begin{block}{Reason?}
-		Bad rotation velocity data (IMU)
-		\end{block}			
+		\begin{columns}[t]
+			\begin{column}[t]{5cm}
+				\begin{exampleblock}{Positive}
+				\begin{itemize}
+				\item Very dense pixels
+				\end{itemize}
+				\end{exampleblock}
+								
+				\begin{alertblock}{Negative}
+				\begin{itemize}
+				\item False positive 
+				\end{itemize}
+				\end{alertblock}					
+				\begin{block}{Reason?}
+				Bad rotation velocity data (IMU)
+				\end{block}			
+			\end{column}
+			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarrondepoint}
+				\end{figure}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	\begin{frame}
 		\frametitle{Complete static scenario}
-		%image
-		\begin{exampleblock}{Positive}
-		\begin{itemize}
-		\item Only few sparse pixels
-		\end{itemize}
-		\end{exampleblock}
-						
-		\begin{alertblock}{Negative}
-		\begin{itemize}
-		\item False positive
-		\end{itemize}
-		\end{alertblock}					
-
-		\begin{block}{Reason?}
-		Bad rotation velocity data (IMU)
-		\end{block}			
 		
+		\begin{columns}[t]
+			\begin{column}[t]{5cm}
+				\begin{exampleblock}{Positive}
+				\begin{itemize}
+				\item Only few sparse pixels
+				\end{itemize}
+				\end{exampleblock}
+								
+				\begin{alertblock}{Negative}
+				\begin{itemize}
+				\item False positive
+				\end{itemize}
+				\end{alertblock}					
+		
+				\begin{block}{Reason?}
+				Bad rotation velocity data (IMU)
+				\end{block}					
+			\end{column}
+			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenestatic}
+				\end{figure}
+			\end{column}
+		\end{columns}
 	\end{frame}			
 
 	\begin{frame}
@@ -531,8 +568,8 @@
 		
 		\begin{block}{Cons}
 			\begin{itemize}
-			\item Need to be filtered after all to reduce the noise
-			\item Sensible to IMU data precision
+			\item need to be filtered after all to reduce the noise
+			\item sensible to IMU data precision
 			\end{itemize}
 		\end{block}
 		
@@ -566,9 +603,10 @@
 	\end{alertblock}
 	\end{frame} 	
  	
-\bibliographystyle{abbrvnat}
-\bibliography{../report}{} 	
- 	
+\bibliographystyle{apalike}
+%abbrvnat
+%alpha
 
+\bibliography{../report}{} 	
 
 \end{document}
