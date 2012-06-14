@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="Nouveau document 1">
+   sodipodi:docname="fig:nao:config.svg">
   <defs
      id="defs4">
     <marker
@@ -66,6 +66,20 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective2926-6"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective2973"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -74,9 +88,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="405.1108"
-     inkscape:cy="635.49557"
+     inkscape:zoom="1.2948916"
+     inkscape:cx="412.19964"
+     inkscape:cy="783.57143"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -93,7 +107,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -108,75 +122,103 @@
        height="300"
        width="299"
        xlink:href="file:///home/emotion/botelhod/project/m2r-report-jander/presentation/img/fig:nao.jpg" />
+    <rect
+       style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:2.49682426;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2890"
+       width="121.51574"
+       height="71.942528"
+       x="30.734434"
+       y="123.42072" />
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="522.05939"
-       y="213.88158"
-       id="text2914"><tspan
+       x="58.555222"
+       y="179.15504"
+       id="text2953"><tspan
          sodipodi:role="line"
-         id="tspan2916"
-         x="522.05939"
-         y="213.88158">Sensor for the Joint</tspan></text>
+         id="tspan2955"
+         x="58.555222"
+         y="179.15504">Camera</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000080;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="43.972626"
+       y="110.19936"
+       id="text2953-6"><tspan
+         sodipodi:role="line"
+         id="tspan2955-9"
+         x="43.972626"
+         y="110.19936">Exteroceptive</tspan></text>
+    <rect
+       style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:2.98610544;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2890-0"
+       width="180.25659"
+       height="69.368362"
+       x="541.9165"
+       y="130.36131" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000080;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="592.13385"
+       y="114.46309"
+       id="text2953-5"><tspan
+         sodipodi:role="line"
+         id="tspan2955-8"
+         x="592.13385"
+         y="114.46309">Proprioceptive</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="129.62753"
-       y="130.50685"
+       x="55.490055"
+       y="147.67482"
        id="text2914-9"><tspan
          sodipodi:role="line"
          id="tspan2916-1"
-         x="129.62753"
-         y="130.50685">Microfone</tspan></text>
-    <g
-       id="g2988"
-       transform="translate(-278.57143,-137.14286)">
-      <rect
-         y="194.69096"
-         x="308.30356"
-         height="47.690144"
-         width="121.97585"
-         id="rect2890"
-         style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:2.03671432;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         id="text2953"
-         y="222.39835"
-         x="320.59229"
-         style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           y="222.39835"
-           x="320.59229"
-           id="tspan2955"
-           sodipodi:role="line">Exteroceptive</tspan></text>
-    </g>
-    <g
-       id="g2993"
-       transform="translate(275.71429,-75.714286)">
-      <rect
-         y="205.68709"
-         x="285.89264"
-         height="44.66061"
-         width="153.23204"
-         id="rect2890-0"
-         style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:2.20910311;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         id="text2953-5"
-         y="231.8797"
-         x="311.78598"
-         style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           y="231.8797"
-           x="311.78598"
-           id="tspan2955-8"
-           sodipodi:role="line">Proprioceptive</tspan></text>
-    </g>
+         x="55.490055"
+         y="147.67482">Microfone</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="571.48438"
+       y="184.53548"
+       id="text2914"><tspan
+         sodipodi:role="line"
+         id="tspan2916"
+         x="571.48438"
+         y="184.53548">Sensor for the Joint</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="564.90186"
+       y="151.95641"
+       id="text2914-0"><tspan
+         sodipodi:role="line"
+         id="tspan2916-3"
+         x="564.90186"
+         y="151.95641">Battery status sensor</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2.584,2.584;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
-       d="M 157.14286,83.790754 301.42857,128.07647"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="M 133.60191,144.17808 331.30185,110.97067"
+       id="path2992" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="m 122.01793,174.29643 127.42379,-23.16796 94.98864,-23.94023"
+       id="path2994" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="m 251.75852,150.35621 86.49372,-1.54454"
+       id="path2996" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="M 560.66467,145.72261 373.00418,222.17689"
        id="path2998" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.584;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2.584,2.584;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
-       d="M 551.42857,146.6479 437.14286,209.50504"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="M 566.07053,178.93002 311.22295,314.07647"
        id="path3000" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="M 468.76509,229.89954 401.578,310.21514"
+       id="path3002" />
   </g>
 </svg>
