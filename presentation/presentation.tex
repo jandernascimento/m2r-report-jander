@@ -53,7 +53,7 @@
 \subsection{Intelligent Transportation Systems}
 
 	\begin{frame}
-		\frametitle{Overview}
+		\frametitle{ITS overview}
 	
 		\begin{figure}[h]
 			\center
@@ -64,13 +64,13 @@
 
 	\begin{frame}
 		\frametitle{ADAS}
-		
-		Advanced Drive Assistance Systems		
-		
+		\begin{exampleblock}{Stands for}	
+			Advanced Driver Assistance Systems		
+		\end{exampleblock}				
 		\begin{block}{Canonical definition}
 			Cope with vehicle handling tasks
 		\end{block}		
-				
+
 		\begin{block}{Goal}
 			\begin{itemize}
 			\item Reduce the risk of collisions
@@ -125,7 +125,6 @@
 
 	\begin{frame}
 		\frametitle{technology used}
-
 		\begin{itemize}
 		\item passive
 			\begin{itemize}
@@ -137,14 +136,13 @@
 				\item Receives a physical info and is able to deduce the measurand
 				\item e.g. camera, microfone, etc. 
 			\end{itemize}		
-		
 		\end{itemize}		
 		
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{What can we said about them?}
-			
+
 		\begin{itemize}
 			\item Imprecision
 			\item Uncertainty
@@ -164,8 +162,20 @@
 		\begin{figure}[h]
 			\center
 			\includegraphics[scale=0.3]{img/fig:perception:ex1}
-		 \end{figure}
+		\end{figure}
 		 
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Perception frequent terms}
+
+		\begin{itemize}
+			\item Mapping
+			\item Localization
+			\item Detection
+			\item Tracking
+		\end{itemize}				
+
 	\end{frame}
 
 	\begin{frame}
@@ -202,9 +212,13 @@
 		\begin{frame}
 			\frametitle{SLAM}
 			
-			\begin{block}{Definition}				
+			\begin{block}{Stands for}				
 				Simultaneous Localization and Mapping
 			\end{block}
+			
+			\begin{quotation}
+				Providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
+			\end{quotation}			
 			
 			\begin{figure}[h]
 				\center
@@ -216,9 +230,12 @@
 	\subsection{DATMO}
 		\begin{frame}
 			\frametitle{DATMO}
-			\begin{block}{Definition}				
+			\begin{block}{Stands for}				
 				Detection and Tracking of Moving Objects
 			\end{block}
+			\begin{quotation}
+				being aware of dynamic entities around, tracking them, and knowing their future position\cite{DBLP:journals/inffus/VuBA11}
+			\end{quotation}				
 			\begin{figure}[h]
 				\center
 				\includegraphics[scale=0.8]{../img/fig:datmo:process}
@@ -229,64 +246,69 @@
 
 \section{State of the art}
 
-\subsection{Mono-vision}
-
 	\begin{frame}
-		\frametitle{Mono-vision}
+		\frametitle{State of the art}
+		
+		\begin{block}{Mono-vision}
+			\begin{itemize}
+			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" by Migliore et al.
+			\item Track MO and Localize with mono-vision (MonoSlam)
+			\item Concept
+				\begin{itemize}			
+				\item Uses a "shadow filter" to classify static features and localize
+				\item Initialization features (absence of odometer)
+				\item EKF for tracking, with two models
+				\item Classifier based on SPRT, optical flow to separate D and S				
+				\end{itemize}		
+			\item Evaluation results
+				\begin{itemize}			
+				\item problematic with small displacements
+				\end{itemize}	
+			\end{itemize}		
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{State of the art}	
+		\begin{block}{Stereo-vision}
+			\begin{itemize}
+			\item "Mapping in dynamic environments using stereo vision" by Henning Lategahn et al.
+			\item Separate static and dynamic parts
+			\item Concept
+				\begin{itemize}			
+				\item Complement occupancy grid + tracking
+				\item Disparity image to find the contour
+				\item EKF for tracking, with two models
+				\item Classifier based on SPRT, optical flow to separate D and S				
+				\end{itemize}		
+			\item Evaluation results
+				\begin{itemize}			
+				\item min $2$ max $19$ frames
+				\end{itemize}							
+			\end{itemize}				
+		\end{block}
 	\end{frame}
 
-\subsection{Stereo-vision}
-
 	\begin{frame}
-		\frametitle{Stereo-vision}
-	\end{frame}
-
-\subsection{Laser scanner}
-
-	\begin{frame}
-		\frametitle{Laser scanner}
+		\frametitle{State of the art}	
+		\begin{block}{Laser scanner, Radar and IMU}
+			\begin{itemize}
+			\item "Grid-based localization and local mapping with moving object detection and tracking" by Trung-Dung Vu et al.
+			\item Separate static and dynamic parts
+			\item Concept
+				\begin{itemize}			
+				\item MHT + IMM
+				\item 
+				\end{itemize}		
+			\item Evaluation results
+				\begin{itemize}			
+				\item min $2$ max $19$ frames
+				\end{itemize}				
+			\end{itemize}				
+		\end{block}
 	\end{frame}
 
 \section{Motion Detection}
-
-\subsection{preprocessing}
-
-	\begin{frame}
-		\frametitle{Platform}	
-		 \begin{columns}[t]
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior}
-		  \end{figure}
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior:overlap}
-		  \end{figure}   
-		  \end{column}
-		 \end{columns} 	
-	
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Platform}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.4]{../img/fig:demonstrator:lateral}
-		\end{figure}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Input preparation}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.18]{../img/fig:motion:framework}
-		\end{figure}
-	
-	\end{frame}
 
 	\begin{frame}
 		\frametitle{Solution overview}
@@ -308,24 +330,38 @@
 		\end{alertblock}
 	\end{frame}
 
+\subsection{preprocessing}
+
 	\begin{frame}
-		\frametitle{Solution overview}
+		\frametitle{Experimental Platform}
 		\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.27]{../img/fig:motion:framework:motionmodule}
-		 \end{figure}
-		
-	\end{frame}		
-	
-
-\subsection{algorithm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experiments}
+			\includegraphics[scale=0.4]{../img/fig:demonstrator:lateral}
+		\end{figure}
+	\end{frame}
 
 	\begin{frame}
-		\frametitle{Platform}
+		\frametitle{Experimental Platform}	
+		 \begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior}
+		  \end{figure}
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior:overlap}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns} 	
+	
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Experimental Platform}
 		\begin{figure}[h]
 			\center
 			\includegraphics[scale=0.8]{../img/testbed:car}
@@ -345,9 +381,37 @@
 			\includegraphics[scale=0.26]{../img/testbed:ibeo}
 		  \end{figure}   
 		  \end{column}
-		 \end{columns} 			
-		 
+		 \end{columns}		 
 	\end{frame}	
+
+	\begin{frame}
+		\frametitle{Input preparation}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.18]{../img/fig:motion:framework}
+		\end{figure}
+	
+		*Linear Opinion Pools \cite{hal-00671211}
+	
+	\end{frame}
+
+
+
+	\begin{frame}
+		\frametitle{Solution overview}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.27]{../img/fig:motion:framework:motionmodule}
+		 \end{figure}
+		
+	\end{frame}		
+	
+
+\subsection{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments}
 
 	\begin{frame}
 		\frametitle{Use cases}
@@ -474,6 +538,7 @@
 		
 	\end{frame}
 
+\bibliographystyle{alpha}
 \begin{thebibliography}{9}
 
 	\begin{frame}{References}
@@ -482,6 +547,17 @@
 			\emph{Autonomous Mobile Robots: Control, planning, and architecture}.
 			1991.
 			
+		\bibitem{DBLP:journals/inffus/VuBA11}
+			Trung-Dung Vu, Julien Burlet, Olivier Aycard
+			\emph{Grid-based localization and local mapping with moving object
+               detection and tracking}.
+			2011.			
+
+		\bibitem{hal-00671211}
+			Adarve, Juan David and Perrollaz, Mathias and Makris, Alexandros and Laugier, Christian
+			\emph{Computing Occupancy Grids from Multiple Sensors using Linear Opinion Pools}.
+			2012.
+
  	\end{frame}
  	
 	\begin{frame}{}
@@ -492,6 +568,5 @@
 	\end{frame} 	
  	
 \end{thebibliography}
- 	
 
 \end{document}
