@@ -25,14 +25,9 @@
 \section{Problem}
 
 	\begin{frame}
-		\frametitle{Problem overview}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.1]{img/fig:street:urban}
-		 \end{figure}
-		 
-		\begin{block}{Problem}
-			 Being able to identify the dynamic parts of the environment
+		\frametitle{BOF overview}
+		\begin{block}{Goal}
+			 Provide only moving cells to BOF
 		\end{block}
 		 
 		Constrains
@@ -41,21 +36,17 @@
 			\item using a laser scanner (sensor)
 			\item As fast as possible (online)
 		\end{itemize}
+		
+		Expectation
+		\begin{itemize}
+			\item Improve the BOF results
+			\item Improve the performance (adapting the BOF)
+		\end{itemize}
 
 	\end{frame}
 
 
 \section{Introduction}
-
-\subsection{Intelligent Transportation Systems}
-
-	%\begin{frame}
-	%	\frametitle{ITS overview}
-	%	\begin{figure}[h]
-	%		\center
-	%		\includegraphics[scale=0.3]{img/fig:its:division}
-	%	 \end{figure}		
-	%\end{frame}
 
 	\begin{frame}
 		\frametitle{ADAS}
@@ -65,7 +56,6 @@
 		\begin{block}{Canonical definition}
 			Cope with vehicle handling tasks
 		\end{block}		
-
 		\begin{block}{Goal}
 			\begin{itemize}
 			\item Reduce the risk of collisions
@@ -73,124 +63,30 @@
 			\item Increase the confort
 			\end{itemize}
 		\end{block}
-		
-	\end{frame}
-
-\subsection{Sensors}
-
-	\begin{frame}
-		\frametitle{Sensor overview}
-	
-		\begin{block}{Canonical definition}
-			Translate physical \textit{stimuli} in electronic information
-		\end{block}
-	
-		Classified according to?	
 		\begin{block}{Definition}
-			\begin{itemize}
-			\item measurand observed
-			\item subject's localization
-			\item technology used
-			\end{itemize}
-		\end{block}			
-	
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Measurand observed}
-		Which kind of physical \textit{stimulus} can be observed?
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.4]{../img/fig:sensors}
-		 \end{figure}				
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{subject's localization}
-		What we are observing belongs to the moving robot?
-		\begin{itemize}
-		\item Yes! proprioceptive
-		\item No! exteroceptive
-		\end{itemize}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.51]{img/fig:nao:config}
-		 \end{figure}		
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{technology used}
-		\begin{itemize}
-		\item passive
-			\begin{itemize}
-				\item Receives a physical info and is able to deduce the measurand
-				\item e.g. camera, microphone, etc. 
-			\end{itemize}			
-		\item active
-			\begin{itemize}
-				\item Emits energy to the environment so the measurand can be obtained
-				\item e.g. range sensor, radars, etc.
-			\end{itemize}			
-		\end{itemize}		
-		
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Sensors - their limitations}
-
-		\begin{itemize}
-			\item Imprecision
-			\item Uncertainty
-			\item Incomplete data
-		\end{itemize}		
-		
+				The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
+		\end{block}
 	\end{frame}
 
 \section{Perception process}
 
-	\begin{frame}
-		\frametitle{Perception overview}
-		\begin{block}{Definition}
-			The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
-		\end{block}	
-		
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.3]{img/fig:perception:ex1}
-		\end{figure}
-		 
-	\end{frame}
 
 	\begin{frame}
-		\frametitle{Perception frequent terms}
-
-		\begin{itemize}
-			\item Mapping
-			\item Localization
-			\item Detection
-			\item Tracking
-		\end{itemize}				
-
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Grouping process in robotics}
-		
-		\begin{block}{Goal}		
-			Dependable informations are grouped in the same process.
-		\end{block}			
-		
-		\begin{exampleblock}{Process}		
-		
+		\frametitle{Grouping process in robotics}	
+		\begin{exampleblock}{SLAM}		
+			\begin{quotation}
+... providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
+			\end{quotation}
 			\begin{itemize}
 			\item Localization
 			\item Mapping
 			\end{itemize}			
-		
-			SLAM
 		\end{exampleblock}					
 				
-		\begin{exampleblock}{Process}		
+		\begin{exampleblock}{DATMO}		
+			\begin{quotation}
+			... being aware of dynamic entities around, tracking them, and knowing their future position \cite{DBLP:journals/inffus/VuBA11}
+			\end{quotation}				
 			\begin{itemize}
 			\item Moving objects
 				\begin{itemize}
@@ -198,44 +94,9 @@
 				\item Tracking
 				\end{itemize}			
 			\end{itemize}			
-			DATMO
 		\end{exampleblock}						
 				
 	\end{frame}
-
-	\subsection{SLAM}
-		\begin{frame}
-			\frametitle{SLAM}
-			
-			\begin{block}{Stands for}				
-				Simultaneous Localization and Mapping
-			\end{block}
-			
-			\begin{quotation}
-				... providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
-			\end{quotation}			
-			
-			\begin{figure}[h]
-				\center
-				\includegraphics[scale=0.8]{../img/fig:perception:slam}
-			 \end{figure}			
-			
-		\end{frame}
-	
-	\subsection{DATMO}
-		\begin{frame}
-			\frametitle{DATMO}
-			\begin{block}{Stands for}				
-				Detection and Tracking of Moving Objects
-			\end{block}
-			\begin{quotation}
-				... being aware of dynamic entities around, tracking them, and knowing their future position \cite{DBLP:journals/inffus/VuBA11}
-			\end{quotation}				
-			\begin{figure}[h]
-				\center
-				\includegraphics[scale=0.8]{../img/fig:datmo:process}
-			 \end{figure}		
-		\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -244,60 +105,22 @@
 	\begin{frame}
 		\frametitle{State of the art}
 		
-		\begin{block}{Mono-vision}
+		\begin{block}{Other static/dynamic classification}
 			\begin{itemize}
-			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" by Migliore et al. \cite{Migliore_2009_ICRA}
-			\item Track MO and Localize with mono-vision (MonoSlam)
-			\item Concept
+			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" \cite{Migliore_2009_ICRA}
 				\begin{itemize}			
-				\item Uses a "shadow filter" to classify static features and localize
-				\item Initialization features (absence of odometer)
 				\item EKF for tracking, with two models				
 				\end{itemize}		
-			\item Evaluation results
+			\item "Mapping in dynamic environments using stereo vision" \cite{DBLP:conf/ivs/LategahnGHKE11}
+				\begin{itemize}
+				\item Disparity image to find the contour
+				\item Classifier based on SPRT				
+				\end{itemize}		
+			\item "Grid-based localization and local mapping with moving object detection and tracking" \cite{Vu201158}
 				\begin{itemize}			
-				\item problematic with small displacements
+				\item MHT + IMM			
 				\end{itemize}	
 			\end{itemize}		
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{State of the art}	
-		\begin{block}{Stereo-vision}
-			\begin{itemize}
-			\item "Mapping in dynamic environments using stereo vision" by Henning Lategahn et al. \cite{DBLP:conf/ivs/LategahnGHKE11}
-			\item Separate static and dynamic parts
-			\item Concept
-				\begin{itemize}			
-				\item Complement occupancy grid + tracking
-				\item Disparity image to find the contour
-				%\item EKF for tracking, with two models
-				\item Classifier based on SPRT, optical flow to separate D and S				
-				\end{itemize}		
-			\item Evaluation results
-				\begin{itemize}			
-				\item min $2$ max $19$ frames
-				\end{itemize}							
-			\end{itemize}				
-		\end{block}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{State of the art}	
-		\begin{block}{Laser scanner, Radar and IMU}
-			\begin{itemize}
-			\item "Grid-based localization and local mapping with moving object detection and tracking" by Trung-Dung Vu et al. 
-			\item Separate static and dynamic parts
-			\item Concept
-				\begin{itemize}			
-				\item MHT + IMM
-				\end{itemize}		
-			\item Evaluation results
-				\begin{itemize}			
-				\item Miss detected on 8\% of the cases
-				\end{itemize}				
-			\end{itemize}				
 		\end{block}
 	\end{frame}
 
@@ -329,6 +152,30 @@
 		\frametitle{Experimental Platform}
 		\begin{figure}[h]
 			\center
+			\includegraphics[scale=0.8]{../img/testbed:car}
+		  \end{figure}		
+		
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.7]{../img/testbed:trunc}
+		  \end{figure}
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.26]{../img/testbed:ibeo}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns}		 
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Experimental Platform}
+		\begin{figure}[h]
+			\center
 			\includegraphics[scale=0.4]{../img/fig:demonstrator:lateral}
 		\end{figure}
 	\end{frame}
@@ -353,29 +200,7 @@
 	
 	\end{frame}
 
-	\begin{frame}
-		\frametitle{Experimental Platform}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.8]{../img/testbed:car}
-		  \end{figure}		
-		
-		  \begin{columns}[t]
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.7]{../img/testbed:trunc}
-		  \end{figure}
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.26]{../img/testbed:ibeo}
-		  \end{figure}   
-		  \end{column}
-		 \end{columns}		 
-	\end{frame}	
+	
 
 	\begin{frame}
 		\frametitle{Input preparation}
@@ -437,13 +262,6 @@
 				\item Visibility
 				\end{itemize}
 				\end{exampleblock}
-								
-				\begin{alertblock}{Negative}
-				\begin{itemize}
-				\item False positive (Bottom-right side)
-				\end{itemize}
-				\end{alertblock}					
-				
 				\begin{block}{Reason?}
 				Bad rotation velocity data (IMU)
 				\end{block}
@@ -466,13 +284,6 @@
 				\item Good results at high speed (when its most needed)
 				\end{itemize}
 				\end{exampleblock}
-								
-				\begin{alertblock}{Negative}
-				\begin{itemize}
-				\item False positive (Middle part of the image)
-				\end{itemize}
-				\end{alertblock}					
-			
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -493,12 +304,6 @@
 				\item Very dense pixels
 				\end{itemize}
 				\end{exampleblock}
-								
-				\begin{alertblock}{Negative}
-				\begin{itemize}
-				\item False positive 
-				\end{itemize}
-				\end{alertblock}	
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -517,13 +322,7 @@
 				\begin{itemize}
 				\item Only few sparse pixels
 				\end{itemize}
-				\end{exampleblock}
-								
-				\begin{alertblock}{Negative}
-				\begin{itemize}
-				\item False positive
-				\end{itemize}
-				\end{alertblock}			
+				\end{exampleblock}		
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -548,9 +347,9 @@
 	\end{frame}	
 
 	\begin{frame}
-		\frametitle{Conclusion - Pros and Cons}
+		\frametitle{Conclusion}
 		
-		\begin{block}{Pros}
+		\begin{block}{Benefits}
 			\begin{itemize}
 			\item easy to integrate with existing solutions
 			\item faster way to classify
@@ -558,10 +357,10 @@
 			\end{itemize}
 		\end{block}		
 		
-		\begin{block}{Cons}
+		\begin{block}{Future work}
 			\begin{itemize}
-			\item need to be filtered after all to reduce the noise
-			\item sensible to IMU data precision
+			\item Filtered after all to reduce the noise
+			\item Solve the IMU data precision dependency
 			\end{itemize}
 		\end{block}
 		
