@@ -42,9 +42,6 @@
 			\item As fast as possible (online)
 		\end{itemize}
 
-		\begin{alertblock}{Not our goal}
-			solve DATMO and SLAM
-		\end{alertblock}
 	\end{frame}
 
 
@@ -126,20 +123,20 @@
 		\begin{itemize}
 		\item passive
 			\begin{itemize}
-				\item Emits energy to the enviroment so the measurand can be obtained
-				\item e.g. range sensor, radars, etc.
-			\end{itemize}		
+				\item Receives a physical info and is able to deduce the measurand
+				\item e.g. camera, microphone, etc. 
+			\end{itemize}			
 		\item active
 			\begin{itemize}
-				\item Receives a physical info and is able to deduce the measurand
-				\item e.g. camera, microfone, etc. 
-			\end{itemize}		
+				\item Emits energy to the environment so the measurand can be obtained
+				\item e.g. range sensor, radars, etc.
+			\end{itemize}			
 		\end{itemize}		
 		
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{What can be said about them?}
+		\frametitle{Sensors - their limitations}
 
 		\begin{itemize}
 			\item Imprecision
@@ -249,14 +246,13 @@
 		
 		\begin{block}{Mono-vision}
 			\begin{itemize}
-			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" by Migliore et al.
+			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" by Migliore et al. \cite{Migliore_2009_ICRA}
 			\item Track MO and Localize with mono-vision (MonoSlam)
 			\item Concept
 				\begin{itemize}			
 				\item Uses a "shadow filter" to classify static features and localize
 				\item Initialization features (absence of odometer)
-				\item EKF for tracking, with two models
-				\item Classifier based on SPRT, optical flow to separate D and S				
+				\item EKF for tracking, with two models				
 				\end{itemize}		
 			\item Evaluation results
 				\begin{itemize}			
@@ -270,13 +266,13 @@
 		\frametitle{State of the art}	
 		\begin{block}{Stereo-vision}
 			\begin{itemize}
-			\item "Mapping in dynamic environments using stereo vision" by Henning Lategahn et al.
+			\item "Mapping in dynamic environments using stereo vision" by Henning Lategahn et al. \cite{DBLP:conf/ivs/LategahnGHKE11}
 			\item Separate static and dynamic parts
 			\item Concept
 				\begin{itemize}			
 				\item Complement occupancy grid + tracking
 				\item Disparity image to find the contour
-				\item EKF for tracking, with two models
+				%\item EKF for tracking, with two models
 				\item Classifier based on SPRT, optical flow to separate D and S				
 				\end{itemize}		
 			\item Evaluation results
@@ -291,16 +287,15 @@
 		\frametitle{State of the art}	
 		\begin{block}{Laser scanner, Radar and IMU}
 			\begin{itemize}
-			\item "Grid-based localization and local mapping with moving object detection and tracking" by Trung-Dung Vu et al.
+			\item "Grid-based localization and local mapping with moving object detection and tracking" by Trung-Dung Vu et al. 
 			\item Separate static and dynamic parts
 			\item Concept
 				\begin{itemize}			
 				\item MHT + IMM
-				\item 
 				\end{itemize}		
 			\item Evaluation results
 				\begin{itemize}			
-				\item min $2$ max $19$ frames
+				\item Miss detected on 8\% of the cases
 				\end{itemize}				
 			\end{itemize}				
 		\end{block}
@@ -388,18 +383,26 @@
 			\center
 			\includegraphics[scale=0.18]{../img/fig:motion:framework}
 		\end{figure}
-	
+		
 		*Linear Opinion Pools \cite{ADARVE-2012-671211}
 	
 	\end{frame}
 
+	\begin{frame}
+		\frametitle{Input preparation}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.2]{../img/fig:motion:algorithm:nonstatic:01}
+		\end{figure}
+	
+	\end{frame}
 
 
 	\begin{frame}
 		\frametitle{Solution overview}
 		\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.27]{../img/fig:motion:framework:motionmodule}
+			\includegraphics[scale=0.30]{../img/fig:motion:framework:motionmodule}
 		 \end{figure}
 		
 	\end{frame}		
@@ -469,10 +472,7 @@
 				\item False positive (Middle part of the image)
 				\end{itemize}
 				\end{alertblock}					
-		
-				\begin{block}{Reason?}
-				Bad rotation velocity data (IMU)
-				\end{block}		
+			
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -498,10 +498,7 @@
 				\begin{itemize}
 				\item False positive 
 				\end{itemize}
-				\end{alertblock}					
-				\begin{block}{Reason?}
-				Bad rotation velocity data (IMU)
-				\end{block}			
+				\end{alertblock}	
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -526,11 +523,7 @@
 				\begin{itemize}
 				\item False positive
 				\end{itemize}
-				\end{alertblock}					
-		
-				\begin{block}{Reason?}
-				Bad rotation velocity data (IMU)
-				\end{block}					
+				\end{alertblock}			
 			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
@@ -595,7 +588,7 @@
 % 	\end{frame}
 %	\end{thebibliography}
 
-	\begin{frame}{This is the end..}
+	\begin{frame}{That is it..}
 	\begin{alertblock}{}
 		\center
 		Questions?
