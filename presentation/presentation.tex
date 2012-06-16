@@ -1,7 +1,8 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{multimedia}
 \usepackage[final]{pdfpages}
-\usetheme{Goettingen}%Warsaw}
+\usetheme{Dresden}%Goettingen}%Warsaw}
 \usecolortheme{lily}
 \setbeamertemplate{footline}[page number]
 \title[Fast classification]{Efficient dynamic and static environment classification in Occupancy Grid framework}
@@ -22,84 +23,105 @@
   \end{frame}
 }
 
-\section{Problem}
+	\section{Introduction}
+	
+	\begin{frame}
+		\frametitle{ADAS/ITS}
+		
+		\begin{columns}[t]
+		  \begin{column}{5cm}
+			\begin{exampleblock}{Stands for}	
+				Advanced Driver Assistance Systems, cope with vehicle handling tasks
+			\end{exampleblock}		
+			\begin{block}{Goal}
+				\begin{itemize}
+				\item Reduce the risk of collisions
+				\item Reduce the driver overload
+				\item Increase the confort
+				\end{itemize}
+			\end{block}
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.15]{img/fig:street:urban}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns}
+
+	\end{frame}	
 
 	\begin{frame}
-		\frametitle{BOF overview}
+		\frametitle{Perception}	
+		
+		\begin{columns}[t]
+		  \begin{column}{6cm}
+
+			\begin{block}{Perception}
+					The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
+			\end{block}		
+	
+			\begin{block}{Risk estimation}
+					Evaluate the state space and assess the safety of the movement
+			\end{block}				  
+		  
+		  \end{column}
+		  
+		  \begin{column}{6cm}
+			\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.23]{../img/fig:sensors:roles}
+			\end{figure}
+		  \end{column}
+		 \end{columns}		
+		
+
+		
+		%\begin{exampleblock}{SLAM}		
+		%	\begin{quotation}
+%... providing the vehicle with a map of static parts of the environment as well as its location in the map %\cite{DBLP:journals/inffus/VuBA11}
+%			\end{quotation}
+%		\end{exampleblock}					
+				
+%		\begin{exampleblock}{DATMO}		
+%			\begin{quotation}
+%			... being aware of dynamic entities around, tracking them, and knowing their future position \cite{DBLP:journals/inffus/VuBA11}
+%			\end{quotation}				
+%		\end{exampleblock}						
+				
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Problem statement - BOF overview}
 		\begin{block}{Goal}
-			 Provide only moving cells to BOF
+			 Improve results of the BOF
 		\end{block}
-		 
-		Constrains
+		Risk estimation with constraints:
 		\begin{itemize}
 			\item In a car (platform)
 			\item using a laser scanner (sensor)
 			\item As fast as possible (online)
 		\end{itemize}
-		
-		Expectation
-		\begin{itemize}
-			\item Improve the BOF results
-			\item Improve the performance (adapting the BOF)
-		\end{itemize}
-
 	\end{frame}
-
-
-\section{Introduction}
 
 	\begin{frame}
-		\frametitle{ADAS}
-		\begin{exampleblock}{Stands for}	
-			Advanced Driver Assistance Systems		
-		\end{exampleblock}				
-		\begin{block}{Canonical definition}
-			Cope with vehicle handling tasks
-		\end{block}		
-		\begin{block}{Goal}
-			\begin{itemize}
-			\item Reduce the risk of collisions
-			\item Reduce the driver overload
-			\item Increase the confort
-			\end{itemize}
-		\end{block}
-		\begin{block}{Definition}
-				The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
-		\end{block}
+		\frametitle{Problem statement}
+		Risk estimation
+		Occupancy grid	
 	\end{frame}
-
-\section{Perception process}
-
-
+	
 	\begin{frame}
-		\frametitle{Grouping process in robotics}	
-		\begin{exampleblock}{SLAM}		
-			\begin{quotation}
-... providing the vehicle with a map of static parts of the environment as well as its location in the map \cite{DBLP:journals/inffus/VuBA11}
-			\end{quotation}
-			\begin{itemize}
-			\item Localization
-			\item Mapping
-			\end{itemize}			
-		\end{exampleblock}					
-				
-		\begin{exampleblock}{DATMO}		
-			\begin{quotation}
-			... being aware of dynamic entities around, tracking them, and knowing their future position \cite{DBLP:journals/inffus/VuBA11}
-			\end{quotation}				
-			\begin{itemize}
-			\item Moving objects
-				\begin{itemize}
-				\item Detection
-				\item Tracking
-				\end{itemize}			
-			\end{itemize}			
-		\end{exampleblock}						
-				
+		\frametitle{Behavior-based risk estimation}
+
+		Evaluate the risk based on the moving objects of the scene.
+
+		$<$image of a grid, with moving object extracted$>$
+
+		Extract moving objects from the grid.
+
 	\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{State of the art}
 
 	\begin{frame}
@@ -107,16 +129,16 @@
 		
 		\begin{block}{Other static/dynamic classification}
 			\begin{itemize}
-			\item "Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments" \cite{Migliore_2009_ICRA}
+			\item Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments \cite{Migliore_2009_ICRA}
 				\begin{itemize}			
 				\item EKF for tracking, with two models				
 				\end{itemize}		
-			\item "Mapping in dynamic environments using stereo vision" \cite{DBLP:conf/ivs/LategahnGHKE11}
+			\item Mapping in dynamic environments using stereo vision \cite{DBLP:conf/ivs/LategahnGHKE11}
 				\begin{itemize}
 				\item Disparity image to find the contour
 				\item Classifier based on SPRT				
 				\end{itemize}		
-			\item "Grid-based localization and local mapping with moving object detection and tracking" \cite{Vu201158}
+			\item Grid-based localization and local mapping with moving object detection and tracking \cite{Vu201158}
 				\begin{itemize}			
 				\item MHT + IMM			
 				\end{itemize}	
@@ -124,15 +146,17 @@
 		\end{block}
 	\end{frame}
 
-\section{Motion Detection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motion detection}
 
 	\begin{frame}
 		\frametitle{Solution overview}
 		\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.5]{img/fig:problem}
+			%\includegraphics[scale=0.5]{img/fig:problem}
+			\includegraphics[scale=0.6]{img/fig:motion:overview:01}
 		 \end{figure}
-		 
 		\begin{block}{Problem}
 			 Being able to identify the dynamic parts of the environment
 		\end{block}
@@ -142,18 +166,156 @@
 		\end{block}				 
 
 		\begin{alertblock}{Not our goal}
-			solve DATMO and SLAM
+			Solve DATMO/SLAM
 		\end{alertblock}
 	\end{frame}
 
 \subsection{preprocessing}
 
 	\begin{frame}
-		\frametitle{Experimental Platform}
+		\frametitle{Input preparation}
 		\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.8]{../img/testbed:car}
-		  \end{figure}		
+			\includegraphics[scale=0.18]{../img/fig:motion:framework}
+		\end{figure}
+		
+		*Linear Opinion Pools \cite{ADARVE-2012-671211} for fusion
+	
+	\end{frame}
+
+\subsection{Phase 1}
+
+	\begin{frame}
+		\frametitle{Finding correspondence between cells at different time steps}
+
+		Sensor readings are done in subsequent time steps.
+
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+			\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:02}
+		\end{figure}	
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+			\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:03}
+		\end{figure}	
+		  \end{column}
+		 \end{columns}		 
+
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Applying inverse of the Vehicle motion model}
+		
+		\begin{block}{Assumption}		
+		Assume static environment constraints and apply the motion
+		\end{block}		
+		
+		\begin{exampleblock}{Input}		
+		Occupancy grid $+$ IMU data
+		\end{exampleblock}
+
+		\begin{alertblock}{Output}		
+		Grid with correspondent cell mapping
+		\end{alertblock}
+
+		\begin{equation}
+		\left[\begin{array}{c}x_t \\ y_t\\ \theta_t \end{array} \right] = 
+		\left[\begin{array}{c} {\nu_t \over \omega_t} \sin(\omega_t \Delta t) \\ {\nu_t \over \omega_t} - {\nu_t \over \omega_t} \cos(\omega_t \Delta t) \\ \omega_t \Delta t \end{array}\right]
+		\label{eq:circularmotion}
+		\end{equation}
+	\end{frame}	
+
+\subsection{Phase 2}
+
+	\begin{frame}
+		\frametitle{Integrating new readings - Occupancy counter}		
+		\begin{block}{Principle}
+			Keep a counter of how many times a cell have been observed occupied, and how many times observed as free.
+		\end{block}		
+		
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+		  \textbf{Initializing}
+		  
+		    \begin{equation}
+			OC_t[i] =  \begin{cases} 1, & \mbox{ if $OG_t[i] > 0.5$} \\
+			                       0, & \mbox{otherwise} \end{cases}
+			\end{equation}
+
+			\begin{equation}
+			FC_t[i] = \begin{cases} 1, & \mbox{ if $OG_t[i] < 0.5$} \\
+			                       0, & \mbox{otherwise} \end{cases}
+			\end{equation}		  
+		  
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \textbf{Updating}
+
+			\begin{equation}
+			FC_t[j] = FC_t[j] + FC_{t-1}[i]
+			\end{equation}
+			
+			\begin{equation}
+			OC_t[j] = OC_t[j] + OC_{t-1}[i]
+			\end{equation}		  
+		  
+		  \end{column}
+		 \end{columns}		 		
+		
+	\end{frame}
+
+\subsection{Phase 3}
+
+	\begin{frame}
+		\frametitle{Classification in counter-based}
+		
+		\begin{block}{Definition}
+		Classify in dynamic based on the ratio between OC and FC. 
+		\end{block}		
+		
+		\begin{equation}
+		MotionGrid_t[i] = \begin{cases} 1, & \mbox{$OG_t[i] > 0.5$ and} \\ & \mbox {$FC_t[i]>2\;  x \; OC_t[i]$} \\
+		                                0, & \mbox{otherwise}\end{cases}
+		\end{equation}		
+		
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle{Solution summary}
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.40]{../img/fig:motion:framework:motionmodule}
+		 \end{figure}
+		%\movie[width=3cm,height=2cm,poster]{la vidéo du FFFUUUU}{../videos/v8.mpeg}
+	\end{frame}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments}
+
+	\begin{frame}
+		\frametitle{Experimental Platform}
+		\begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.25]{../img/testbed:car}
+		  \end{figure}	
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.7]{../img/testbed:xsens}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns}			
 		
 		  \begin{columns}[t]
 		  \begin{column}{5cm}
@@ -173,89 +335,54 @@
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Experimental Platform}
+		\frametitle{Experimental Platform}	
+
 		\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.4]{../img/fig:demonstrator:lateral}
+			\includegraphics[scale=0.27]{../img/fig:demonstrator:lateral}
 		\end{figure}
-	\end{frame}
 
-	\begin{frame}
-		\frametitle{Experimental Platform}	
 		 \begin{columns}[t]
 		  \begin{column}{5cm}
 		  \begin{figure}[h]
 			\center
-			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior}
+			\includegraphics[scale=0.27]{../img/fig:demonstrator:superior}
 		  \end{figure}
 		  \end{column}
 		  
 		  \begin{column}{5cm}
 		  \begin{figure}[h]
 			\center
-			\includegraphics[scale=0.3]{../img/fig:demonstrator:superior:overlap}
+			\includegraphics[scale=0.27]{../img/fig:demonstrator:superior:overlap}
 		  \end{figure}   
 		  \end{column}
 		 \end{columns} 	
 	
 	\end{frame}
 
-	
-
-	\begin{frame}
-		\frametitle{Input preparation}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.18]{../img/fig:motion:framework}
-		\end{figure}
-		
-		*Linear Opinion Pools \cite{ADARVE-2012-671211}
-	
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Input preparation}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.2]{../img/fig:motion:algorithm:nonstatic:01}
-		\end{figure}
-	
-	\end{frame}
-
-
-	\begin{frame}
-		\frametitle{Solution overview}
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.30]{../img/fig:motion:framework:motionmodule}
-		 \end{figure}
-		
-	\end{frame}		
-	
-
-\subsection{algorithm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experiments}
+\section{Results}
 
 	\begin{frame}
 		\frametitle{Use cases}
-		4 use cases were chosen to assess our algorithm:
+		3 use cases were chosen to assess our algorithm:
 		\begin{itemize}
-		\item Vehicles in urban area
-		\item Vehicles in motorway
-		\item Vehicle in roundabout
-		\item Vehicle in static scenario
+		\item Vehicles in urban area =  low speed + lot of rotation
+		\item Vehicles in motorway = high speed + almost no rotation
+		%\item Vehicle in roundabout
+		\item Vehicle in static scenario = evaluate ground truth
 		\end{itemize}						
 	\end{frame}
-
-\section{Results}
 
 	\begin{frame}
 		\frametitle{Vehicles in urban area}
 		
 		\begin{columns}[t]
+			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenetwocars}
+				\end{figure}
+			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{exampleblock}{Positive}
 				\begin{itemize}
@@ -266,12 +393,6 @@
 				Bad rotation velocity data (IMU)
 				\end{block}
 			\end{column}
-			\begin{column}[t]{5cm}
-				\begin{figure}[h]
-				\center
-				\includegraphics[scale=0.55]{../img/fig:result:scenetwocars}
-				\end{figure}
-			\end{column}
 		\end{columns}		
 
 	\end{frame}
@@ -279,59 +400,68 @@
 		\frametitle{Vehicles in motorway}
 		\begin{columns}[t]
 			\begin{column}[t]{5cm}
+				\begin{figure}[h]
+				\center
+				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarshighway}
+				\end{figure}
+			\end{column}
+			\begin{column}[t]{5cm}
 				\begin{exampleblock}{Positive}
 				\begin{itemize}
 				\item Good results at high speed (when its most needed)
 				\end{itemize}
 				\end{exampleblock}
 			\end{column}
-			\begin{column}[t]{5cm}
-				\begin{figure}[h]
-				\center
-				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarshighway}
-				\end{figure}
-			\end{column}
 		\end{columns}		
 
 	\end{frame}
+
+%	\begin{frame}
+%		\frametitle{Vehicle in roundabout}
+%		\begin{columns}[t]
+%			\begin{column}[t]{5cm}
+%				\begin{exampleblock}{Positive}
+%				\begin{itemize}
+%				\item Very dense pixels
+%				\end{itemize}
+%				\end{exampleblock}
+%			\end{column}
+%			\begin{column}[t]{5cm}
+%				\begin{figure}[h]
+%				\center
+%				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarrondepoint}
+%				\end{figure}
+%			\end{column}
+%		\end{columns}
+%	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Vehicle in roundabout}
-		\begin{columns}[t]
-			\begin{column}[t]{5cm}
-				\begin{exampleblock}{Positive}
-				\begin{itemize}
-				\item Very dense pixels
-				\end{itemize}
-				\end{exampleblock}
-			\end{column}
-			\begin{column}[t]{5cm}
-				\begin{figure}[h]
-				\center
-				\includegraphics[scale=0.55]{../img/fig:result:scenetwocarrondepoint}
-				\end{figure}
-			\end{column}
-		\end{columns}
-	\end{frame}
 	\begin{frame}
 		\frametitle{Vehicle in static scenario}
 		
 		\begin{columns}[t]
-			\begin{column}[t]{5cm}
-				\begin{exampleblock}{Positive}
-				\begin{itemize}
-				\item Only few sparse pixels
-				\end{itemize}
-				\end{exampleblock}		
-			\end{column}
 			\begin{column}[t]{5cm}
 				\begin{figure}[h]
 				\center
 				\includegraphics[scale=0.55]{../img/fig:result:scenestatic}
 				\end{figure}
 			\end{column}
+			\begin{column}[t]{5cm}
+				\begin{exampleblock}{Positive}
+				\begin{itemize}
+				\item Only few sparse pixels
+				\item Easily removable with filters like:...
+				\end{itemize}
+				\end{exampleblock}		
+			\end{column}
 		\end{columns}
 	\end{frame}			
+
+	\begin{frame}
+		\frametitle{Video}
+		\centering
+		$<$Show Video$>$
+		
+	\end{frame}		
 
 	\begin{frame}
 		\frametitle{Run time}
@@ -346,6 +476,8 @@
 		
 	\end{frame}	
 
+\section{Conclusion}
+
 	\begin{frame}
 		\frametitle{Conclusion}
 		
@@ -359,45 +491,21 @@
 		
 		\begin{block}{Future work}
 			\begin{itemize}
-			\item Filtered after all to reduce the noise
-			\item Solve the IMU data precision dependency
+			\item Use Filters to reduce the noise
+			\item Fuse with other sensors to reduce the IMU data precision dependency
 			\end{itemize}
 		\end{block}
 		
 	\end{frame}
 
-%\begin{thebibliography}{9}
-%	\begin{frame}{References}
-%		\bibitem{iyengar1991autonomous}
-%			Iyengar, S.S. and Elfes, A.
-%			\emph{Autonomous Mobile Robots: Control, planning, and architecture}.
-%			1991.
-%			
-%		\bibitem{DBLP:journals/inffus/VuBA11}
-%			Trung-Dung Vu, Julien Burlet, Olivier Aycard
-%			\emph{Grid-based localization and local mapping with moving object
-%              detection and tracking}.
-%			2011.			
-%
-%		\bibitem{hal-00671211}
-%			Adarve, Juan David and Perrollaz, Mathias and Makris, Alexandros and Laugier, Christian
-%			\emph{Computing Occupancy Grids from Multiple Sensors using Linear Opinion Pools}.
-%			2012.
-%
-% 	\end{frame}
-%	\end{thebibliography}
-
 	\begin{frame}{That is it..}
 	\begin{alertblock}{}
-		\center
+		\centering
 		Questions?
 	\end{alertblock}
 	\end{frame} 	
  	
-\bibliographystyle{apalike}
-%abbrvnat
-%alpha
-
+\bibliographystyle{apalike}%abbrvnat%alpha
 \bibliography{../report}{} 	
 
 \end{document}

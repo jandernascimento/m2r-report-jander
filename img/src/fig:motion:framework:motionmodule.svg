@@ -227,7 +227,7 @@
      inkscape:cx="474.55684"
      inkscape:cy="759.72541"
      inkscape:document-units="px"
-     inkscape:current-layer="g6228"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -253,12 +253,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f2f2f2;stroke:#000000;stroke-width:1.16919422;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#f2f2f2;stroke:#000000;stroke-width:1.17034912;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect3696"
-       width="831.93701"
-       height="332.82602"
-       x="74.24633"
-       y="132.65247" />
+       width="833.58423"
+       height="332.82486"
+       x="74.24691"
+       y="132.65305" />
     <rect
        style="text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#e6e6e6;stroke:#000000;stroke-width:1.09884501"
        id="rect4484"
@@ -367,23 +367,23 @@
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="888.66016"
-       y="264.42419"
+       x="814.48431"
+       y="231.45715"
        id="text4673-9"><tspan
          sodipodi:role="line"
-         x="888.66016"
-         y="264.42419"
+         x="814.48431"
+         y="231.45715"
          id="tspan4702-9">{Moving parts}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="-185.70174"
-       y="275.24554"
+       x="-60.427006"
+       y="331.28952"
        id="text4673-9-5"><tspan
          sodipodi:role="line"
-         x="-185.70174"
-         y="275.24554"
-         id="tspan4702-9-0">{Occupancy Grid}</tspan></text>
+         x="-60.427006"
+         y="331.28952"
+         id="tspan4702-9-0">{Occ. Grid}</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2.58400000000000007;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
        d="m -10.155444,292.64981 72.855555,0"
@@ -432,12 +432,12 @@
     <text
        xml:space="preserve"
        style="font-size:21.20638275px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="-110.69607"
-       y="402.84995"
+       x="-54.652111"
+       y="458.89389"
        id="text4673-9-5-6"><tspan
          sodipodi:role="line"
-         x="-110.69607"
-         y="402.84995"
+         x="-54.652111"
+         y="458.89389"
          id="tspan4702-9-0-1">{Counters}</tspan></text>
     <g
        id="g6217"
