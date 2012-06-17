@@ -94,8 +94,8 @@
 	
 	\begin{frame}
 		\frametitle{Problem statement - BOF overview}
-		\begin{block}{Goal}
-			 Improve results of the BOF
+		\begin{block}{Short definition}
+			 Represents the environment with a discretized cells (grid representation) with the \textbf{occupancy state} and the \textbf{velocity} of each cell.
 		\end{block}
 		Risk estimation with constraints:
 		\begin{itemize}
@@ -113,12 +113,22 @@
 	
 	\begin{frame}
 		\frametitle{Behavior-based risk estimation}
+		
+		\begin{block}{Statistics}
+		75\% of the accidents are between two vehicles \cite{Hurt_1981}. Leaving only 25\% for all other causes.
+		\end{block}
 
-		Evaluate the risk based on the moving objects of the scene.
+		\begin{exampleblock}{How tackle this issue?}
+		Behavior-base risk estimation (moving or static) is a feasible approach.
+		\end{exampleblock}
+
+		\begin{alertblock}{Idea}
+			Evaluate the risk based for the moving objects of the scene. Thus, leaving only moving objects in the binary grid.
+		\end{alertblock}
 
 		$<$image of a grid, with moving object extracted$>$
 
-		Extract moving objects from the grid.
+		
 
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,12 +245,19 @@
 
 		  \begin{columns}[t]
 		  \begin{column}{5cm}
-			\begin{alertblock}{Constraint}
-				\begin{itemize}
-				\item No overlap
-				\item No merge
-				\end{itemize}
-			\end{alertblock}
+			%\begin{alertblock}{Constraint}
+			%	\begin{itemize}
+			%	\item No overlap
+			%	\item No merge
+			%	\end{itemize}
+			%\end{alertblock}
+			\begin{equation}
+			\ominus (P_{ij}) = \left[ \begin{array}{c} %P_{ji} \equiv 
+			-x_{ij}\cos(\theta_{ij})-y_{ij}\sin(\theta_{ij}) \\
+			x_{ij}\sin(\theta_{ij})-y_{ij}\cos(\theta_{ij}) \\
+			-\theta_{ij} \end{array} \right] 
+			\label{eq:invpose}
+			\end{equation}
 		  \end{column}
 		  
 		  \begin{column}{5cm}
