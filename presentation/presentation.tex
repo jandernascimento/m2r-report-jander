@@ -32,6 +32,8 @@
 		  \begin{column}{5cm}
 			\begin{exampleblock}{Stands for}	
 				Advanced Driver Assistance Systems, cope with vehicle handling tasks
+				
+				Intelligent Transportation Systems
 			\end{exampleblock}		
 			\begin{block}{Goal}
 				\begin{itemize}
@@ -53,18 +55,18 @@
 	\end{frame}	
 
 	\begin{frame}
-		\frametitle{Perception}	
+		\frametitle{Risk estimation \& Perception}	
 		
 		\begin{columns}[t]
 		  \begin{column}{6cm}
 
-			\begin{block}{Perception}
-					The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
-			\end{block}		
-	
 			\begin{block}{Risk estimation}
 					Evaluate the state space and assess the safety of the movement
 			\end{block}				  
+
+			\begin{block}{Perception}
+					The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
+			\end{block}		
 		  
 		  \end{column}
 		  
@@ -94,21 +96,27 @@
 	
 	\begin{frame}
 		\frametitle{Problem statement - BOF overview}
+		
+		\begin{block}{Stands for..}
+			Bayesian Occupancy Filter
+		\end{block}
+		
 		\begin{block}{Short definition}
 			 Represents the environment with a discretized cells (grid representation) with the \textbf{occupancy state} and the \textbf{velocity} of each cell.
 		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Problem statement}
+		Risk estimation \& Occupancy grid	
+		
 		Risk estimation with constraints:
 		\begin{itemize}
 			\item In a car (platform)
 			\item using a laser scanner (sensor)
 			\item As fast as possible (online)
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Problem statement}
-		Risk estimation
-		Occupancy grid	
+		\end{itemize}		
+		
 	\end{frame}
 	
 	\begin{frame}
@@ -299,12 +307,12 @@
 		  \textbf{Updating}
 
 			\begin{equation}
-			FC_t[j] = FC_t[j] + FC_{t-1}[i]
-			\end{equation}
-			
-			\begin{equation}
 			OC_t[j] = OC_t[j] + OC_{t-1}[i]
 			\end{equation}		  
+
+			\begin{equation}
+			FC_t[j] = FC_t[j] + FC_{t-1}[i]
+			\end{equation}
 		  
 		  \end{column}
 		 \end{columns}		 		
@@ -532,7 +540,7 @@
 		
 		\begin{block}{Future work}
 			\begin{itemize}
-			\item Use Filters to reduce the noise
+			\item Apply filters to reduce the noise
 			\item Fuse with other sensors to reduce the IMU data precision dependency
 			\end{itemize}
 		\end{block}
