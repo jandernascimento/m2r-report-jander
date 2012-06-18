@@ -55,18 +55,23 @@
 	\end{frame}	
 
 	\begin{frame}
-		\frametitle{Risk estimation \& Perception}	
+		\frametitle{ADAS application architecture}	
 		
 		\begin{columns}[t]
 		  \begin{column}{6cm}
+
+			\begin{block}{Sensors}
+					The means of perceiving the environment based on physical properties (cameras, lasers, etc.)
+			\end{block}		
+
+			\begin{block}{Perception}
+					The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
+			\end{block}		
 
 			\begin{block}{Risk estimation}
 					Evaluate the state space and assess the safety of the movement
 			\end{block}				  
 
-			\begin{block}{Perception}
-					The process of acquiring knowledge about the environment \cite{iyengar1991autonomous}
-			\end{block}		
 		  
 		  \end{column}
 		  
@@ -96,72 +101,153 @@
 	
 	\begin{frame}
 		\frametitle{Problem statement - BOF overview}
-		
+	
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+			\begin{figure}[h]
+			\center
+	
 		\begin{block}{Stands for..}
 			Bayesian Occupancy Filter
+			
+			A perception framework developed in E-Motion team.  (ref)
 		\end{block}
-		
-		\begin{block}{Short definition}
-			 Represents the environment with a discretized cells (grid representation) with the \textbf{occupancy state} and the \textbf{velocity} of each cell.
-		\end{block}
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Problem statement}
-		Risk estimation \& Occupancy grid	
-		
-		Risk estimation with constraints:
-		\begin{itemize}
-			\item In a car (platform)
-			\item using a laser scanner (sensor)
-			\item As fast as possible (online)
-		\end{itemize}		
-		
-	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Behavior-based risk estimation}
+			\begin{block}{Short definition}
+			\begin{itemize}		
+				 \item Grid based representation of the environment
+				 \item For each cell it calculates 2 probabilities:
+			 		\begin{itemize}		
+				 		\item probability of \textbf{occupancy} of the cell
+				 		\item probability of \textbf{velocity} of cell
+	 				\end{itemize}		
+				 
+			\end{itemize}				
+			\end{block}
+		\end{figure}	
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+			\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.3]{img/bof}
+		\end{figure}	
+		  \end{column}
+		 \end{columns}		
 		
-		\begin{block}{Statistics}
-		75\% of the accidents are between two vehicles \cite{Hurt_1981}. Leaving only 25\% for all other causes.
-		\end{block}
-
-		\begin{exampleblock}{How tackle this issue?}
-		Behavior-base risk estimation (moving or static) is a feasible approach.
-		\end{exampleblock}
-
-		\begin{alertblock}{Idea}
-			Evaluate the risk based for the moving objects of the scene. Thus, leaving only moving objects in the binary grid.
-		\end{alertblock}
-
-		$<$image of a grid, with moving object extracted$>$
-
 		
-
+		
 	\end{frame}
+
+	\begin{frame}
+		\frametitle{Context - Problem statement}
+
+		BOF calculates velocities as Bayesian inference without using motion sensors
+		
+		\begin{itemize}
+		\item Uses pre-defined range of velocities
+		\item Needs to use the neighborhood for calculate those velocities
+		\end{itemize}
+
+		 \begin{alertblock}{Issue}
+		 Needs to evaluate velocity distribution even for cells belonging to static parts
+		 \end{alertblock}
+
+		
+	
+		\begin{block}{Problem statement}		
+			How to separate the input data from the laser into dynamic and static parts using information from the motion sensors?
+			
+			That can be used for BOF to concentrate its calculations for cells belonging to dynamic parts only.
+		\end{block}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Perception}
+	
+			\begin{block}{Definition}
+				the process of getting information from the environment using sensors
+			\end{block}	
+	
+		  \begin{columns}[t]
+		  \begin{column}{4cm}
+		  	\small
+			\begin{exampleblock}{SLAM}		
+		
+			\begin{itemize}
+			\item Localization
+			\item Mapping
+			\end{itemize}			
+			
+			\end{exampleblock}					
+				
+		\begin{exampleblock}{DATMO}		
+			\begin{itemize}
+			\item Moving objects: Detection and Tracking
+			\end{itemize}			
+			
+		\end{exampleblock}	
+		  \end{column}
+		  
+		  \begin{column}{6cm}
+			\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.3]{img/perception}
+		\end{figure}	
+		  \end{column}
+		 \end{columns}		 	
+	
+					
+	
+	\end{frame}	
+	
+%	\begin{frame}
+%		\frametitle{Behavior-based risk estimation}
+		
+%		\begin{block}{Statistics}
+%		75\% of the accidents are between two vehicles \cite{Hurt_1981}. Leaving only 25\% for all other causes.
+%		\end{block}
+%
+%		\begin{exampleblock}{How tackle this issue?}
+%		Behavior-base risk estimation (moving or static) is a feasible approach.
+%		\end{exampleblock}
+%
+%		\begin{alertblock}{Idea}
+%			Evaluate the risk based for the moving objects of the scene. Thus, leaving only moving objects in the binary grid.
+%		\end{alertblock}
+%
+%		$<$image of a grid, with moving object extracted$>$
+
+%	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{State of the art}
 
 	\begin{frame}
 		\frametitle{State of the art}
 		
-		\begin{block}{Other static/dynamic classification}
+		%\begin{block}{Other static/dynamic classification}
 			\begin{itemize}
 			\item Use a Single Camera for Simultaneous Localization And Mapping with  Mobile Object Tracking in dynamic environments \cite{Migliore_2009_ICRA}
 				\begin{itemize}			
-				\item EKF for tracking, with two models				
+				\item Observe features at 3 different positions
+				\item Needs feature association
+				\item Not applicable for outdoors environment 
+				%based on observerving same fereature from 3 diff positions, if the same feature is not in the same position detect as moving, problem feature association, only for indoors env. 
 				\end{itemize}		
-			\item Mapping in dynamic environments using stereo vision \cite{DBLP:conf/ivs/LategahnGHKE11}
-				\begin{itemize}
-				\item Disparity image to find the contour
-				\item Classifier based on SPRT				
-				\end{itemize}		
+			%\item Mapping in dynamic environments using stereo vision \cite{DBLP:conf/ivs/LategahnGHKE11}
+			%	\begin{itemize}
+			%	\item Disparity image to find the contour
+			%	\item Classifier based on SPRT				
+			%	\end{itemize}		
 			\item Grid-based localization and local mapping with moving object detection and tracking \cite{Vu201158}
-				\begin{itemize}			
-				\item MHT + IMM			
+				\begin{itemize}		
+				\item Maximum likelihood based localization	
+				\item Motion detection based on inconsistence between free and occupied space
+				\item Solves the complete SLAM
 				\end{itemize}	
 			\end{itemize}		
-		\end{block}
+		%\end{block}
 	\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -175,20 +261,81 @@
 			%\includegraphics[scale=0.5]{img/fig:problem}
 			\includegraphics[scale=0.6]{img/fig:motion:overview:01}
 		 \end{figure}
-		\begin{block}{Problem}
+		 (replace clinder by the 2x sensor image)
+		\begin{block}{Goal}
 			 Being able to identify the dynamic parts of the environment
 		\end{block}
 		 
 		\begin{block}{Result}
-			High level classification
+			Motion Grid, equivalent to input grid with high probability only for cells detected as moving
 		\end{block}				 
 
 		\begin{alertblock}{Not our goal}
-			Solve DATMO/SLAM
+			Solve SLAM
 		\end{alertblock}
 	\end{frame}
 
 \subsection{preprocessing}
+
+	\begin{frame}
+		\frametitle{Experimental Platform}
+		\begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.25]{../img/testbed:car}
+		  \end{figure}	
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.7]{../img/testbed:xsens}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns}			
+		
+		  \begin{columns}[t]
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.7]{../img/testbed:trunc}
+		  \end{figure}
+		  \end{column}
+		  
+		  \begin{column}{5cm}
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.26]{../img/testbed:ibeo}
+		  \end{figure}   
+		  \end{column}
+		 \end{columns}		 
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Experimental Platform - laser configuration}	
+
+
+
+		 \begin{columns}[t]
+		  \begin{column}{5cm}
+
+		  \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.27]{../img/fig:demonstrator:superior:overlap}
+		  \end{figure}   
+
+		  \end{column}
+
+		  \begin{column}{5cm}
+		 \begin{figure}[h]
+			\center
+			\includegraphics[scale=0.27]{../img/fig:demonstrator:lateral}
+		\end{figure}		  
+		  \end{column}
+		 \end{columns} 	
+	
+	\end{frame}
 
 	\begin{frame}
 		\frametitle{Input preparation}
@@ -348,66 +495,6 @@
 
 \section{Experiments}
 
-	\begin{frame}
-		\frametitle{Experimental Platform}
-		\begin{columns}[t]
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.25]{../img/testbed:car}
-		  \end{figure}	
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.7]{../img/testbed:xsens}
-		  \end{figure}   
-		  \end{column}
-		 \end{columns}			
-		
-		  \begin{columns}[t]
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.7]{../img/testbed:trunc}
-		  \end{figure}
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.26]{../img/testbed:ibeo}
-		  \end{figure}   
-		  \end{column}
-		 \end{columns}		 
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Experimental Platform}	
-
-		\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.27]{../img/fig:demonstrator:lateral}
-		\end{figure}
-
-		 \begin{columns}[t]
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.27]{../img/fig:demonstrator:superior}
-		  \end{figure}
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-		  \begin{figure}[h]
-			\center
-			\includegraphics[scale=0.27]{../img/fig:demonstrator:superior:overlap}
-		  \end{figure}   
-		  \end{column}
-		 \end{columns} 	
-	
-	\end{frame}
 
 \section{Results}
 
