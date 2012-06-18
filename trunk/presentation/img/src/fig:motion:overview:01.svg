@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
@@ -72,6 +73,20 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6238"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6312"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -86,10 +101,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1002"
-     inkscape:window-height="577"
+     inkscape:window-width="1280"
+     inkscape:window-height="949"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -110,12 +125,12 @@
     <text
        xml:space="preserve"
        style="font-size:18.85968399px;font-style:normal;font-weight:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="89.623863"
-       y="216.84564"
+       x="75.481728"
+       y="224.92686"
        id="text2840"><tspan
          sodipodi:role="line"
-         x="89.623863"
-         y="216.84564"
+         x="75.481728"
+         y="224.92686"
          id="tspan2844">{Sensor data}</tspan></text>
     <g
        id="g2909"
@@ -213,38 +228,6 @@
        style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
        d="m 565.68542,164.43809 41.41626,0"
        id="path2942" />
-    <g
-       id="g4556"
-       transform="translate(18.182746,-88.893422)"
-       style="fill:#e6e6e6">
-      <rect
-         y="224.10794"
-         x="47.548031"
-         height="46.325314"
-         width="47.335297"
-         id="rect4554"
-         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.64170384;stroke-miterlimit:4;stroke-dasharray:none" />
-      <path
-         transform="translate(0,-6)"
-         d="m 94.954336,229.59294 c 0,5.29997 -10.628126,9.59645 -23.738584,9.59645 -13.110459,0 -23.738585,-4.29648 -23.738585,-9.59645 0,-5.29997 10.628126,-9.59645 23.738585,-9.59645 13.110458,0 23.738584,4.29648 23.738584,9.59645 z"
-         sodipodi:ry="9.5964489"
-         sodipodi:rx="23.738585"
-         sodipodi:cy="229.59294"
-         sodipodi:cx="71.215752"
-         id="path4528"
-         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none"
-         sodipodi:type="arc" />
-      <path
-         d="m 94.954336,229.59294 c 0,5.29997 -10.628126,9.59645 -23.738584,9.59645 -13.110459,0 -23.738585,-4.29648 -23.738585,-9.59645 0,-5.29997 10.628126,-9.59645 23.738585,-9.59645 13.110458,0 23.738584,4.29648 23.738584,9.59645 z"
-         sodipodi:ry="9.5964489"
-         sodipodi:rx="23.738585"
-         sodipodi:cy="229.59294"
-         sodipodi:cx="71.215752"
-         id="path4528-2"
-         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none"
-         sodipodi:type="arc"
-         transform="translate(0.50507928,40.870562)" />
-    </g>
     <text
        xml:space="preserve"
        style="font-size:13.64073277px;font-style:normal;font-weight:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
@@ -275,5 +258,26 @@
          x="584.20007"
          y="92.439842"
          id="tspan2844-7-7-7">{Grid with Mov. Obj.}</tspan></text>
+    <rect
+       style="opacity:0.76534274;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.57666576;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect6228"
+       width="134.27362"
+       height="55.481724"
+       x="7.1094012"
+       y="139.22263" />
+    <image
+       y="145.15852"
+       x="73.159966"
+       id="image6240"
+       height="45.55114"
+       width="58.741032"
+       xlink:href="file:///home/emotion/botelhod/project/m2r-report-jander/presentation/img/inkscape_pasted_image_20120618_123247.png" />
+    <image
+       y="144.0094"
+       x="13.829993"
+       id="image6314"
+       height="47.954067"
+       width="45.643032"
+       xlink:href="file:///home/emotion/botelhod/project/m2r-report-jander/presentation/img/front-lux.jpg" />
   </g>
 </svg>

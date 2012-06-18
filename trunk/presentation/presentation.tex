@@ -25,6 +25,8 @@
 
 	\section{Introduction}
 	
+\subsection*{Introduction}	
+
 	\begin{frame}
 		\frametitle{ADAS/ITS}
 		
@@ -110,7 +112,7 @@
 		\begin{block}{Stands for..}
 			Bayesian Occupancy Filter
 			
-			A perception framework developed in E-Motion team.  (ref)
+			A perception framework developed in E-Motion team.  \cite{coue2003}
 		\end{block}
 	
 			\begin{block}{Short definition}
@@ -146,7 +148,7 @@
 		
 		\begin{itemize}
 		\item Uses pre-defined range of velocities
-		\item Needs to use the neighborhood for calculate those velocities
+		\item Needs to use the neighborhood for calculating those velocities
 		\end{itemize}
 
 		 \begin{alertblock}{Issue}
@@ -261,7 +263,6 @@
 			%\includegraphics[scale=0.5]{img/fig:problem}
 			\includegraphics[scale=0.6]{img/fig:motion:overview:01}
 		 \end{figure}
-		 (replace clinder by the 2x sensor image)
 		\begin{block}{Goal}
 			 Being able to identify the dynamic parts of the environment
 		\end{block}
@@ -275,7 +276,7 @@
 		\end{alertblock}
 	\end{frame}
 
-\subsection{preprocessing}
+\subsection{Motion detection algorithm}
 
 	\begin{frame}
 		\frametitle{Experimental Platform}
@@ -348,97 +349,21 @@
 	
 	\end{frame}
 
-\subsection{Phase 1}
-
 	\begin{frame}
-		\frametitle{Finding correspondence between cells at different time steps}
+		\frametitle{Motion Detection algorithm}
 
-		Sensor readings are done in subsequent time steps.
-
-		  \begin{columns}[t]
-		  \begin{column}{5cm}
-			\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:02}
-		\end{figure}	
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-			\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:03}
-		\end{figure}	
-		  \end{column}
-		 \end{columns}		 
-
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Applying inverse of the Vehicle motion model}
+		$OC_t$ - Occupied Counter
 		
-		\begin{block}{Assumption}		
-		Assume static environment constraints and apply the motion
-		\end{block}		
+		$OC_{t-1}$ - counter of how many time cell detected occupied until $t-1$
 		
-		\begin{exampleblock}{Input}		
-		Occupancy grid $+$ IMU data
-		\end{exampleblock}
+		$FC_t$ - Free Counter
+		
+		$FC_{t-1}$ - counter of how many time cell detected free until $t-1$
 
-		\begin{alertblock}{Output}		
-		Grid with correspondent cell mapping
-		\end{alertblock}
 
-		\begin{equation}
-		\left[\begin{array}{c}x_t \\ y_t\\ \theta_t \end{array} \right] = 
-		\left[\begin{array}{c} {\nu_t \over \omega_t} \sin(\omega_t \Delta t) \\ {\nu_t \over \omega_t} - {\nu_t \over \omega_t} \cos(\omega_t \Delta t) \\ \omega_t \Delta t \end{array}\right]
-		\label{eq:circularmotion}
-		\end{equation}
-	\end{frame}	
+		\begin{block}{Step 1 - Initialization}
 
-	\begin{frame}
-		\frametitle{Cell from different time steps, can be matched}
-
-		  \begin{columns}[t]
-		  \begin{column}{5cm}
-			%\begin{alertblock}{Constraint}
-			%	\begin{itemize}
-			%	\item No overlap
-			%	\item No merge
-			%	\end{itemize}
-			%\end{alertblock}
 			\begin{equation}
-			\ominus (P_{ij}) = \left[ \begin{array}{c} %P_{ji} \equiv 
-			-x_{ij}\cos(\theta_{ij})-y_{ij}\sin(\theta_{ij}) \\
-			x_{ij}\sin(\theta_{ij})-y_{ij}\cos(\theta_{ij}) \\
-			-\theta_{ij} \end{array} \right] 
-			\label{eq:invpose}
-			\end{equation}
-		  \end{column}
-		  
-		  \begin{column}{5cm}
-			\begin{figure}[h]
-			\center
-			\includegraphics[scale=0.5]{../img/fig:translation}
-			\end{figure}	
-		  \end{column}
-		 \end{columns}		 
-
-	\end{frame}
-
-
-\subsection{Phase 2}
-
-	\begin{frame}
-		\frametitle{Integrating new readings - Occupancy counter}		
-		\begin{block}{Principle}
-			Keep a counter of how many times a cell have been observed occupied, and how many times observed as free.
-		\end{block}		
-		
-		  \begin{columns}[t]
-		  \begin{column}{5cm}
-		  \textbf{Initializing}
-		  
-		    \begin{equation}
 			OC_t[i] =  \begin{cases} 1, & \mbox{ if $OG_t[i] > 0.5$} \\
 			                       0, & \mbox{otherwise} \end{cases}
 			\end{equation}
@@ -446,41 +371,99 @@
 			\begin{equation}
 			FC_t[i] = \begin{cases} 1, & \mbox{ if $OG_t[i] < 0.5$} \\
 			                       0, & \mbox{otherwise} \end{cases}
-			\end{equation}		  
-		  
-		  \end{column}
-		  
+			\end{equation}			
+		
+		\end{block}
+
+%		Sensor readings are done in subsequent time steps.
+%
+%		  \begin{columns}[t]
+%		  \begin{column}{5cm}
+%			\begin{figure}[h]
+%			\center
+%			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:02}
+%		\end{figure}	
+%		  \end{column}
+%		  
+%		  \begin{column}{5cm}
+%			\begin{figure}[h]
+%			\center
+%			\includegraphics[scale=0.2]{img/fig:motion:algorithm:nonstatic:03}
+%		\end{figure}	
+%		  \end{column}
+%		 \end{columns}		 
+
+	\end{frame}
+
+%	\begin{frame}
+%		\frametitle{Applying inverse of the Vehicle motion model}
+%		
+%		\begin{block}{Assumption}		
+%		Assume static environment constraints and apply the motion
+%		\end{block}		
+%		
+%		\begin{exampleblock}{Input}		
+%		Occupancy grid $+$ IMU data
+%		\end{exampleblock}
+%
+%		\begin{alertblock}{Output}		
+%		Grid with correspondent cell mapping
+%		\end{alertblock}
+%	\end{frame}	
+
+	\begin{frame}
+		\frametitle{Motion Detection algorithm}
+
+		  \begin{columns}[t]
 		  \begin{column}{5cm}
-		  \textbf{Updating}
-
+			\begin{block}{Step 2 - Counter update from time $t-1$}		  
+			\begin{itemize}
+			\item Find position $O_t$ w.r.t $O_{t-1}$, using $\nu_t$, $\omega_t$ and circular motion model
 			\begin{equation}
-			OC_t[j] = OC_t[j] + OC_{t-1}[i]
-			\end{equation}		  
-
-			\begin{equation}
-			FC_t[j] = FC_t[j] + FC_{t-1}[i]
+			\left[\begin{array}{c}x_t \\ y_t\\ \theta_t \end{array} \right] = 
+			\left[\begin{array}{c} {\nu_t \over \omega_t} \sin(\omega_t \Delta t) \\ {\nu_t \over \omega_t} - {\nu_t \over \omega_t} \cos(\omega_t \Delta t) \\ \omega_t \Delta t \end{array}\right]
+			\label{eq:circularmotion}
 			\end{equation}
-		  
+			\item Map cell $i$ of $OG_{t-1}$ to cell $j$ of $OG_{t}$ using pose transformations
+			\end{itemize}		
+			\end{block}			
+			
 		  \end{column}
-		 \end{columns}		 		
+		  \begin{column}{5cm}
+			\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.6]{../img/fig:translation}
+			\end{figure}	
+		  \end{column}
+		 \end{columns}		 
+
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Motion Detection algorithm}		
+
+			\begin{equation*}
+			OC_t[j] = OC_t[j] + OC_{t-1}[i]
+			\end{equation*}  
+
+			\begin{equation*}
+			FC_t[j] = FC_t[j] + FC_{t-1}[i]
+			\end{equation*}		 		
+
+		
+		\begin{block}{Step 3 - Motion grid}	
+
+		\begin{equation*}
+			MotionGrid_t[i] = \begin{cases} 1, & \mbox{$OG_t[i] > 0.5$ and} \\ & \mbox {$FC_t[i]>2\;  x \; OC_t[i]$} \\
+		                                0, & \mbox{otherwise}\end{cases}
+		\end{equation*}		
+				
+		\end{block}		
+		
+
 		
 	\end{frame}
 
-\subsection{Phase 3}
-
-	\begin{frame}
-		\frametitle{Classification in counter-based}
-		
-		\begin{block}{Definition}
-		Classify in dynamic based on the ratio between OC and FC. 
-		\end{block}		
-		
-		\begin{equation}
-		MotionGrid_t[i] = \begin{cases} 1, & \mbox{$OG_t[i] > 0.5$ and} \\ & \mbox {$FC_t[i]>2\;  x \; OC_t[i]$} \\
-		                                0, & \mbox{otherwise}\end{cases}
-		\end{equation}		
-		
-	\end{frame}	
 
 	\begin{frame}
 		\frametitle{Solution summary}
@@ -492,20 +475,16 @@
 	\end{frame}	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experiments}
-
-
 \section{Results}
 
 	\begin{frame}
 		\frametitle{Use cases}
-		3 use cases were chosen to assess our algorithm:
+		3 use cases were chosen to test our algorithm:
 		\begin{itemize}
 		\item Vehicles in urban area =  low speed + lot of rotation
 		\item Vehicles in motorway = high speed + almost no rotation
 		%\item Vehicle in roundabout
-		\item Vehicle in static scenario = evaluate ground truth
+		\item Vehicle in static scenario
 		\end{itemize}						
 	\end{frame}
 
@@ -607,7 +586,7 @@
 		\end{alertblock}		
 		
 		\begin{exampleblock}{Bright side}
-			Still place for optimization
+			Still place for optimization, GPU implementation is possible
 		\end{exampleblock}				
 		
 	\end{frame}	
@@ -615,12 +594,12 @@
 \section{Conclusion}
 
 	\begin{frame}
-		\frametitle{Conclusion}
+		\frametitle{Conclusion and Future work}
 		
-		\begin{block}{Benefits}
+		\begin{block}{Conclusion}
 			\begin{itemize}
+			\item presented an algorithm for fast classification of static/dynamic
 			\item easy to integrate with existing solutions
-			\item faster way to classify
 			\item still place for improvement
 			\end{itemize}
 		\end{block}		
@@ -628,13 +607,14 @@
 		\begin{block}{Future work}
 			\begin{itemize}
 			\item Apply filters to reduce the noise
-			\item Fuse with other sensors to reduce the IMU data precision dependency
+			\item Fuse with other sensors information to reduce the IMU data precision dependency
+			\item Integrate into the BOF framework
 			\end{itemize}
 		\end{block}
 		
 	\end{frame}
 
-	\begin{frame}{That is it..}
+	\begin{frame}{Thank you for your attention}
 	\begin{alertblock}{}
 		\centering
 		Questions?
