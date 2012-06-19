@@ -3,6 +3,7 @@
 \usepackage{multimedia}
 \usepackage[final]{pdfpages}
 \usetheme{Dresden}%Goettingen}%Warsaw}
+\beamertemplatenavigationsymbolsempty
 \usecolortheme{lily}
 \setbeamertemplate{footline}[page number]
 \title[Fast classification]{Efficient dynamic and static environment classification in Occupancy Grid framework}
@@ -173,7 +174,7 @@
 		  \begin{column}{5cm}
 			\begin{figure}[h]
 			\center
-			\includegraphics[scale=0.3]{img/bof}
+			\includegraphics[scale=0.45]{img/bof}
 		\end{figure}	
 		  \end{column}
 		 \end{columns}
@@ -191,7 +192,7 @@
 			\item Needs to use the neighborhood for calculating those velocities
 			\end{itemize}
 
-		\item Risk estimation requires to know the moving objects
+		\item Risk assessment requires to know the moving objects
 
 		\end{itemize}
 
@@ -429,7 +430,7 @@
 
 		  \begin{columns}[t]
 		  \begin{column}{5cm}
-			\begin{block}{Step 2}		  % - Transformation from $OG_{t-1}$ to $OG_{t}$ 
+			\begin{block}{Step 2 - Transformation from $OG_{t-1}$ to $OG_{t}$ }
 			\begin{itemize}
 			\item Find position $O_t$ w.r.t $O_{t-1}$, using $\nu_t$, $\omega_t$ and circular motion model
 			\begin{equation}
@@ -490,6 +491,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
+
+\subsection*{Results}
 
 	\begin{frame}
 		\frametitle{Use cases}
@@ -596,7 +599,7 @@
 
 		\begin{exampleblock}{Performance}
 			Run in approximately 3.0ms in a 2.67Mhz processor
-		\end{alertblock}		
+		\end{exampleblock}		
 		
 		\begin{exampleblock}{Bright side}
 			Still place for optimization, GPU implementation is possible
@@ -605,6 +608,8 @@
 	\end{frame}	
 
 \section{Conclusion}
+
+\subsection*{Conclusion}
 
 	\begin{frame}
 		\frametitle{Conclusion}
