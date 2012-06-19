@@ -8,7 +8,7 @@
 \setbeamertemplate{footline}[page number]
 \title[Fast classification]{Efficient dynamic and static environment classification in Occupancy Grid framework}
 \author{Jander Nascimento}
-\institute{Université Joseph Fourier / INRIA}
+\institute{Université Joseph Fourier \\ e-motion (Inria/LIG)}
 \date{\today}
 \begin{document}
 
@@ -29,7 +29,7 @@
 \subsection*{Introduction}	
 
 	\begin{frame}
-		\frametitle{ADAS/ITS}
+		\frametitle{ADAS}
 		
 		\begin{columns}[t]
 		  \begin{column}{5cm}
@@ -41,7 +41,7 @@
 				\begin{itemize}
 				\item Reduce the risk of collisions
 				\item Reduce the driver overload
-				\item Increase the confort
+				\item Increase the comfort
 				\end{itemize}
 			\end{block}
 		  \end{column}
@@ -58,7 +58,7 @@
 
 	\begin{frame}
 		\frametitle{ADAS application architecture}	
-		
+		\small
 		\begin{columns}[t]
 		  \begin{column}{6cm}
 			\begin{block}{Sensors}
@@ -162,8 +162,8 @@
 				 \item Grid based representation of the environment
 				 \item For each cell it calculates 2 probabilities:
 			 		\begin{itemize}		
-				 		\item probability of \textbf{occupancy} of the cell
-				 		\item probability of \textbf{velocity} of cell
+				 		\item probability of \textbf{occupancy}
+				 		\item probability of distribution of the \textbf{velocity}
 	 				\end{itemize}		
 				 
 			\end{itemize}				
@@ -207,7 +207,7 @@
 			\begin{itemize}		
 			\item Separate the static and dynamic environment
 			\item Using laser scanner and IMU as sensors
-			\item Compute in real-time (20 miliseconds)
+			\item Compute in real-time (less than $\approx 20ms$)
 			\end{itemize}		
 			
 			%How to separate the input data from the laser into dynamic and static parts using information from the motion sensors?
@@ -359,20 +359,20 @@
 			\includegraphics[scale=0.18]{../img/fig:motion:framework}
 		\end{figure}
 		
-		*Linear Opinion Pools \cite{ADARVE-2012-671211} for fusion
+		Linear Opinion Pools for fusion \cite{ADARVE-2012-671211}
 	
 	\end{frame}
 
 	\begin{frame}
 		\frametitle{Motion Detection algorithm}
 
-		$OC_t$ - Occupied Counter
+		$OC_t$ - \textit{Occupied Counter}
 		
-		$OC_{t-1}$ - counter of how many time cell detected occupied until $t-1$
+		$OC_{t-1}$ - Counter of how many time cell detected occupied until $t-1$
 		
-		$FC_t$ - Free Counter
+		$FC_t$ - \textit{Free Counter}
 		
-		$FC_{t-1}$ - counter of how many time cell detected free until $t-1$
+		$FC_{t-1}$ - Counter of how many time cell detected free until $t-1$
 
 
 		\begin{block}{Step 1 - Initialization}
@@ -598,7 +598,7 @@
 		\frametitle{Run time}
 
 		\begin{exampleblock}{Performance}
-			Run in approximately 3.0ms in a 2.67Mhz processor
+			Run in approximately $3.0ms$ in a 2.67GHz processor
 		\end{exampleblock}		
 		
 		\begin{exampleblock}{Bright side}
@@ -622,7 +622,7 @@
 			\end{itemize}
 		\end{block}		
 		
-		\begin{block}{ICARCv2012}		
+		\begin{block}{ICARCV 2012}		
 			Paper submitted with the method
 		\end{block}
 
@@ -644,7 +644,7 @@
 			
 				\begin{itemize}
 				\item Integrate into the BOF framework
-				\item Clustering and tracking of Moving Objects
+				\item Clustering and Tracking of Moving Objects
 				\item Probabilistic risk estimation
 				\item HMI interface
 				\end{itemize}
