@@ -16,6 +16,16 @@
 \titlepage
 \end{frame}
 
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
 %\AtBeginSubsection[]
 {
   \begin{frame}<beamer>
@@ -299,8 +309,9 @@
 		\begin{columns}[t]
 		  \begin{column}{5cm}
 		  \begin{figure}[h]
-			\center
+			\centering
 			\includegraphics[scale=0.25]{../img/testbed:car}
+
 		  \end{figure}	
 		  \end{column}
 		  
@@ -362,6 +373,18 @@
 		Linear Opinion Pools for fusion \cite{ADARVE-2012-671211}
 	
 	\end{frame}
+
+	\begin{frame}
+		\frametitle{Motion Detection algorithm}
+
+		Spliting the process in steps.
+
+		\begin{figure}[h]
+			\center
+			\includegraphics[scale=0.50]{img/fig:motion:overview:02}
+		\end{figure}
+		
+	\end{frame}	
 
 	\begin{frame}
 		\frametitle{Motion Detection algorithm}
@@ -661,7 +684,7 @@
 		Questions?
 	\end{alertblock}
 	\end{frame} 	
-
+ 
  	
 \bibliographystyle{apalike}%abbrvnat%alpha
 \bibliography{../report}{} 	
